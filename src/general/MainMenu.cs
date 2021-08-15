@@ -159,7 +159,10 @@ public class MainMenu : NodeWithInput
         thriveLogo.RegisterToolTipForControl("thriveLogoEasterEgg", "mainMenu");
 
         if (OS.GetCurrentVideoDriver() == OS.VideoDriver.Gles2 && !IsReturningToMenu)
-            gles2Popup.PopupCenteredShrink();
+        {
+            // Delayed due to final root viewport size not yet applied in the settings
+            Invoke.Instance.Queue(() => gles2Popup.PopupCenteredShrink());
+        }
     }
 
     /// <summary>

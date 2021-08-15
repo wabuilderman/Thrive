@@ -23,6 +23,9 @@ public static class Constants
     /// </summary>
     public const float DEFAULT_HEX_SIZE = 0.75f;
 
+    public const float MINIMUM_RENDER_RESOLUTION_WIDTH = 1280;
+    public const float MINIMUM_RENDER_RESOLUTION_HEIGHT = 720;
+
     /// <summary>
     ///   Don't change this, so much stuff will break
     /// </summary>

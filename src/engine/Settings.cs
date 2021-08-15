@@ -10,6 +10,9 @@ using Environment = System.Environment;
 /// </summary>
 public class Settings
 {
+    public static readonly Vector2 MinimumRenderResolution = new Vector2(
+        Constants.MINIMUM_RENDER_RESOLUTION_WIDTH, Constants.MINIMUM_RENDER_RESOLUTION_HEIGHT);
+
     private static readonly string DefaultLanguageValue = TranslationServer.GetLocale();
     private static readonly CultureInfo DefaultCultureValue = CultureInfo.CurrentCulture;
     private static readonly InputDataList DefaultControls = GetCurrentlyAppliedControls();
@@ -28,6 +31,27 @@ public class Settings
         // This is mainly just to make sure the property is read here before anyone can change TranslationServer locale
         if (DefaultLanguage.Length < 1)
             GD.PrintErr("Default locale is empty");
+    }
+
+    /// <summary>
+    ///   Types of render resolution settings specifying resolution change behaviors.
+    /// </summary>
+    public enum RenderResolutionType
+    {
+        /// <summary>
+        ///   Render resolution uses the default minimum resolution set in Constants.cs
+        /// </summary>
+        Default,
+
+        /// <summary>
+        ///   Render resolution uses the player's native screen resolution.
+        /// </summary>
+        Native,
+
+        /// <summary>
+        ///   Uses the resolution specified by the player.
+        /// </summary>
+        Custom,
     }
 
     public static Settings Instance => SingletonInstance;
@@ -53,6 +77,19 @@ public class Settings
     /// </summary>
     public SettingValue<Viewport.MSAA> MSAAResolution { get; set; } =
         new SettingValue<Viewport.MSAA>(Viewport.MSAA.Msaa2x);
+
+    /// <summary>
+    ///   Sets what kind of render resolution to be applied to the game.
+    /// </summary>
+    public SettingValue<RenderResolutionType> RenderResolutionMode { get; set; } =
+        new SettingValue<RenderResolutionType>(RenderResolutionType.Default);
+
+    /// <summary>
+    ///   If render resolution mode is set to custom, the settings will apply this custom value as
+    ///   the resolution. Can't be lower than the specified minimum resolution.
+    /// </summary>
+    public SettingValue<Vector2> CustomRenderResolution { get; set; } =
+        new SettingValue<Vector2>(MinimumRenderResolution);
 
     /// <summary>
     ///   Optionally applies a colour filter to the screen to aid colourblind individuals
@@ -461,6 +498,9 @@ public class Settings
             GD.Print("Doing delayed apply for some settings");
             Invoke.Instance.Perform(ApplyGraphicsSettings);
 
+            // Needed due to accessing root viewport
+            Invoke.Instance.Perform(ApplyResolutionSettings);
+
             // These need to be also delay applied, otherwise when debugging these overwrite the default settings
             Invoke.Instance.Queue(ApplySoundSettings);
 
@@ -470,6 +510,7 @@ public class Settings
         else
         {
             ApplyGraphicsSettings();
+            ApplyResolutionSettings();
             ApplySoundSettings();
             ApplyInputSettings();
         }
@@ -534,6 +575,31 @@ public class Settings
     {
         OS.WindowFullscreen = FullScreen;
         OS.VsyncEnabled = VSync;
+    }
+
+    /// <summary>
+    ///   Applies current resolution settings to the window and root viewport.
+    /// </summary>
+    public void ApplyResolutionSettings()
+    {
+        var tree = GUICommon.Instance.GetTree();
+        var newResolution = Vector2.Zero;
+
+        switch (RenderResolutionMode.Value)
+        {
+            case RenderResolutionType.Default:
+                newResolution = MinimumRenderResolution;
+                break;
+            case RenderResolutionType.Native:
+                newResolution = OS.GetScreenSize();
+                break;
+            case RenderResolutionType.Custom:
+                newResolution = CustomRenderResolution;
+                break;
+        }
+
+        OS.WindowSize = newResolution;
+        tree.SetScreenStretch(SceneTree.StretchMode.Mode2d, SceneTree.StretchAspect.Expand, newResolution);
     }
 
     /// <summary>

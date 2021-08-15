@@ -46,6 +46,14 @@ public static class StringUtils
     }
 
     /// <summary>
+    ///   Format two values into resolution dimensions e.g 1280x720.
+    /// </summary>
+    public static string FormatDimensions(this Vector2 resolution)
+    {
+        return resolution.x + "x" + resolution.y;
+    }
+
+    /// <summary>
     ///   Splits string into different chunks by whitespace.
     /// </summary>
     /// <remarks>

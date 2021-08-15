@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using Godot;
 using Environment = System.Environment;
@@ -49,6 +50,18 @@ public class OptionsMenu : ControlWithInput
 
     [Export]
     public NodePath MSAAResolutionPath;
+
+    [Export]
+    public NodePath RenderResolutionModePath;
+
+    [Export]
+    public NodePath CustomRenderResolutionContainerPath;
+
+    [Export]
+    public NodePath CustomRenderResolutionWidthPath;
+
+    [Export]
+    public NodePath CustomRenderResolutionHeightPath;
 
     [Export]
     public NodePath ColourblindSettingPath;
@@ -197,6 +210,10 @@ public class OptionsMenu : ControlWithInput
     private CheckBox vsync;
     private CheckBox fullScreen;
     private OptionButton msaaResolution;
+    private OptionButton renderResolutionMode;
+    private VBoxContainer customRenderResolutionContainer;
+    private SpinBox customRenderResolutionWidthField;
+    private SpinBox customRenderResolutionHeightField;
     private OptionButton colourblindSetting;
     private CheckBox chromaticAberrationToggle;
     private Slider chromaticAberrationSlider;
@@ -309,11 +326,16 @@ public class OptionsMenu : ControlWithInput
         vsync = GetNode<CheckBox>(VSyncPath);
         fullScreen = GetNode<CheckBox>(FullScreenPath);
         msaaResolution = GetNode<OptionButton>(MSAAResolutionPath);
+        renderResolutionMode = GetNode<OptionButton>(RenderResolutionModePath);
+        customRenderResolutionContainer = GetNode<VBoxContainer>(CustomRenderResolutionContainerPath);
+        customRenderResolutionWidthField = GetNode<SpinBox>(CustomRenderResolutionWidthPath);
+        customRenderResolutionHeightField = GetNode<SpinBox>(CustomRenderResolutionHeightPath);
         colourblindSetting = GetNode<OptionButton>(ColourblindSettingPath);
         chromaticAberrationToggle = GetNode<CheckBox>(ChromaticAberrationTogglePath);
         chromaticAberrationSlider = GetNode<Slider>(ChromaticAberrationSliderPath);
         displayAbilitiesHotBarToggle = GetNode<CheckBox>(DisplayAbilitiesBarTogglePath);
         guiLightEffectsToggle = GetNode<CheckBox>(GUILightEffectsTogglePath);
+        UpdateRenderResolutionModeSelectionTexts();
 
         // Sound
         soundTab = GetNode<Control>(SoundTabPath);
@@ -378,6 +400,7 @@ public class OptionsMenu : ControlWithInput
         {
             BuildInputRebindControls();
             UpdateDefaultAudioOutputDeviceText();
+            UpdateRenderResolutionModeSelectionTexts();
         }
     }
 
@@ -447,6 +470,7 @@ public class OptionsMenu : ControlWithInput
         chromaticAberrationToggle.Pressed = settings.ChromaticEnabled;
         displayAbilitiesHotBarToggle.Pressed = settings.DisplayAbilitiesHotBar;
         guiLightEffectsToggle.Pressed = settings.GUILightEffectsEnabled;
+        UpdateRenderResolutionModeSection(settings);
 
         // Sound
         masterVolume.Value = ConvertDBToSoundBar(settings.VolumeMaster);
@@ -753,6 +777,12 @@ public class OptionsMenu : ControlWithInput
         saveButton.Disabled = result;
     }
 
+    private void ApplyAnyCustomResolutionChange()
+    {
+        if (Settings.Instance.CustomRenderResolution != savedSettings.CustomRenderResolution)
+            Settings.Instance.ApplyResolutionSettings();
+    }
+
     private void UpdateDefaultAudioOutputDeviceText()
     {
         audioOutputDeviceSelection.SetItemText(0, TranslationServer.Translate("DEFAULT_AUDIO_OUTPUT_DEVICE"));
@@ -776,6 +806,67 @@ public class OptionsMenu : ControlWithInput
             var native = Settings.GetLanguageNativeNameOverride(locale) ?? currentCulture.NativeName;
             languageSelection.AddItem(locale + " - " + native);
         }
+    }
+
+    private void UpdateSelectedAudioOutputDevice(Settings settings)
+    {
+        audioOutputDeviceSelection.Selected = AudioOutputDevices.IndexOf(settings.SelectedAudioOutputDevice.Value ??
+            Constants.DEFAULT_AUDIO_OUTPUT_DEVICE_NAME);
+    }
+
+    private void UpdateSelectedLanguage(Settings settings)
+    {
+        if (string.IsNullOrEmpty(settings.SelectedLanguage.Value))
+        {
+            int index = Languages.IndexOf(Settings.DefaultLanguage);
+
+            // Inexact match to match things like "fi_FI"
+            if (index == -1 && Settings.DefaultLanguage.Contains("_"))
+            {
+                index = Languages.IndexOf(Settings.DefaultLanguage.Split("_")[0]);
+            }
+
+            // English is the default language, if the user's default locale didn't match anything
+            if (index < 0)
+            {
+                index = Languages.IndexOf("en");
+            }
+
+            languageSelection.Selected = index;
+        }
+        else
+        {
+            languageSelection.Selected = Languages.IndexOf(settings.SelectedLanguage.Value);
+        }
+    }
+
+    private void UpdateRenderResolutionModeSelectionTexts()
+    {
+        renderResolutionMode.SetItemText(0, string.Format(CultureInfo.CurrentCulture,
+            TranslationServer.Translate("DEFAULT_RENDER_RESOLUTION"),
+            Settings.MinimumRenderResolution.FormatDimensions()));
+        renderResolutionMode.SetItemText(1, string.Format(CultureInfo.CurrentCulture,
+            TranslationServer.Translate("NATIVE_RENDER_RESOLUTION"), OS.GetScreenSize().FormatDimensions()));
+        renderResolutionMode.SetItemText(2, TranslationServer.Translate("CUSTOM_RENDER_RESOLUTION"));
+    }
+
+    private void UpdateRenderResolutionModeSection(Settings settings)
+    {
+        var isCustom = Settings.Instance.RenderResolutionMode == Settings.RenderResolutionType.Custom;
+        customRenderResolutionContainer.Visible = isCustom;
+
+        renderResolutionMode.Selected = (int)settings.RenderResolutionMode.Value;
+
+        customRenderResolutionWidthField.MinValue = Constants.MINIMUM_RENDER_RESOLUTION_WIDTH;
+        customRenderResolutionHeightField.MinValue = Constants.MINIMUM_RENDER_RESOLUTION_HEIGHT;
+
+        customRenderResolutionWidthField.MaxValue = float.MaxValue;
+        customRenderResolutionHeightField.MaxValue = float.MaxValue;
+
+        customRenderResolutionWidthField.Value = settings.CustomRenderResolution.Value.x;
+        customRenderResolutionHeightField.Value = settings.CustomRenderResolution.Value.y;
+
+        UpdateRenderResolutionModeSelectionTexts();
     }
 
     /*
@@ -825,6 +916,8 @@ public class OptionsMenu : ControlWithInput
     {
         GUICommon.Instance.PlayButtonPressSound();
 
+        ApplyAnyCustomResolutionChange();
+
         // Save the new settings to the config file.
         if (!Settings.Instance.Save())
         {
@@ -851,6 +944,8 @@ public class OptionsMenu : ControlWithInput
 
     private void BackSaveSelected()
     {
+        ApplyAnyCustomResolutionChange();
+
         // Save the new settings to the config file.
         if (!Settings.Instance.Save())
         {
@@ -932,6 +1027,31 @@ public class OptionsMenu : ControlWithInput
     {
         Settings.Instance.MSAAResolution.Value = MSAAIndexToResolution(index);
         Settings.Instance.ApplyGraphicsSettings();
+
+        UpdateResetSaveButtonState();
+    }
+
+    private void OnBaseResolutionModeSelected(int index)
+    {
+        Settings.Instance.RenderResolutionMode.Value = (Settings.RenderResolutionType)index;
+        Settings.Instance.ApplyResolutionSettings();
+        UpdateRenderResolutionModeSection(Settings.Instance);
+
+        UpdateResetSaveButtonState();
+    }
+
+    private void OnCustomBaseResolutionWidthChanged(float value)
+    {
+        var resolution = new Vector2(value, Settings.Instance.CustomRenderResolution.Value.y);
+        Settings.Instance.CustomRenderResolution.Value = resolution;
+
+        UpdateResetSaveButtonState();
+    }
+
+    private void OnCustomBaseResolutionHeightChanged(float value)
+    {
+        var resolution = new Vector2(Settings.Instance.CustomRenderResolution.Value.x, value);
+        Settings.Instance.CustomRenderResolution.Value = resolution;
 
         UpdateResetSaveButtonState();
     }
@@ -1209,38 +1329,6 @@ public class OptionsMenu : ControlWithInput
     {
         GUICommon.Instance.PlayButtonPressSound();
         OS.ShellOpen("https://translate.revolutionarygamesstudio.com/engage/thrive/");
-    }
-
-    private void UpdateSelectedAudioOutputDevice(Settings settings)
-    {
-        audioOutputDeviceSelection.Selected = AudioOutputDevices.IndexOf(settings.SelectedAudioOutputDevice.Value ??
-            Constants.DEFAULT_AUDIO_OUTPUT_DEVICE_NAME);
-    }
-
-    private void UpdateSelectedLanguage(Settings settings)
-    {
-        if (string.IsNullOrEmpty(settings.SelectedLanguage.Value))
-        {
-            int index = Languages.IndexOf(Settings.DefaultLanguage);
-
-            // Inexact match to match things like "fi_FI"
-            if (index == -1 && Settings.DefaultLanguage.Contains("_"))
-            {
-                index = Languages.IndexOf(Settings.DefaultLanguage.Split("_")[0]);
-            }
-
-            // English is the default language, if the user's default locale didn't match anything
-            if (index < 0)
-            {
-                index = Languages.IndexOf("en");
-            }
-
-            languageSelection.Selected = index;
-        }
-        else
-        {
-            languageSelection.Selected = Languages.IndexOf(settings.SelectedLanguage.Value);
-        }
     }
 
     private void OnLogButtonPressed()
