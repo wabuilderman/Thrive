@@ -79,13 +79,13 @@ public class Settings
         new SettingValue<Viewport.MSAA>(Viewport.MSAA.Msaa2x);
 
     /// <summary>
-    ///   Sets what kind of render resolution to be applied to the game.
+    ///   Sets what kind of base resolution to be applied to the root viewport.
     /// </summary>
     public SettingValue<RenderResolutionType> RenderResolutionMode { get; set; } =
         new SettingValue<RenderResolutionType>(RenderResolutionType.Default);
 
     /// <summary>
-    ///   If render resolution mode is set to custom, the settings will apply this custom value as
+    ///   If render resolution mode is set to custom, the settings will use this custom value as
     ///   the resolution. Can't be lower than the specified minimum resolution.
     /// </summary>
     public SettingValue<Vector2> CustomRenderResolution { get; set; } =

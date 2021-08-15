@@ -335,7 +335,7 @@ public class OptionsMenu : ControlWithInput
         chromaticAberrationSlider = GetNode<Slider>(ChromaticAberrationSliderPath);
         displayAbilitiesHotBarToggle = GetNode<CheckBox>(DisplayAbilitiesBarTogglePath);
         guiLightEffectsToggle = GetNode<CheckBox>(GUILightEffectsTogglePath);
-        UpdateRenderResolutionModeSelectionTexts();
+        UpdateRenderResolutionModeSelectionItems();
 
         // Sound
         soundTab = GetNode<Control>(SoundTabPath);
@@ -400,7 +400,7 @@ public class OptionsMenu : ControlWithInput
         {
             BuildInputRebindControls();
             UpdateDefaultAudioOutputDeviceText();
-            UpdateRenderResolutionModeSelectionTexts();
+            UpdateRenderResolutionModeSelectionItems();
         }
     }
 
@@ -840,7 +840,7 @@ public class OptionsMenu : ControlWithInput
         }
     }
 
-    private void UpdateRenderResolutionModeSelectionTexts()
+    private void UpdateRenderResolutionModeSelectionItems()
     {
         renderResolutionMode.SetItemText(0, string.Format(CultureInfo.CurrentCulture,
             TranslationServer.Translate("DEFAULT_RENDER_RESOLUTION"),
@@ -866,7 +866,7 @@ public class OptionsMenu : ControlWithInput
         customRenderResolutionWidthField.Value = settings.CustomRenderResolution.Value.x;
         customRenderResolutionHeightField.Value = settings.CustomRenderResolution.Value.y;
 
-        UpdateRenderResolutionModeSelectionTexts();
+        UpdateRenderResolutionModeSelectionItems();
     }
 
     /*
@@ -1031,7 +1031,7 @@ public class OptionsMenu : ControlWithInput
         UpdateResetSaveButtonState();
     }
 
-    private void OnBaseResolutionModeSelected(int index)
+    private void OnRenderResolutionModeSelected(int index)
     {
         Settings.Instance.RenderResolutionMode.Value = (Settings.RenderResolutionType)index;
         Settings.Instance.ApplyResolutionSettings();
@@ -1040,7 +1040,7 @@ public class OptionsMenu : ControlWithInput
         UpdateResetSaveButtonState();
     }
 
-    private void OnCustomBaseResolutionWidthChanged(float value)
+    private void OnCustomRenderResolutionWidthChanged(float value)
     {
         var resolution = new Vector2(value, Settings.Instance.CustomRenderResolution.Value.y);
         Settings.Instance.CustomRenderResolution.Value = resolution;
@@ -1048,7 +1048,7 @@ public class OptionsMenu : ControlWithInput
         UpdateResetSaveButtonState();
     }
 
-    private void OnCustomBaseResolutionHeightChanged(float value)
+    private void OnCustomRenderResolutionHeightChanged(float value)
     {
         var resolution = new Vector2(Settings.Instance.CustomRenderResolution.Value.x, value);
         Settings.Instance.CustomRenderResolution.Value = resolution;

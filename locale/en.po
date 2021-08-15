@@ -2254,7 +2254,7 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3303
 msgid "GUI_LIGHT_EFFECTS_OPTION_DESCRIPTION"
 msgstr ""
-"Enables the light flashing effects on GUIs (e.g editor button flash).\n"
+"Enables light effects on GUIs (e.g editor button flash).\n"
 "\n"
 "If you experience a bug where parts of the editor button is disappearing,\n"
 "you can try disabling this to see if the problem is gone."
