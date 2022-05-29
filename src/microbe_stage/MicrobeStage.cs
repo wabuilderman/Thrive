@@ -84,6 +84,8 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
     /// </summary>
     private bool wantsToSave;
 
+    private int delta = 0;
+
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
     public CompoundCloudSystem Clouds { get; private set; } = null!;
@@ -900,7 +902,22 @@ public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNode
             line.Colour = tuple.Colour;
             line.LineStart = position;
             line.LineEnd = tuple.Target;
-            line.Visible = true;
+            line.Visible = false;
+            delta++;
+
+            if (Player != null && delta > 10 && line.LineStart.DistanceTo(line.LineEnd) > 20)
+            {
+                delta = 0;
+                ChemoreceptorPulse pulse = (ChemoreceptorPulse) GD.Load<PackedScene>("res://src/microbe_stage/ChemoreceptorPulse.tscn").Instance();
+                pulse.Colour = line.Colour;
+                pulse.TimeToLiveRemaining = 0.1f;
+                pulse.Emitter = new EntityReference<IEntity>(Player);
+                AddChild(pulse);
+                pulse.Translation = Player.Translation;
+                pulse.Scale = new Vector3(10, 10, 10);
+                pulse.ApplyCentralImpulse((line.LineEnd - line.LineStart).Normalized() * Constants.AGENT_EMISSION_IMPULSE_STRENGTH);
+                pulse.AddToGroup(Constants.TIMED_GROUP);
+            }
         }
 
         // Remove excess lines
