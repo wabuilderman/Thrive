@@ -66,6 +66,9 @@ public partial class CellEditorComponent :
     public NodePath DigestionEfficiencyLabelPath = null!;
 
     [Export]
+    public NodePath MPModifierLabelPath = null!;
+
+    [Export]
     public NodePath GenerationLabelPath = null!;
 
     [Export]
@@ -164,6 +167,10 @@ public partial class CellEditorComponent :
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
     private CellStatsIndicator digestionEfficiencyLabel = null!;
+
+    [JsonProperty]
+    [AssignOnlyChildItemsOnDeserialize]
+    private Label mpModifierLabel = null!;
 
     private Label generationLabel = null!;
 
@@ -569,6 +576,7 @@ public partial class CellEditorComponent :
         storageLabel = GetNode<CellStatsIndicator>(StorageLabelPath);
         digestionSpeedLabel = GetNode<CellStatsIndicator>(DigestionSpeedLabelPath);
         digestionEfficiencyLabel = GetNode<CellStatsIndicator>(DigestionEfficiencyLabelPath);
+        mpModifierLabel = GetNode<Label>(MPModifierLabelPath);
         generationLabel = GetNode<Label>(GenerationLabelPath);
         totalPopulationLabel = GetNode<CellStatsIndicator>(TotalPopulationLabelPath);
         autoEvoPredictionFailedLabel = GetNode<Label>(AutoEvoPredictionFailedLabelPath);
@@ -969,6 +977,12 @@ public partial class CellEditorComponent :
     public float CalculateTotalDigestionEfficiency()
     {
         return MicrobeInternalCalculations.CalculateTotalDigestionEfficiency(editedMicrobeOrganelles);
+    }
+
+    public float CalculateMPModifier()
+    {
+        var calculatedMPModifier = CostMultiplier;
+        return calculatedMPModifier;
     }
 
     protected override int CalculateCurrentActionCost()
@@ -1582,6 +1596,7 @@ public partial class CellEditorComponent :
         UpdateStorage(CalculateStorage());
         UpdateTotalDigestionSpeed(CalculateTotalDigestionSpeed());
         UpdateTotalDigestionEfficiency(CalculateTotalDigestionEfficiency());
+        UpdateMPModifier(CalculateMPModifier());
         OnRigidityChanged();
         OnColourChanged();
 
@@ -1664,6 +1679,7 @@ public partial class CellEditorComponent :
         UpdateStorage(CalculateStorage());
         UpdateTotalDigestionSpeed(CalculateTotalDigestionSpeed());
         UpdateTotalDigestionEfficiency(CalculateTotalDigestionEfficiency());
+        UpdateMPModifier(CalculateMPModifier());
 
         UpdateCellVisualization();
 

@@ -162,6 +162,11 @@ public partial class CellEditorComponent
         digestionEfficiencyLabel.Value = (float)Math.Round(efficiency * 100, 2);
     }
 
+    private void UpdateMPModifier(float CostMultiplier)
+    {
+        mpModifierLabel.Text = CostMultiplier.ToString(CultureInfo.CurrentCulture);
+    }
+
     /// <summary>
     ///   Updates the organelle efficiencies in tooltips.
     /// </summary>

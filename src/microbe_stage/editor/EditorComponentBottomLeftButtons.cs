@@ -34,6 +34,9 @@ public class EditorComponentBottomLeftButtons : MarginContainer
     [Export]
     public NodePath RandomizeNameButtonPath = null!;
 
+    [Export]
+    public NodePath MPModifierPath = null!;
+
     private TextureButton? newButton;
     private LineEdit speciesNameEdit = null!;
     private TextureButton? randomizeNameButton;
@@ -48,6 +51,9 @@ public class EditorComponentBottomLeftButtons : MarginContainer
 
     private bool showNewButton = true;
     private bool showRandomizeButton = true;
+
+    private Label MPModifierLabel = null!;
+
 
     /// <summary>
     ///   True when one of our (name related) Controls is hovered. This needs to be known to know if a click happened
@@ -111,6 +117,8 @@ public class EditorComponentBottomLeftButtons : MarginContainer
         newButton = GetNode<TextureButton>(NewButtonPath);
         speciesNameEdit = GetNode<LineEdit>(NameEditPath);
         randomizeNameButton = GetNode<TextureButton>(RandomizeNameButtonPath);
+
+        MPModifierLabel = GetNode<Label>(MPModifierPath);
 
         symmetryButton = GetNode<TextureButton>(SymmetryButtonPath);
         symmetryIcon = GetNode<TextureRect>(SymmetryIconPath);
