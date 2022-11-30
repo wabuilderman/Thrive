@@ -23,8 +23,8 @@ void fragment() {
 
     ALBEDO = mainTex.rgb;
     NORMALMAP = normalMap.xyz;
-    METALLIC = 0.9 * (((ALBEDO.r + ALBEDO.g + ALBEDO.b) / 3.0) * -1.0 + 1.0);
-    ROUGHNESS = 0.85;
+    METALLIC = 0.5-(ALBEDO.r); // This should use a map
+    ROUGHNESS = 0.6+(ALBEDO.r); // This should use a map
     ALPHA = round(cutoff) * mainTex.a;
     EMISSION = dissolveOutline;
 }

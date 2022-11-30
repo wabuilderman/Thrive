@@ -1,10 +1,9 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://assets/models/Iron5.mesh" type="ArrayMesh" id=1]
+[ext_resource path="res://assets/models/Iron6.mesh" type="ArrayMesh" id=1]
 [ext_resource path="res://assets/models/IronMaterial.material" type="Material" id=2]
 
-[node name="iron5" type="MeshInstance"]
-transform = Transform( 100, 0, 0, 0, -1.19209e-05, 100, 0, -100, -1.19209e-05, 0, 0, 0 )
+[node name="Iron6" type="MeshInstance"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0119381, 0, 0.0114851 )
 material_override = ExtResource( 2 )
 mesh = ExtResource( 1 )
-material/0 = null
