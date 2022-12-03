@@ -38,6 +38,7 @@ public struct Hex : IEquatable<Hex>
             { HexSide.TopLeft, new Hex(-1, 1) },
         };
 
+    // Axial coordinates for hexes
     public int Q;
     public int R;
 
