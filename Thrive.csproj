@@ -135,6 +135,7 @@
     <Compile Include="src\general\Asset.cs" />
     <Compile Include="src\general\AssetCategory.cs" />
     <Compile Include="src\general\AssetType.cs" />
+    <Compile Include="src\general\ConvolutionSurface.cs" />
     <Compile Include="src\general\CustomDifficulty.cs" />
     <Compile Include="src\general\DictionaryWithFallback.cs" />
     <Compile Include="src\general\HexCluster.cs" />
