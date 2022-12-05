@@ -1,5 +1,6 @@
 ﻿using System;
 using Godot;
+using Array = Godot.Collections.Array;
 
 /// <summary>
 ///   Math related utility functions for Thrive
@@ -85,5 +86,30 @@ public static class MathUtils
     {
         int result = val % mod;
         return (result < 0) ? result + mod : result;
+    }
+
+    /// <summary>
+    /// This function gets the total number of unique combinations based upon n and k.
+    /// n is the total number of items.
+    /// k is the size of the group.
+    /// Total number of unique combinations = n! / ( k! (n - k)! ).
+    /// This function is less efficient, but is more likely to not overflow when n and k are large.
+    /// Taken from:  http://blog.plover.com/math/choose.html,
+    /// https://stackoverflow.com/questions/12983731/algorithm-for-calculating-binomial-coefficient
+    /// </summary>
+    public static long GetBinomialCoefficient(long n, long k)
+    {
+        long r = 1;
+        long d;
+        if (k > n)
+            return 0;
+
+        for (d = 1; d <= k; d++)
+        {
+            r *= n--;
+            r /= d;
+        }
+
+        return r;
     }
 }
