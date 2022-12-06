@@ -26,7 +26,7 @@ using Vector3 = System.Numerics.Vector3;
 /// </summary>
 public class ConvolutionSurface
 {
-    public float GetIntegralAtPoint(Vector3 segA, Vector3 segB, Vector3 point, float sigma)
+    public static float GetIntegralAtPoint(Vector3 segA, Vector3 segB, Vector3 point, float sigma)
     {
         segA.X /= sigma;
         segA.Y /= sigma;
@@ -55,23 +55,22 @@ public class ConvolutionSurface
         return integral / NormalizationFactor(i, sigma);
     }
 
-    private float NormalizationFactor(int i, float sigma)
+    private static float NormalizationFactor(int i, float sigma)
     {
         if (i == 2)
         {
             return sigma * sigma * Mathf.Pi;
         }
-        else if (i == 3)
+
+        if (i == 3)
         {
             return sigma * sigma * sigma * 2;
         }
-        else
-        {
-            return sigma * sigma * (i - 3) / (i - 2) * NormalizationFactor(i - 2, sigma);
-        }
+
+        return sigma * sigma * (i - 3) / (i - 2) * NormalizationFactor(i - 2, sigma);
     }
 
-    private float Convolution(Vector3 point, Vector3 segA, Vector3 segB, int i, int k)
+    private static float Convolution(Vector3 point, Vector3 segA, Vector3 segB, int i, int k)
     {
         float distAnB = Vector3.Distance(segA, segB);
         float distAnP = Vector3.Distance(segA, point);
@@ -79,58 +78,55 @@ public class ConvolutionSurface
         float dist2AnB = Vector3.DistanceSquared(segA, segB);
         float dist2AnP = Vector3.DistanceSquared(segA, point);
         float dist2BnP = Vector3.DistanceSquared(segB, point);
-        Vector3 vectAnB = Vector3.Subtract(segA, segB);
-        Vector3 vectAnP = Vector3.Subtract(segA, point);
-        Vector3 vectBnP = Vector3.Subtract(segB, point);
-        Vector3 vectBnA = Vector3.Subtract(segB, segA);
+        Vector3 vecAnB = Vector3.Subtract(segA, segB);
+        Vector3 vecAnP = Vector3.Subtract(segA, point);
+        Vector3 vecBnP = Vector3.Subtract(segB, point);
+        Vector3 vecBnA = Vector3.Subtract(segB, segA);
 
-        float delta = dist2AnB * dist2AnP - Mathf.Pow(Vector3.Dot(vectAnB, vectAnP), 2);
+        float delta = dist2AnB * dist2AnP - Mathf.Pow(Vector3.Dot(vecAnB, vecAnP), 2);
 
         if (k == 0)
         {
             if (i == 1)
             {
-                return Mathf.Log((distAnB * distBnP + Vector3.Dot(vectBnA, vectBnP))
-                    / (distAnB * distAnP - Vector3.Dot(vectAnB, vectAnP)));
+                return Mathf.Log((distAnB * distBnP + Vector3.Dot(vecBnA, vecBnP))
+                    / (distAnB * distAnP - Vector3.Dot(vecAnB, vecAnP)));
             }
-            else if (i == 2)
+
+            if (i == 2)
             {
-                return Mathf.Atan(Vector3.Dot(vectBnA, vectBnP / Mathf.Sqrt(delta))
-                    + Mathf.Atan(Vector3.Dot(vectAnB, vectAnP / Mathf.Sqrt(delta)))
+                return Mathf.Atan(Vector3.Dot(vecBnA, vecBnP / Mathf.Sqrt(delta))
+                    + Mathf.Atan(Vector3.Dot(vecAnB, vecAnP / Mathf.Sqrt(delta)))
                     * distAnB / Mathf.Sqrt(delta));
             }
-            else
-            {
-                return distAnB / (i - 2) / delta * ((i - 3) * dist2AnB * Convolution(point, segA, segB, i - 2, 0)
-                    + Vector3.Dot(vectBnA, vectBnP) / Mathf.Pow(distBnP, i - 2)
-                    + Vector3.Dot(vectAnB, vectAnP) / Mathf.Pow(distAnP, i - 2));
-            }
+
+            return distAnB / (i - 2) / delta * ((i - 3) * dist2AnB * Convolution(point, segA, segB, i - 2, 0)
+                + Vector3.Dot(vecBnA, vecBnP) / Mathf.Pow(distBnP, i - 2)
+                + Vector3.Dot(vecAnB, vecAnP) / Mathf.Pow(distAnP, i - 2));
         }
-        else if (k == 1)
+
+        if (k == 1)
         {
             if (i == 2)
             {
-                return Vector3.Dot(vectAnB, vectAnP) / dist2AnB * Convolution(point, segA, segB, 2, 0)
+                return Vector3.Dot(vecAnB, vecAnP) / dist2AnB * Convolution(point, segA, segB, 2, 0)
                     + Mathf.Log(dist2BnP / distAnP) / distAnB;
             }
-            else
-            {
-                return Vector3.Dot(vectAnB, vectAnP) / dist2AnB * Convolution(point, segA, segB, i, i - 2)
-                    + (Mathf.Pow(distBnP, 2 - i) - Mathf.Pow(distAnP, 2 - i)) / distAnB / (2 - i);
-            }
+
+            return Vector3.Dot(vecAnB, vecAnP) / dist2AnB * Convolution(point, segA, segB, i, i - 2)
+                + (Mathf.Pow(distBnP, 2 - i) - Mathf.Pow(distAnP, 2 - i)) / distAnB / (2 - i);
         }
-        else if (k == i - 1)
+
+        if (k == i - 1)
         {
-            return Vector3.Dot(vectAnB, vectAnP) / dist2AnB * Convolution(point, segA, segB, i - 2, 0)
+            return Vector3.Dot(vecAnB, vecAnP) / dist2AnB * Convolution(point, segA, segB, i - 2, 0)
                 + Convolution(point, segA, segB, i - 2, i - 3) / dist2AnB
                 + 1 / ((2 - i) * distAnB * Mathf.Pow(distBnP, i - 2));
         }
-        else
-        {
-            return ((i - 2 * k) * Vector3.Dot(vectAnB, vectAnP)) / ((i - k - 1) * dist2AnB)
-                * Convolution(point, segA, segB, i, k - 1)
-                + ((k - 1) * dist2AnP) / ((i - k - 1) * dist2AnB) * Convolution(point, segA, segB, i, k - 1)
-                - 1 / ((distAnB * (i - k - 1)) * Mathf.Pow(distBnP, i - 2));
-        }
+
+        return ((i - 2 * k) * Vector3.Dot(vecAnB, vecAnP)) / ((i - k - 1) * dist2AnB)
+            * Convolution(point, segA, segB, i, k - 1)
+            + ((k - 1) * dist2AnP) / ((i - k - 1) * dist2AnB) * Convolution(point, segA, segB, i, k - 1)
+            - 1 / ((distAnB * (i - k - 1)) * Mathf.Pow(distBnP, i - 2));
     }
 }

@@ -141,6 +141,8 @@
     <Compile Include="src\general\HexCluster.cs" />
     <Compile Include="src\general\IDifficulty.cs" />
     <Compile Include="src\general\MultiCollection.cs" />
+    <Compile Include="src\general\Voronoi.cs" />
+    <Compile Include="src\general\VoxelGrid.cs" />
     <Compile Include="src\gui_common\art_gallery\TextureThumbnailResource.cs" />
     <Compile Include="src\gui_common\DismissibleNotice.cs" />
     <Compile Include="src\gui_common\FocusFlowDynamicChildrenHelper.cs" />
