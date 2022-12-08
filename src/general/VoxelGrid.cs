@@ -21,17 +21,15 @@ public class VoxelGrid
         Voxels = new List<int>(x * y * z);
     }
 
-    public void GetActiveVoxels(MetaballLayout<Metaball> fields)
+    public List<Vector3> GetActiveVoxels(MetaballLayout<Metaball> fields)
     {
-        Random rng = new Random();
-        int point = Voxels.Random(rng);
-        Vector3 voxelPos = new Vector3(point / (Width * Height),
-            (point - Length * Width * Height) / Width,
-            point % Width);
-
-        bool voxelActive;
         Vector3 fieldA = default(Vector3);
         Vector3 fieldB = default(Vector3);
+
+        Random rng = new Random();
+        Vector3 voxelPos = default(Vector3);
+        List<Vector3> activeVoxels = new List<Vector3>();
+
         for (int i = 0; i < fields.Count; i++)
         {
             fieldA.X = fields[i].Position.x;
@@ -42,8 +40,18 @@ public class VoxelGrid
             fieldB.Y = fields[i + 1].Position.y;
             fieldB.Z = fields[i + 1].Position.z;
 
-            voxelActive = Math.Abs(ConvolutionSurface.GetIntegralAtPoint(fieldA, fieldB, voxelPos, 1.0f)
-                - isoLevel) < MathUtils.EPSILON;
+            int point = Voxels.Random(rng);
+            voxelPos = new Vector3(point / (Width * Height),
+                (point - Length * Width * Height) / Width,
+                point % Width);
+
+            bool voxelActive = Math.Abs(ConvolutionSurface.GetIntegralAtPoint(fieldA, fieldB, voxelPos, 1.0f)
+                - isoLevel) < 1.0f;
+
+            if (voxelActive)
+                activeVoxels.Add(voxelPos);
         }
+
+        return activeVoxels;
     }
 }
