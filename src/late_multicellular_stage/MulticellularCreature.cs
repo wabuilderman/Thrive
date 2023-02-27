@@ -27,7 +27,9 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
     [JsonProperty]
     private ISpawnSystem? spawnSystem;
 
+#pragma warning disable CA2213
     private MulticellularMetaballDisplayer metaballDisplayer = null!;
+#pragma warning restore CA2213
 
     [JsonProperty]
     private float targetSwimLevel;
@@ -64,7 +66,7 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
     public LateMulticellularSpecies Species { get; private set; } = null!;
 
     /// <summary>
-    ///    True when this is the player's creature
+    ///   True when this is the player's creature
     /// </summary>
     [JsonProperty]
     public bool IsPlayerCreature { get; private set; }
@@ -132,11 +134,6 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
         _Ready();
     }
 
-    public void OnDestroyed()
-    {
-        AliveMarker.Alive = false;
-    }
-
     public override void _Process(float delta)
     {
         base._Process(delta);
@@ -159,6 +156,11 @@ public class MulticellularCreature : RigidBody, ISpawned, IProcessable, ISaveLoa
             // TODO: movement force calculation
             ApplyCentralImpulse(Mass * MovementDirection * delta);
         }
+    }
+
+    public void OnDestroyed()
+    {
+        AliveMarker.Alive = false;
     }
 
     public void ApplySpecies(Species species)
