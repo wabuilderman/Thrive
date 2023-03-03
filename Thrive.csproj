@@ -161,6 +161,7 @@
     <Compile Include="src\general\VoxelGrid.cs" />
     <Compile Include="src\general\ThriveNewsFeed.cs" />
     <Compile Include="src\gui_common\art_gallery\TextureThumbnailResource.cs" />
+    <Compile Include="src\gui_common\dialogs\PermanentlyDismissibleDialog.cs" />
     <Compile Include="src\gui_common\DismissibleNotice.cs" />
     <Compile Include="src\gui_common\FocusFlowDynamicChildrenHelper.cs" />
     <Compile Include="src\gui_common\FocusGrabber.cs" />
@@ -173,6 +174,9 @@
     <Compile Include="src\gui_common\TabButtons.cs" />
     <Compile Include="src\gui_common\TabLevel.cs" />
     <Compile Include="src\gui_common\ThriveFeedDisplayer.cs" />
+    <Compile Include="src\late_multicellular_stage\MovementMode.cs" />
+    <Compile Include="src\late_multicellular_stage\MulticellularSpeciesType.cs" />
+    <Compile Include="src\late_multicellular_stage\ReproductionLocation.cs" />
     <Compile Include="src\microbe_stage\AvailableUpgrade.cs" />
     <Compile Include="src\microbe_stage\CellHexesPhotoBuilder.cs" />
     <Compile Include="src\microbe_stage\CellHexesPreview.cs" />
