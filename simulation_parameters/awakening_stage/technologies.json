@@ -1,0 +1,20 @@
+﻿{
+  "simpleStoneTools": {
+    "Name": "TECHNOLOGY_SIMPLE_STONE_TOOLS",
+    "LockedIcon": "res://assets/textures/gui/bevel/technologies/UnknownTechnology.png",
+    "UnlockedIcon": "res://assets/textures/gui/bevel/technologies/UnknownTechnology.png",
+    "GrantsRecipes": [
+      "handAxeRecipe"
+    ],
+    "RequiresEarlierTechnology": []
+  },
+  "societyCenter": {
+    "Name": "TECHNOLOGY_SOCIETY_CENTER",
+    "LockedIcon": "res://assets/textures/gui/bevel/technologies/UnknownTechnology.png",
+    "UnlockedIcon": "res://assets/textures/gui/bevel/technologies/UnknownBuilding.png",
+    "GrantsStructures": [
+      "societyCenter"
+    ],
+    "RequiresEarlierTechnology": []
+  }
+}

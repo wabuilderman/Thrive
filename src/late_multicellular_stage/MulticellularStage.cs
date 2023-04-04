@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Godot;
 using Newtonsoft.Json;
 
@@ -10,11 +11,41 @@ using Newtonsoft.Json;
 [SceneLoadedClass("res://src/late_multicellular_stage/MulticellularStage.tscn")]
 [DeserializedCallbackTarget]
 [UseThriveSerializer]
-public class MulticellularStage : StageBase<MulticellularCreature>
+public class MulticellularStage : CreatureStageBase<MulticellularCreature>
 {
+    [Export]
+    public NodePath? InteractableSystemPath;
+
+    [Export]
+    public NodePath InteractionPopupPath = null!;
+
+    [Export]
+    public NodePath ProgressBarSystemPath = null!;
+
+    [Export]
+    public NodePath SelectBuildingPopupPath = null!;
+
+    [Export]
+    public NodePath WorldEnvironmentNodePath = null!;
+
+    private const string STAGE_TRANSITION_MOUSE_LOCK = "toSocietyStage";
+
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
     private SpawnSystem dummySpawner = null!;
+
+#pragma warning disable CA2213
+    private InteractableSystem interactableSystem = null!;
+    private InteractablePopup interactionPopup = null!;
+
+    private ProgressBarSystem progressBarSystem = null!;
+
+    private SelectBuildingPopup selectBuildingPopup = null!;
+
+    private WorldEnvironment worldEnvironmentNode = null!;
+
+    private Camera? animationCamera;
+#pragma warning restore CA2213
 
     /// <summary>
     ///   Used to detect when the player automatically advances stages in the editor (awakening is explicit with a
@@ -22,6 +53,24 @@ public class MulticellularStage : StageBase<MulticellularCreature>
     /// </summary>
     [JsonProperty]
     private MulticellularSpeciesType previousPlayerStage;
+
+    [JsonProperty]
+    private float moveToSocietyTimer;
+
+    [JsonProperty]
+    private Transform societyCameraAnimationStart = Transform.Identity;
+
+    [JsonProperty]
+    private Transform societyCameraAnimationEnd = Transform.Identity;
+
+    [JsonProperty]
+    private Vector3 animationEndCameraLookPoint;
+
+    [JsonProperty]
+    private Transform firstSocietyCenterTransform;
+
+    [JsonProperty]
+    private bool movingToSocietyStage;
 
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
@@ -33,9 +82,10 @@ public class MulticellularStage : StageBase<MulticellularCreature>
 
     // TODO: create a multicellular equivalent class
     [JsonIgnore]
-    public PlayerHoverInfo HoverInfo { get; private set; } = null!;
+    public PlayerInspectInfo HoverInfo { get; private set; } = null!;
 
-    protected override IStageHUD BaseHUD => HUD;
+    [JsonIgnore]
+    protected override ICreatureStageHUD BaseHUD => HUD;
 
     private LocalizedString CurrentPatchName =>
         GameWorld.Map.CurrentPatch?.Name ?? throw new InvalidOperationException("no current patch");
@@ -50,6 +100,11 @@ public class MulticellularStage : StageBase<MulticellularCreature>
 
         // HoverInfo.Init(Camera, Clouds);
 
+        interactableSystem.Init(PlayerCamera.CameraNode, rootOfDynamicallySpawned);
+        interactionPopup.OnInteractionSelectedHandler += ForwardInteractionSelectionToPlayer;
+
+        progressBarSystem.Init(PlayerCamera.CameraNode, rootOfDynamicallySpawned);
+
         SetupStage();
     }
 
@@ -61,7 +116,13 @@ public class MulticellularStage : StageBase<MulticellularCreature>
         base.ResolveNodeReferences();
 
         HUD = GetNode<MulticellularHUD>("MulticellularHUD");
-        HoverInfo = GetNode<PlayerHoverInfo>("PlayerLookingAtInfo");
+        HoverInfo = GetNode<PlayerInspectInfo>("PlayerLookingAtInfo");
+
+        interactableSystem = GetNode<InteractableSystem>(InteractableSystemPath);
+        interactionPopup = GetNode<InteractablePopup>(InteractionPopupPath);
+        progressBarSystem = GetNode<ProgressBarSystem>(ProgressBarSystemPath);
+        selectBuildingPopup = GetNode<SelectBuildingPopup>(SelectBuildingPopupPath);
+        worldEnvironmentNode = GetNode<WorldEnvironment>(WorldEnvironmentNodePath);
 
         // TODO: implement late multicellular specific look at info, for now it's disabled by removing it
         HoverInfo.Free();
@@ -88,6 +149,49 @@ public class MulticellularStage : StageBase<MulticellularCreature>
 
         if (Player != null)
         {
+            var playerPosition = Player.GlobalTranslation;
+
+            if (Player.Species.MulticellularType == MulticellularSpeciesType.Awakened)
+            {
+                // TODO: player interaction reach modifier from the species
+                interactableSystem.UpdatePlayerPosition(playerPosition, 0);
+                interactableSystem.SetActive(true);
+            }
+            else
+            {
+                interactableSystem.SetActive(false);
+            }
+
+            progressBarSystem.UpdatePlayerPosition(playerPosition);
+        }
+
+        if (movingToSocietyStage)
+        {
+            if (animationCamera == null)
+                throw new InvalidOperationException("Animation camera not set");
+
+            moveToSocietyTimer += delta;
+            float interpolationProgress = moveToSocietyTimer / Constants.SOCIETY_STAGE_ENTER_ANIMATION_DURATION;
+
+            if (interpolationProgress >= 1)
+            {
+                interpolationProgress = 1;
+
+                // Fade to black and queue the transition
+                HUD.EnsureGameIsUnpausedForEditor();
+
+                GD.Print("Starting fade out to society stage");
+
+                // The fade is pretty long here to give some time after the camera stops moving before the fade out
+                // is complete
+                TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 3.5f, SwitchToSocietyScene, false);
+                MovingToEditor = true;
+                movingToSocietyStage = false;
+            }
+
+            // TODO: switch to some other animation type like quintic once that is usable without a tween node
+            animationCamera.GlobalTransform =
+                societyCameraAnimationStart.InterpolateWith(societyCameraAnimationEnd, interpolationProgress);
         }
 
         // TODO: notify metrics
@@ -95,6 +199,22 @@ public class MulticellularStage : StageBase<MulticellularCreature>
 
     public override void StartMusic()
     {
+        // Change music based on how far along in the game the player is
+        if (GameWorld.PlayerSpecies is LateMulticellularSpecies lateMulticellularSpecies)
+        {
+            if (lateMulticellularSpecies.MulticellularType == MulticellularSpeciesType.Awakened)
+            {
+                Jukebox.Instance.PlayCategory("AwakeningStage");
+                return;
+            }
+
+            if (lateMulticellularSpecies.MulticellularType == MulticellularSpeciesType.Aware)
+            {
+                Jukebox.Instance.PlayCategory("AwareStage");
+                return;
+            }
+        }
+
         Jukebox.Instance.PlayCategory("LateMulticellularStage");
     }
 
@@ -191,11 +311,7 @@ public class MulticellularStage : StageBase<MulticellularCreature>
                 // Intentionally not translatable as a placeholder prototype text
                 HUD.HUDMessages.ShowMessage(
                     "You are now aware. This prototype has nothing extra yet, please move to the Awakening Stage.",
-                    DisplayDuration.Long);
-            }
-            else if (previousPlayerStage == MulticellularSpeciesType.Awakened)
-            {
-                // TODO: something
+                    DisplayDuration.ExtraLong);
             }
         }
     }
@@ -231,6 +347,10 @@ public class MulticellularStage : StageBase<MulticellularCreature>
 
         // And setup the land "environment"
 
+        // Clear the underwater background
+        // TODO: above water panorama backgrounds
+        worldEnvironmentNode.Environment = null;
+
         // Ground plane
         var ground = new StaticBody
         {
@@ -255,11 +375,13 @@ public class MulticellularStage : StageBase<MulticellularCreature>
         {
             Mesh = new PlaneMesh
             {
-                Size = new Vector2(200, 200),
+                Size = new Vector2(400, 400),
                 Material = new SpatialMaterial
                 {
-                    // Not good style but this is like this so I could just quickly copy-paste from the Godot editor
-                    AlbedoColor = new Color("#321d09"),
+                    AlbedoTexture = GD.Load<Texture>("res://assets/textures/environment/Terrain_01_Albedo.png"),
+                    NormalEnabled = true,
+                    NormalTexture = GD.Load<Texture>("res://assets/textures/environment/Terrain_01_Normals.png"),
+                    Uv1Scale = new Vector3(42, 42, 42),
                 },
             },
         });
@@ -267,15 +389,8 @@ public class MulticellularStage : StageBase<MulticellularCreature>
         rootOfDynamicallySpawned.AddChild(ground);
 
         // A not super familiar (different than underwater) rock strewn around for reference
-        var rockShape = GD.Load<Shape>("res://assets/models/Iron4.shape");
-        var rockScene = GD.Load<PackedScene>("res://assets/models/Iron4.tscn");
-        var rockMaterial = new PhysicsMaterial
-        {
-            Friction = 1,
-            Bounce = 0.3f,
-            Absorbent = false,
-            Rough = false,
-        };
+        var rockResource = SimulationParameters.Instance.GetWorldResource("rock");
+        var resourceScene = SpawnHelpers.LoadResourceEntityScene();
 
         foreach (var position in new[]
                  {
@@ -285,23 +400,43 @@ public class MulticellularStage : StageBase<MulticellularCreature>
                      new Vector3(-3, 0, 5),
                      new Vector3(-8, 0, 6),
                      new Vector3(18, 0, 11),
+                     new Vector3(38, 0, 11),
+                     new Vector3(-15, 0, 10),
+                     new Vector3(-15, 0, -15),
+                     new Vector3(-25, 0, -15),
+                     new Vector3(-35, 0, -15),
+                     new Vector3(25, 0, -5),
+                     new Vector3(29, 0, -5),
+                     new Vector3(32, 0, -5),
+                     new Vector3(35, 0, 5),
                  })
         {
-            var rock = new RigidBody
-            {
-                PhysicsMaterialOverride = rockMaterial,
-            };
+            // But create it as a resource entity so that it can be interacted with
+            SpawnHelpers.SpawnResourceEntity(rockResource, new Transform(Basis.Identity, position),
+                rootOfDynamicallySpawned, resourceScene, true);
+        }
 
-            rock.AddChild(new CollisionShape
-            {
-                Shape = rockShape,
-            });
+        // Placeholder trees
+        var treeScene = GD.Load<PackedScene>("res://assets/models/PlaceholderTree.tscn");
 
-            rock.AddChild(rockScene.Instance());
+        foreach (var position in new[]
+                 {
+                     new Vector3(15, 0, 9),
+                     new Vector3(25, 0, 35),
+                     new Vector3(50, 0, 10),
+                     new Vector3(-30, 0, 5),
+                     new Vector3(18, 0, -20),
+                     new Vector3(-48, 0, 27),
+                 })
+        {
+            // TODO: proper interactable plants, this is a temporary manually created placeholder tree
+            var tree = treeScene.Instance<PlaceholderTree>();
 
-            rootOfDynamicallySpawned.AddChild(rock);
+            rootOfDynamicallySpawned.AddChild(tree);
+            tree.GlobalTransform =
+                new Transform(new Basis(new Quat(new Vector3(0, 1, 0), Mathf.Pi * random.NextFloat())), position);
 
-            rock.Translation = new Vector3(position.x, 0.1f, position.z);
+            tree.AddToGroup(Constants.INTERACTABLE_GROUP);
         }
 
         // Modify player state for being on land
@@ -328,10 +463,23 @@ public class MulticellularStage : StageBase<MulticellularCreature>
 
         Player.Species.MovePlayerToAwakenedStatus();
 
+        // TODO: implement an "inspect" action for inspecting world objects that can unlock primitive
+        // technologies
+        // For now just add some default unlocks for the prototype
+
+        CurrentGame!.TechWeb.UnlockTechnology(SimulationParameters.Instance.GetTechnology("simpleStoneTools"));
+
+        // TODO: proper society center unlock conditions
+        CurrentGame.TechWeb.UnlockTechnology(SimulationParameters.Instance.GetTechnology("societyCenter"));
+
         // Intentionally not translated prototype message
         HUD.HUDMessages.ShowMessage(
             "You are now in the Awakening Stage prototype. You can now interact with more world objects. " +
-            "Interact with tool parts to advance.", DisplayDuration.Long);
+            "Interact with tool parts to advance.", DisplayDuration.ExtraLong);
+
+        // Music is different in the awakening stage (and we don't visit the editor here so we need to trigger a music
+        // change here)
+        StartMusic();
     }
 
     public void AttemptPlayerWorldInteraction()
@@ -340,10 +488,128 @@ public class MulticellularStage : StageBase<MulticellularCreature>
         if (Player == null || Player.Species.MulticellularType != MulticellularSpeciesType.Awakened)
             return;
 
-        // TODO: find nearby objects and open interaction menu if there's something to interact with
+        var target = interactableSystem.GetInteractionTarget();
 
-        // Did not find anything for the player to interact with
-        HUD.HUDMessages.ShowMessage(TranslationServer.Translate("NOTHING_TO_INTERACT_WITH"), DisplayDuration.Short);
+        if (target == null)
+        {
+            // Did not find anything for the player to interact with
+            HUD.HUDMessages.ShowMessage(TranslationServer.Translate("NOTHING_TO_INTERACT_WITH"), DisplayDuration.Short);
+            return;
+        }
+
+        // Show interaction context menu for the player to do something with the target
+        interactionPopup.ShowForInteractable(target, Player.CalculatePossibleActions(target));
+
+        // TODO: somehow refresh the inventory screen if it is open and the player decided to do a pick up action
+    }
+
+    public void PerformBuildOrOpenMenu()
+    {
+        if (Player == null || Player.Species.MulticellularType != MulticellularSpeciesType.Awakened)
+            return;
+
+        if (Player.IsPlacingStructure)
+        {
+            Player.AttemptStructurePlace();
+            return;
+        }
+
+        selectBuildingPopup.OpenWithStructures(CurrentGame!.TechWeb.GetAvailableStructures(), Player, Player);
+
+        // TODO: when a structure is being placed, should we have some kind of indicator on screen what to press to
+        // cancel?
+    }
+
+    public bool CancelBuildingPlaceIfInProgress()
+    {
+        if (Player?.IsPlacingStructure != true)
+        {
+            return false;
+        }
+
+        Player.CancelStructurePlacing();
+        return true;
+    }
+
+    public bool TogglePlayerInventory()
+    {
+        if (Player == null)
+            return false;
+
+        if (HUD.IsInventoryOpen)
+        {
+            HUD.CloseInventory();
+            return true;
+        }
+
+        try
+        {
+            // Refresh the items on the ground near the player to show in the inventory screen
+            var groundObjects = interactableSystem.GetAllNearbyObjects();
+
+            // Filter to only carriable objects to not let the player to pick up trees and stuff
+            HUD.OpenInventory(Player, groundObjects.Where(o => o.CanBeCarried));
+        }
+        catch (Exception e)
+        {
+            GD.PrintErr($"Problem trying to show inventory: {e}");
+            return false;
+        }
+
+        return true;
+    }
+
+    public void OnSocietyFounded(PlacedStructure societyCenter)
+    {
+        if (Player == null || movingToSocietyStage || MovingToEditor)
+            return;
+
+        GD.Print("Move to society stage triggered");
+        HUD.HUDMessages.ShowMessage(TranslationServer.Translate("MOVING_TO_SOCIETY_STAGE"), DisplayDuration.Long);
+        movingToSocietyStage = true;
+
+        // Show cursor while we are switching
+        MouseCaptureManager.ReportOpenCapturePrevention(STAGE_TRANSITION_MOUSE_LOCK);
+
+        // Unset the player to disallow doing this multiple times in a row and to disable the player
+        var moveCreatureToSocietyCenter = Player;
+        Player = null;
+
+        // TODO: actual collisions and moving to the door instead of this
+        // TODO: we do a dirty hack here just for the prototype to be simple as the structure root doesn't currently
+        // have a collision set on it
+        moveCreatureToSocietyCenter.AddCollisionExceptionWith(societyCenter.FirstDescendantOfType<CollisionObject>());
+
+        var creatureToCenterVector = societyCenter.GlobalTranslation - moveCreatureToSocietyCenter.GlobalTranslation;
+        creatureToCenterVector.y = 0;
+        creatureToCenterVector = creatureToCenterVector.Normalized();
+
+        // Do an inverse transform to get the vector in creature local space and multiply it to not make the creature
+        // move at full speed
+        moveCreatureToSocietyCenter.MovementDirection =
+            moveCreatureToSocietyCenter.Transform.basis.XformInv(creatureToCenterVector) * 0.5f;
+
+        // TODO: despawn moveCreatureToSocietyCenter once it reaches inside the society center
+
+        // Start the transition to the next stage and a camera animation
+        animationEndCameraLookPoint = societyCenter.GlobalTranslation;
+        animationEndCameraLookPoint += societyCenter.RotatedExtraInteractionOffset() ?? Vector3.Zero;
+        firstSocietyCenterTransform = societyCenter.GlobalTransform;
+
+        // Prevent inputs to not allow messing with the camera animation
+        PlayerCamera.AllowPlayerInput = false;
+        PlayerCamera.FollowedNode = null;
+
+        // Steal the camera from the normal camera holder (this is done to not need to modify the camera passed to the
+        // various other systems)
+        animationCamera = PlayerCamera.CameraNode;
+
+        moveToSocietyTimer = 0;
+        societyCameraAnimationStart = animationCamera.GlobalTransform;
+        societyCameraAnimationEnd = StrategicCameraHelpers.CalculateCameraPosition(animationEndCameraLookPoint, 1);
+
+        // Detach from the previous place to not have the arm etc. control nodes apply to it anymore
+        animationCamera.ReParent(rootOfDynamicallySpawned);
     }
 
     protected override void SetupStage()
@@ -353,12 +619,14 @@ public class MulticellularStage : StageBase<MulticellularCreature>
         // if (!IsLoadedFromSave)
         //     spawner.Init();
 
+        CurrentGame!.TechWeb.OnTechnologyUnlockedHandler += ShowTechnologyUnlockMessage;
+
         // TODO: implement
         if (!IsLoadedFromSave)
         {
             // If this is a new game (first time entering the stage), start the camera in top down view
             // as a learning tool
-            if (!CurrentGame!.IsBoolSet("played_multicellular"))
+            if (!CurrentGame.IsBoolSet("played_multicellular"))
             {
                 CurrentGame.SetBool("played_multicellular", true);
 
@@ -421,7 +689,10 @@ public class MulticellularStage : StageBase<MulticellularCreature>
 
     protected override void SpawnPlayer()
     {
-        if (HasPlayer)
+        // Don't want to respawn the player when moving to the society stage
+        // Once the flag is reset to false, we'll have the flag for going to the editor true and will not spawn
+        // the player thanks to that so we don't need to add that second check here
+        if (HasPlayer || movingToSocietyStage)
             return;
 
         Player = SpawnHelpers.SpawnCreature(GameWorld.PlayerSpecies, new Vector3(0, 0, 0),
@@ -431,6 +702,8 @@ public class MulticellularStage : StageBase<MulticellularCreature>
         Player.OnDeath = OnPlayerDied;
 
         Player.OnReproductionStatus = OnPlayerReproductionStatusChanged;
+
+        Player.RequestCraftingInterfaceFor = OnOpenCraftingInterfaceFor;
 
         PlayerCamera.FollowedNode = Player;
 
@@ -460,6 +733,28 @@ public class MulticellularStage : StageBase<MulticellularCreature>
         SaveHelper.ShowErrorAboutPrototypeSaving(this);
     }
 
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            if (InteractableSystemPath != null)
+            {
+                InteractableSystemPath.Dispose();
+                InteractionPopupPath.Dispose();
+                ProgressBarSystemPath.Dispose();
+                SelectBuildingPopupPath.Dispose();
+                WorldEnvironmentNodePath.Dispose();
+
+                interactionPopup.OnInteractionSelectedHandler -= ForwardInteractionSelectionToPlayer;
+            }
+
+            if (CurrentGame != null)
+                CurrentGame.TechWeb.OnTechnologyUnlockedHandler -= ShowTechnologyUnlockMessage;
+        }
+
+        base.Dispose(disposing);
+    }
+
     private void SaveGame(string name)
     {
         SaveHelper.ShowErrorAboutPrototypeSaving(this);
@@ -482,5 +777,56 @@ public class MulticellularStage : StageBase<MulticellularCreature>
     private void OnPlayerReproductionStatusChanged(MulticellularCreature player, bool ready)
     {
         OnCanEditStatusChanged(ready);
+    }
+
+    private void ForwardInteractionSelectionToPlayer(IInteractableEntity entity, InteractionType interactionType)
+    {
+        if (Player == null)
+            return;
+
+        if (!Player.AttemptInteraction(entity, interactionType))
+            GD.Print("Player couldn't perform the selected action");
+    }
+
+    [DeserializedCallbackAllowed]
+    private void OnOpenCraftingInterfaceFor(MulticellularCreature player, IInteractableEntity target)
+    {
+        if (!TogglePlayerInventory())
+        {
+            GD.Print("Couldn't open player inventory to then select a craftable resource");
+            return;
+        }
+
+        HUD.SelectItemForCrafting(target);
+    }
+
+    private void ShowTechnologyUnlockMessage(Technology technology)
+    {
+        HUD.HUDMessages.ShowMessage(
+            TranslationServer.Translate("TECHNOLOGY_UNLOCKED_NOTICE").FormatSafe(technology.Name),
+            DisplayDuration.Long);
+    }
+
+    private void SwitchToSocietyScene()
+    {
+        var societyStage = SceneManager.Instance.LoadScene(MainGameState.SocietyStage).Instance<SocietyStage>();
+        societyStage.CurrentGame = CurrentGame;
+
+        SceneManager.Instance.SwitchToScene(societyStage);
+
+        // Preserve some of the state when moving to the stage for extra continuity
+        societyStage.CameraWorldPoint = animationEndCameraLookPoint;
+
+        // TODO: structures should be saved in the world data and not the stage object directly
+        var societyCenter = societyStage.AddBuilding(SimulationParameters.Instance.GetStructure("societyCenter"),
+            firstSocietyCenterTransform);
+        societyCenter.ForceCompletion();
+
+        // Stop explicitly preventing mouse capture (the society stage won't capture the mouse anyway but to not
+        // have a pending force no-capture on this is good)
+        Invoke.Instance.Queue(() =>
+        {
+            MouseCaptureManager.ReportClosedCapturePrevention(STAGE_TRANSITION_MOUSE_LOCK);
+        });
     }
 }

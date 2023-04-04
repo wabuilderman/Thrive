@@ -23,6 +23,15 @@ public static class Constants
     public const float PLAYER_RESPAWN_TIME = 5.0f;
 
     /// <summary>
+    ///   How long the initial compounds should last (in seconds)
+    /// </summary>
+    public const float INITIAL_COMPOUND_TIME = 40.0f;
+
+    public const float MULTICELLULAR_INITIAL_COMPOUND_MULTIPLIER = 1.5f;
+
+    public const int FULL_INITIAL_GLUCOSE_SMALL_SIZE_LIMIT = 3;
+
+    /// <summary>
     ///   The maximum duration the player is shown being ingested before they are auto respawned.
     /// </summary>
     public const float PLAYER_ENGULFED_DEATH_DELAY_MAX = 10.0f;
@@ -105,6 +114,15 @@ public static class Constants
     public const float CLOUD_CHEAT_DENSITY = 16000.0f;
 
     public const int MEMBRANE_RESOLUTION = 10;
+
+    // TODO: see https://github.com/Revolutionary-Games/Thrive/issues/4117 for why these two variables exist
+    public const float MEMBRANE_ROOM_FOR_ORGANELLES = 2.0f;
+    public const float MEMBRANE_ROOM_FOR_ORGANELLES_MULTIHEX = 3.0f;
+
+    public const float MEMBRANE_NUMBER_OF_WAVES = 9.0f;
+    public const float MEMBRANE_WAVE_HEIGHT_DEPENDENCE_ON_SIZE = 0.3f;
+    public const float MEMBRANE_WAVE_HEIGHT_MULTIPLIER = 0.025f;
+    public const float MEMBRANE_WAVE_HEIGHT_MULTIPLIER_CELL_WALL = 0.015f;
 
     /// <summary>
     ///   BASE MOVEMENT ATP cost. Cancels out a little bit more then one cytoplasm's glycolysis
@@ -365,6 +383,33 @@ public static class Constants
     public const int DESPAWNING_CHUNK_LIFETIME = 150;
 
     public const float MEMBRANE_DISSOLVE_SPEED = 0.3f;
+
+    public const float INTERACTION_BUTTONS_FULL_UPDATE_INTERVAL = 0.1f;
+
+    public const int INTERACTION_BUTTONS_MAX_COUNT = 50;
+
+    public const float INTERACTION_BUTTON_DEFAULT_Y_OFFSET = 1.0f;
+
+    public const int INTERACTION_BUTTON_SIZE = 32;
+    public const int INTERACTION_BUTTON_X_PIXEL_OFFSET = -INTERACTION_BUTTON_SIZE / 2;
+    public const int INTERACTION_BUTTON_Y_PIXEL_OFFSET = -INTERACTION_BUTTON_SIZE / 2;
+
+    public const float INTERACTION_DEFAULT_VISIBILITY_DISTANCE = 20.0f;
+    public const float INTERACTION_DEFAULT_INTERACT_DISTANCE = 8.5f;
+
+    public const float INTERACTION_MAX_ANGLE_TO_VIEW = Mathf.Pi;
+
+    public const float WORLD_PROGRESS_BAR_FULL_UPDATE_INTERVAL = 0.1f;
+    public const float WORLD_PROGRESS_BAR_MAX_DISTANCE = 15.0f;
+    public const float WORLD_PROGRESS_BAR_MAX_COUNT = 15;
+    public const float WORLD_PROGRESS_BAR_DEFAULT_WIDTH = 125;
+    public const float WORLD_PROGRESS_BAR_MIN_WIDTH_TO_SHOW = 20;
+    public const float WORLD_PROGRESS_BAR_DEFAULT_HEIGHT = 18;
+    public const float WORLD_PROGRESS_BAR_MIN_HEIGHT = 6;
+    public const float WORLD_PROGRESS_BAR_DISTANCE_SIZE_SCALE = 1.0f;
+    public const float WORLD_PROGRESS_DEFAULT_Y_OFFSET = 3.5f;
+
+    public const float INVENTORY_DRAG_START_ALLOWANCE = 0.15f;
 
     /// <summary>
     ///   This is used just as the default value for health and max
@@ -864,6 +909,11 @@ public static class Constants
     public const float BRAIN_POWER_REQUIRED_FOR_AWAKENING = 5;
 
     /// <summary>
+    ///   Squared distance after which a timed action is canceled due to moving too much
+    /// </summary>
+    public const float ACTION_CANCEL_DISTANCE = 5;
+
+    /// <summary>
     ///   Main menu cancel priority. Main menu handles the cancel action for sub menus that don't have special needs
     ///   regarding exiting them <see cref="PAUSE_MENU_CANCEL_PRIORITY"/>
     /// </summary>
@@ -965,6 +1015,13 @@ public static class Constants
     public const string PLAYER_GROUP = "player";
 
     public const string PLAYER_REPRODUCED_GROUP = "player_offspring";
+
+    public const string INTERACTABLE_GROUP = "interactable";
+
+    /// <summary>
+    ///   Group for entities that can show a progress bar above them in the GUI
+    /// </summary>
+    public const string PROGRESS_ENTITY_GROUP = "progress";
 
     public const string DELETION_HOLD_LOAD = "load";
     public const string DELETION_HOLD_MICROBE_EDITOR = "microbe_editor";
@@ -1147,6 +1204,14 @@ public static class Constants
     public const float PATCH_REGION_CONNECTION_LINE_WIDTH = 4.0f;
     public const float PATCH_REGION_BORDER_WIDTH = 6.0f;
     public const int PATCH_GENERATION_MAX_RETRIES = 100;
+
+    /// <summary>
+    ///   Extra time passed to <see cref="HUDMessages"/> when exiting the editor. Needs to be close to (or higher)
+    ///   than the long message time as defined in <see cref="HUDMessages.TimeToFadeFromDuration"/>
+    /// </summary>
+    public const float HUD_MESSAGES_EXTRA_ELAPSE_TIME_FROM_EDITOR = 11.2f;
+
+    public const float SOCIETY_STAGE_ENTER_ANIMATION_DURATION = 15;
 
     public const ControllerType DEFAULT_CONTROLLER_TYPE = ControllerType.XboxSeriesX;
     public const float MINIMUM_DELAY_BETWEEN_INPUT_TYPE_CHANGE = 0.3f;

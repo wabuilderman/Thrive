@@ -70,6 +70,14 @@
       {
         "InputName": "g_interact",
         "Name": "INPUT_NAME_INTERACTION"
+      },
+      {
+        "InputName": "g_inventory",
+        "Name": "INPUT_NAME_OPEN_INVENTORY"
+      },
+      {
+        "InputName": "g_build_structure",
+        "Name": "INPUT_NAME_BUILD_STRUCTURE"
       }
     ]
   },

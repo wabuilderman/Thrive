@@ -468,6 +468,24 @@ public partial class CellEditorComponent :
         .Select(p => p.Definition);
 
     [JsonIgnore]
+    public override bool ShowFinishButtonWarning
+    {
+        get
+        {
+            if (base.ShowFinishButtonWarning)
+                return true;
+
+            if (IsNegativeAtpProduction())
+                return true;
+
+            if (HasIslands)
+                return true;
+
+            return false;
+        }
+    }
+
+    [JsonIgnore]
     public bool NodeReferencesResolved { get; private set; }
 
     protected override bool ForceHideHover => MicrobePreviewMode;
@@ -848,8 +866,7 @@ public partial class CellEditorComponent :
 
         // Show warning popup if trying to exit with negative atp production
         // Not shown in multicellular as the popup happens in kind of a weird place
-        if (!IsMulticellularEditor && energyBalanceInfo != null &&
-            energyBalanceInfo.TotalProduction < energyBalanceInfo.TotalConsumptionStationary)
+        if (!IsMulticellularEditor && IsNegativeAtpProduction())
         {
             negativeAtpPopup.PopupCenteredShrink();
             return false;
@@ -1778,6 +1795,12 @@ public partial class CellEditorComponent :
         return true;
     }
 
+    private bool IsNegativeAtpProduction()
+    {
+        return energyBalanceInfo != null &&
+            energyBalanceInfo.TotalProduction < energyBalanceInfo.TotalConsumptionStationary;
+    }
+
     private void OnPostNewMicrobeChange()
     {
         UpdateMembraneButtons(Membrane.InternalName);
@@ -1874,6 +1897,8 @@ public partial class CellEditorComponent :
         UpdateCellVisualization();
 
         StartAutoEvoPrediction();
+
+        UpdateFinishButtonWarningVisibility();
     }
 
     /// <summary>

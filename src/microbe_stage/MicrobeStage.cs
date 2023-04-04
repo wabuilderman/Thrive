@@ -11,7 +11,7 @@ using Newtonsoft.Json;
 [SceneLoadedClass("res://src/microbe_stage/MicrobeStage.tscn")]
 [DeserializedCallbackTarget]
 [UseThriveSerializer]
-public class MicrobeStage : StageBase<Microbe>
+public class MicrobeStage : CreatureStageBase<Microbe>
 {
     [Export]
     public NodePath? GuidanceLinePath;
@@ -84,13 +84,13 @@ public class MicrobeStage : StageBase<Microbe>
     public MicrobeHUD HUD { get; private set; } = null!;
 
     [JsonIgnore]
-    public PlayerHoverInfo HoverInfo { get; private set; } = null!;
+    public MicrobeInspectInfo HoverInfo { get; private set; } = null!;
 
     [JsonIgnore]
     public TutorialState TutorialState =>
         CurrentGame?.TutorialState ?? throw new InvalidOperationException("Game not started yet");
 
-    protected override IStageHUD BaseHUD => HUD;
+    protected override ICreatureStageHUD BaseHUD => HUD;
 
     private LocalizedString CurrentPatchName =>
         GameWorld.Map.CurrentPatch?.Name ?? throw new InvalidOperationException("no current patch");
@@ -113,7 +113,7 @@ public class MicrobeStage : StageBase<Microbe>
 
         tutorialGUI.Visible = true;
         HUD.Init(this);
-        HoverInfo.Init(Camera, Clouds);
+        HoverInfo.Init(Clouds, Camera);
 
         // Do stage setup to spawn things and setup all parts of the stage
         SetupStage();
@@ -128,7 +128,7 @@ public class MicrobeStage : StageBase<Microbe>
 
         HUD = GetNode<MicrobeHUD>("MicrobeHUD");
         tutorialGUI = GetNode<MicrobeTutorialGUI>("TutorialGUI");
-        HoverInfo = GetNode<PlayerHoverInfo>("PlayerHoverInfo");
+        HoverInfo = GetNode<MicrobeInspectInfo>("PlayerHoverInfo");
         Camera = world.GetNode<MicrobeCamera>("PrimaryCamera");
         Clouds = world.GetNode<CompoundCloudSystem>("CompoundClouds");
         guidanceLine = GetNode<GuidanceLine>(GuidanceLinePath);
@@ -339,6 +339,8 @@ public class MicrobeStage : StageBase<Microbe>
 
             editor.CurrentGame = CurrentGame;
             editor.ReturnToStage = this;
+
+            // TODO: severely limit the MP points in awakening stage
         }
         else
         {
@@ -657,9 +659,9 @@ public class MicrobeStage : StageBase<Microbe>
             TutorialState.SendEvent(TutorialEventType.MicrobePlayerReadyToEdit, EventArgs.Empty, this);
     }
 
-    protected override void GameOver()
+    protected override void OnGameOver()
     {
-        base.GameOver();
+        base.OnGameOver();
 
         guidanceLine.Visible = false;
     }

@@ -228,6 +228,7 @@ public static class SpawnHelpers
 
         creature.AddToGroup(Constants.ENTITY_TAG_CREATURE);
         creature.AddToGroup(Constants.PROCESS_GROUP);
+        creature.AddToGroup(Constants.PROGRESS_ENTITY_GROUP);
 
         if (aiControlled)
             creature.AddToGroup(Constants.AI_GROUP);
@@ -242,6 +243,90 @@ public static class SpawnHelpers
     public static PackedScene LoadMulticellularScene()
     {
         return GD.Load<PackedScene>("res://src/late_multicellular_stage/MulticellularCreature.tscn");
+    }
+
+    public static ResourceEntity SpawnResourceEntity(WorldResource resourceType, Transform location, Node worldNode,
+        PackedScene entityScene, bool randomizeRotation = false, Random? random = null)
+    {
+        var resourceEntity = CreateHarvestedResourceEntity(resourceType, entityScene, false);
+
+        if (randomizeRotation)
+        {
+            random ??= new Random();
+
+            // Randomize rotation by constructing a new Transform that has the basis rotated, note that this loses the
+            // scale, but entities shouldn't anyway be allowed to have a root node scale
+            location = new Transform(
+                new Basis(location.basis.Quat() * RandomRotationForResourceEntity(random)), location.origin);
+        }
+
+        worldNode.AddChild(resourceEntity);
+
+        resourceEntity.Transform = location;
+
+        return resourceEntity;
+    }
+
+    /// <summary>
+    ///   Creates a resource entity to be placed in the world later. Used for example to create items to drop.
+    /// </summary>
+    /// <returns>The entity ready to be placed in the world</returns>
+    public static ResourceEntity CreateHarvestedResourceEntity(WorldResource resourceType, PackedScene entityScene,
+        bool randomizeRotation = true, Random? random = null)
+    {
+        var resourceEntity = (ResourceEntity)entityScene.Instance();
+
+        // Apply settings
+        resourceEntity.SetResource(resourceType);
+
+        if (randomizeRotation)
+        {
+            random ??= new Random();
+
+            resourceEntity.Transform = new Transform(new Basis(RandomRotationForResourceEntity(random)), Vector3.Zero);
+        }
+
+        resourceEntity.AddToGroup(Constants.INTERACTABLE_GROUP);
+        return resourceEntity;
+    }
+
+    public static PackedScene LoadResourceEntityScene()
+    {
+        return GD.Load<PackedScene>("res://src/awakening_stage/ResourceEntity.tscn");
+    }
+
+    public static IInteractableEntity CreateEquipmentEntity(EquipmentDefinition equipmentDefinition)
+    {
+        var entity = new Equipment(equipmentDefinition);
+
+        entity.AddToGroup(Constants.INTERACTABLE_GROUP);
+        return entity;
+    }
+
+    public static PlacedStructure SpawnStructure(StructureDefinition structureDefinition, Transform location,
+        Node worldNode, PackedScene entityScene)
+    {
+        var structureEntity = entityScene.Instance<PlacedStructure>();
+
+        worldNode.AddChild(structureEntity);
+        structureEntity.Init(structureDefinition);
+
+        structureEntity.AddToGroup(Constants.INTERACTABLE_GROUP);
+
+        structureEntity.Transform = location;
+
+        return structureEntity;
+    }
+
+    public static PackedScene LoadStructureScene()
+    {
+        return GD.Load<PackedScene>("res://src/awakening_stage/PlacedStructure.tscn");
+    }
+
+    private static Quat RandomRotationForResourceEntity(Random random)
+    {
+        return new Quat(new Vector3(random.NextFloat() + 0.01f, random.NextFloat(), random.NextFloat()).Normalized(),
+            random.NextFloat() * Mathf.Pi + 0.01f);
     }
 }
 
