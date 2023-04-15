@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-04-06 15:10+0300\n"
+"POT-Creation-Date: 2023-04-14 13:04+0300\n"
 "PO-Revision-Date: 2023-02-02 07:29+0000\n"
 "Last-Translator: Raphael Franzen <franzen.raphael@hotmail.com>\n"
 "Language-Team: German <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/de/>\n"
@@ -19,7 +19,7 @@ msgstr ""
 "X-Generator: Weblate 4.14\n"
 "Generated-By: Babel 2.8.0\n"
 
-#: ../src/general/OptionsMenu.tscn:1459
+#: ../src/general/OptionsMenu.tscn:1467
 msgid "2D_MOVEMENT_TYPE_SELECTION"
 msgstr "2D Bewegungsart:"
 
@@ -31,7 +31,7 @@ msgstr "3D Editor"
 msgid "3D_MOVEMENT"
 msgstr "Dreidimensionale Bewegung"
 
-#: ../src/general/OptionsMenu.tscn:1491
+#: ../src/general/OptionsMenu.tscn:1499
 msgid "3D_MOVEMENT_TYPE_SELECTION"
 msgstr "3D Bewegungsart:"
 
@@ -63,7 +63,7 @@ msgid "ACTION_AWAKEN_TOOLTIP"
 msgstr "Erwachen"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:410
-#: ../src/general/base_stage/EditorBase.cs:684
+#: ../src/general/base_stage/EditorBase.cs:678
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:464
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:50
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
@@ -73,7 +73,7 @@ msgstr "Aktion ist blockiert während eine andere im Gange ist"
 msgid "ACTIVE"
 msgstr "Aktiv"
 
-#: ../src/general/OptionsMenu.tscn:1094
+#: ../src/general/OptionsMenu.tscn:1102
 msgid "ACTIVE_THREAD_COUNT"
 msgstr "Aktuelle Threads:"
 
@@ -176,7 +176,7 @@ msgstr ""
 msgid "ALT"
 msgstr "Alt"
 
-#: ../src/general/OptionsMenu.tscn:741
+#: ../src/general/OptionsMenu.tscn:749
 msgid "AMBIANCE_VOLUME"
 msgstr "Umgebungslautstärke"
 
@@ -187,11 +187,11 @@ msgstr "Umgebungslautstärke"
 msgid "AMMONIA"
 msgstr "Ammoniak"
 
-#: ../src/general/OptionsMenu.tscn:1679
+#: ../src/general/OptionsMenu.tscn:1687
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "Anzahl der Autospeicherungen:"
 
-#: ../src/general/OptionsMenu.tscn:1707
+#: ../src/general/OptionsMenu.tscn:1715
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Anzahl der Schnellspeicherungen:"
 
@@ -203,7 +203,7 @@ msgstr "Anaerobe Stickstofffixierung"
 msgid "APPEARANCE"
 msgstr "Erscheinungsbild"
 
-#: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:117
+#: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:118
 #: ../src/modding/ModUploader.tscn:158
 msgid "APPLY"
 msgstr "Übernehmen"
@@ -216,11 +216,11 @@ msgstr "Änderungen übernehmen"
 msgid "APRIL"
 msgstr "April"
 
-#: ../src/general/OptionsMenu.tscn:2042
+#: ../src/general/OptionsMenu.tscn:2050
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr "Bist du sicher, dass du ALLE Einstellungen auf ihre Standardwerte zurücksetzen willst?"
 
-#: ../src/general/OptionsMenu.tscn:2051
+#: ../src/general/OptionsMenu.tscn:2059
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr "Bist du sicher, dass du die Eingaben auf ihre Standardwerte zurücksetzen willst?"
 
@@ -236,7 +236,7 @@ msgstr "\"{0}\" - {1}"
 msgid "ART_BY"
 msgstr "Grafiken von {0}"
 
-#: ../src/general/MainMenu.tscn:515
+#: ../src/general/MainMenu.tscn:516
 msgid "ART_GALLERY"
 msgstr "Kunstgalerie"
 
@@ -248,7 +248,7 @@ msgstr "Klasse der Programmbibliothek ist erforderlich, wenn angegeben"
 msgid "ASSEMBLY_REQUIRED_WITH_HARMONY"
 msgstr "Mod Assembler ist erforderlich wenn Auto Harmony aktiviert ist"
 
-#: ../src/general/OptionsMenu.tscn:1108
+#: ../src/general/OptionsMenu.tscn:1116
 msgid "ASSUME_HYPERTHREADING"
 msgstr "Annehmen, dass die CPU Hyperthreading hat"
 
@@ -269,7 +269,7 @@ msgstr "Atmosphärische Gase"
 msgid "ATP"
 msgstr "ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1104
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1126
 msgid "ATP_BALANCE"
 msgstr "ATP-Saldo"
 
@@ -290,7 +290,7 @@ msgstr "Der Versuch zu speichern ist missglückt. Möglicherweise ist der Speich
 msgid "AT_CURSOR"
 msgstr "Am Zeiger:"
 
-#: ../src/general/OptionsMenu.tscn:858
+#: ../src/general/OptionsMenu.tscn:866
 msgid "AUDIO_OUTPUT_DEVICE"
 msgstr "Ausgabegerät:"
 
@@ -298,12 +298,12 @@ msgstr "Ausgabegerät:"
 msgid "AUGUST"
 msgstr "August"
 
-#: ../src/general/OptionsMenu.tscn:597 ../src/general/OptionsMenu.tscn:598
-#: ../src/general/OptionsMenu.tscn:1476 ../src/general/OptionsMenu.tscn:1477
+#: ../src/general/OptionsMenu.tscn:598 ../src/general/OptionsMenu.tscn:599
+#: ../src/general/OptionsMenu.tscn:1484 ../src/general/OptionsMenu.tscn:1485
 msgid "AUTO"
 msgstr "Auto"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1523
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1545
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
 msgstr "Diese Tafel zeigt die Werte an, mit denen die Auto-Evo-Vorhersage arbeitet. Die Gesamtenergie, die eine Spezies aufnehmen kann, und die Kosten pro Einzeltier der Spezies bestimmen die endgültige Population. Auto-Evo verwendet ein vereinfachtes Modell der Realität, um zu berechnen, wie gut die Spezies auf der Basis der von ihnen erbeuteten Energie abschneiden. Für jede Nahrungsquelle wird angezeigt, wie viel Energie die Art aus ihr gewinnt. Zusätzlich wird die Gesamtenergie, die aus dieser Quelle zur Verfügung steht, angezeigt. Der Anteil, den die Art an der Gesamtenergie gewinnt, basiert darauf, wie groß die Fitness im Vergleich zur Gesamtfitness ist. Die Fitness ist ein Maß dafür, wie gut die Spezies diese Nahrungsquelle verwerten kann."
 
@@ -311,12 +311,12 @@ msgstr "Diese Tafel zeigt die Werte an, mit denen die Auto-Evo-Vorhersage arbeit
 msgid "AUTO-EVO_POPULATION_CHANGED_2"
 msgstr "{0} Population ist in {2} um {1} gewachsen, aufgrund von {3}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1221
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1479
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1243
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1500
 msgid "AUTO-EVO_PREDICTION"
 msgstr "Auto-Evo-Vorhersage"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1217
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1239
 msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 msgstr ""
 "Dieses Feld zeigt die von Auto-Evo erwarteten Populationszahlen für die bearbeitete Art an.\n"
@@ -326,7 +326,7 @@ msgstr ""
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr "{0:F1}% fertig. {1:n0}/{2:n0} Schritte."
 
-#: ../src/general/OptionsMenu.tscn:1668
+#: ../src/general/OptionsMenu.tscn:1676
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Automatisches speichern während des Spieles"
 
@@ -334,7 +334,7 @@ msgstr "Automatisches speichern während des Spieles"
 msgid "AUTO_EVO"
 msgstr "Auto-Evo"
 
-#: ../src/general/MainMenu.tscn:413
+#: ../src/general/MainMenu.tscn:414
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "Auto-Evo Exploration"
 
@@ -364,7 +364,7 @@ msgstr "Laufstatus:"
 msgid "AUTO_MOVE_FORWARDS"
 msgstr "Automatisch vorwärts bewegen"
 
-#: ../src/general/OptionsMenu.cs:956 ../src/general/OptionsMenu.tscn:360
+#: ../src/general/OptionsMenu.cs:963 ../src/general/OptionsMenu.tscn:361
 msgid "AUTO_RESOLUTION"
 msgstr "automatisch ({0}x{1})"
 
@@ -382,10 +382,10 @@ msgid "AWARE_STAGE"
 msgstr "Mikroben Stadium"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:998
-#: ../src/general/MainMenu.tscn:458 ../src/general/MainMenu.tscn:554
-#: ../src/general/MainMenu.tscn:610 ../src/general/MainMenu.tscn:933
+#: ../src/general/MainMenu.tscn:459 ../src/general/MainMenu.tscn:555
+#: ../src/general/MainMenu.tscn:611 ../src/general/MainMenu.tscn:934
 #: ../src/general/NewGameSettings.tscn:1142
-#: ../src/general/OptionsMenu.tscn:1979 ../src/general/PauseMenu.tscn:282
+#: ../src/general/OptionsMenu.tscn:1987 ../src/general/PauseMenu.tscn:286
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:79 ../src/saving/NewSaveMenu.tscn:122
 #: ../src/saving/SaveManagerGUI.tscn:115
@@ -448,13 +448,13 @@ msgstr "Makroskopisch werden ({0}/{1})"
 msgid "BECOME_MULTICELLULAR"
 msgstr "Multizellulär werden ({0}/{1})"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:127
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:128
 msgid "BEGIN_THRIVING"
 msgstr "Gedeihe"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:477
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:479
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:663
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:685
 msgid "BEHAVIOUR"
 msgstr "Verhalten"
 
@@ -482,7 +482,7 @@ msgstr "Opportunismus"
 msgid "BELOW_SEA_LEVEL"
 msgstr "{0}-{1}m unter dem Meeresspiegel"
 
-#: ../src/general/MainMenu.tscn:427
+#: ../src/general/MainMenu.tscn:428
 msgid "BENCHMARKS"
 msgstr ""
 
@@ -498,7 +498,7 @@ msgstr ""
 msgid "BENCHMARK_RESULTS_COLON"
 msgstr "Ergebnisse:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1306
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1328
 msgid "BEST_PATCH_COLON"
 msgstr "Bestes Gebiet:"
 
@@ -533,7 +533,7 @@ msgstr "Ermöglicht die Verbindung mit anderen Zellen. Dies ist der erste Schrit
 msgid "BINDING_AGENT_PROCESSES_DESCRIPTION"
 msgstr "Drücke [thrive:input]g_toggle_binding[/thrive:input], um den Bindungsmodus umzuschalten. Im Bindungsmodus kannst du andere Zellen deiner Spezies mit deiner Kolonie verbinden, indem du dich in sie hineinbewegst. Um eine Kolonie zu verlassen, drücke [thrive:input]g_unbind_all[/thrive:input]."
 
-#: ../src/general/OptionsMenu.tscn:1280 ../src/general/OptionsMenu.tscn:1390
+#: ../src/general/OptionsMenu.tscn:1288 ../src/general/OptionsMenu.tscn:1398
 msgid "BIND_AXES_SENSITIVITY"
 msgstr "Achsen verbinden"
 
@@ -607,8 +607,9 @@ msgstr "Kamera"
 
 #: ../src/awakening_stage/gui/InteractablePopup.tscn:64
 #: ../src/awakening_stage/gui/SelectBuildingPopup.tscn:48
-#: ../src/general/OptionsMenu.tscn:2130
-#: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:75
+#: ../src/general/OptionsMenu.tscn:2138
+#: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:14
+#: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:74
 #: ../src/modding/NewModGUI.tscn:472
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:164
 msgid "CANCEL"
@@ -616,7 +617,7 @@ msgstr "Abbrechen"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:659
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:776
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1400
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1422
 msgid "CANCEL_ACTION_CAPITAL"
 msgstr "AKTION ABBRECHEN"
 
@@ -725,7 +726,7 @@ msgstr "Zellulose"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Diese Membran hat eine Wand, was zu einem besseren Schutz gegen Gesamtschäden und insbesondere gegen physische Schäden führt. Sie kostet auch weniger Energie, um ihre Form zu behalten, kann aber Ressourcen nur langsam absorbieren und ist langsamer."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:667
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:664
 msgid "CELL_TYPE_NAME"
 msgstr "Zellentypname"
 
@@ -739,11 +740,11 @@ msgstr "Ändern der Symmetrie"
 
 #: ../simulation_parameters/common/input_options.json:286
 #: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:15
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:12
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:16
 msgid "CHEATS"
 msgstr "Cheats"
 
-#: ../src/general/OptionsMenu.tscn:1761
+#: ../src/general/OptionsMenu.tscn:1769
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "Cheat-Tasten aktiviert"
 
@@ -833,7 +834,7 @@ msgstr "Produziert [thrive:compound type=\"glucose\"][/thrive:compound]. Die Rat
 msgid "CHOSEN_FILENAME_ALREADY_EXISTS"
 msgstr "Der gewählte Dateiname ({0}) existiert bereits. Überschreiben?"
 
-#: ../src/general/OptionsMenu.tscn:440
+#: ../src/general/OptionsMenu.tscn:441
 msgid "CHROMATIC_ABERRATION"
 msgstr "Farbabweichung:"
 
@@ -863,27 +864,27 @@ msgid "CLEAN_UP_OLD_SAVES"
 msgstr "Alte Speicherstände aufräumen"
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:168
-#: ../src/general/HelpScreen.tscn:104 ../src/general/OptionsMenu.tscn:2205
-#: ../src/gui_common/art_gallery/GalleryViewer.tscn:122
+#: ../src/general/HelpScreen.tscn:104 ../src/general/OptionsMenu.tscn:2213
+#: ../src/gui_common/art_gallery/GalleryViewer.tscn:123
 #: ../src/gui_common/charts/line/LineChart.tscn:261
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:114
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1532
-#: ../src/microbe_stage/ProcessPanel.tscn:73
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1554
+#: ../src/microbe_stage/ProcessPanel.tscn:74
 #: ../src/modding/ModManager.tscn:1001
 #: ../src/thriveopedia/Thriveopedia.tscn:315
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:230
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:231
 msgid "CLOSE"
 msgstr "Schließen"
 
-#: ../src/general/OptionsMenu.tscn:2060
+#: ../src/general/OptionsMenu.tscn:2068
 msgid "CLOSE_OPTIONS"
 msgstr "Optionen schließen?"
 
-#: ../src/general/OptionsMenu.tscn:1015
+#: ../src/general/OptionsMenu.tscn:1023
 msgid "CLOUD_RESOLUTION_DIVISOR"
 msgstr "Wolkenauflösungsteiler:"
 
-#: ../src/general/OptionsMenu.tscn:965
+#: ../src/general/OptionsMenu.tscn:973
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr "Wolkensimulation Minimumintervall:"
 
@@ -895,11 +896,11 @@ msgstr "Küste"
 msgid "COLLISION_SHAPE"
 msgstr "Erzeuge Entitäten mit Kollisionskonturen"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:883
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:905
 msgid "COLOUR"
 msgstr "Farbe"
 
-#: ../src/general/OptionsMenu.tscn:402
+#: ../src/general/OptionsMenu.tscn:403
 msgid "COLOURBLIND_CORRECTION"
 msgstr "Farbenblindheits-Korrektur:"
 
@@ -969,23 +970,23 @@ msgstr "Fähigkeiten"
 msgid "COMMON_EDITING_AND_STRATEGY"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:670
+#: ../src/general/MainMenu.tscn:671
 msgid "COMMUNITY_FORUM"
 msgstr "Community-Forum"
 
-#: ../src/general/MainMenu.tscn:665
+#: ../src/general/MainMenu.tscn:666
 msgid "COMMUNITY_FORUM_BUTTON_TOOLTIP"
 msgstr "Tritt der Thrive Gemeinschaft über unser Forum bei"
 
-#: ../src/general/MainMenu.tscn:712
+#: ../src/general/MainMenu.tscn:713
 msgid "COMMUNITY_WIKI"
 msgstr "Gemeinschafts-Wiki"
 
-#: ../src/general/MainMenu.tscn:707
+#: ../src/general/MainMenu.tscn:708
 msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
 msgstr "Besuche unser Gemeinschafts-Wiki"
 
-#: ../src/general/OptionsMenu.tscn:1948
+#: ../src/general/OptionsMenu.tscn:1956
 msgid "COMPILED_AT_COLON"
 msgstr "Erstellt am:"
 
@@ -1010,7 +1011,7 @@ msgstr "Substanzen:"
 msgid "COMPOUND_BALANCE_TITLE"
 msgstr "Verbindungsbalance"
 
-#: ../src/general/OptionsMenu.tscn:950
+#: ../src/general/OptionsMenu.tscn:958
 msgid "COMPOUND_CLOUDS"
 msgstr "Verbindungswolken"
 
@@ -1047,7 +1048,7 @@ msgid "CONFIRM_CAPITAL"
 msgstr "BESTÄTIGEN"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:1008
-#: ../src/general/PauseMenu.tscn:319
+#: ../src/general/PauseMenu.tscn:323
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:143
 msgid "CONFIRM_EXIT"
 msgstr "Beenden bestätigen"
@@ -1069,7 +1070,7 @@ msgstr "Einige Einstellungen sind ungültig"
 msgid "CONTENT_UPLOADED_FROM"
 msgstr "Workshop-Content wird von folgendem Ordner hochgeladen: {0}"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:416
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:404
 msgid "CONTINUE_THRIVING"
 msgstr "Gedeihe"
 
@@ -1087,15 +1088,15 @@ msgstr ""
 msgid "CONTINUE_TO_PROTOTYPES_PROMPT"
 msgstr "Mit Prototyp Stadien fortfahren?"
 
-#: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:94
+#: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:95
 msgid "CONTROLLER_AXIS_VISUALIZERS"
 msgstr "Controllerachsenvisualisierer:"
 
-#: ../src/general/OptionsMenu.tscn:1449
+#: ../src/general/OptionsMenu.tscn:1457
 msgid "CONTROLLER_DEADZONES"
 msgstr "Totzonen kalibrieren"
 
-#: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:49
+#: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:50
 msgid "CONTROLLER_DEADZONE_CALIBRATION_EXPLANATION"
 msgstr ""
 "Mit diesem Werkzeug können die Deadzones der Controllerachsen konfiguriert werden. Die Größe der Deadzone kontrolliert wie viel ein Controlstick (oder analoge Taste) bewegt werden muss, bevor die Bewegung als Eingabe erkannt wird.\n"
@@ -1106,15 +1107,15 @@ msgstr ""
 msgid "CONTROLLER_DEADZONE_COLON"
 msgstr "Totzone:"
 
-#: ../src/general/OptionsMenu.tscn:580
+#: ../src/general/OptionsMenu.tscn:581
 msgid "CONTROLLER_PROMPT_TYPE_SETTING"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1377
+#: ../src/general/OptionsMenu.tscn:1385
 msgid "CONTROLLER_SENSITIVITY"
 msgstr "Controllerempfindlichkeit"
 
-#: ../src/gui_common/dialogs/ErrorDialog.tscn:109
+#: ../src/gui_common/dialogs/ErrorDialog.tscn:105
 msgid "COPY_ERROR_TO_CLIPBOARD"
 msgstr "Fehler in die Zwischenablage kopieren"
 
@@ -1122,11 +1123,11 @@ msgstr "Fehler in die Zwischenablage kopieren"
 msgid "COPY_RESULTS"
 msgstr "Ergebnisse kopieren"
 
-#: ../src/general/OptionsMenu.tscn:419
+#: ../src/general/OptionsMenu.tscn:420
 msgid "CORRECTION_PROTANOPE"
 msgstr "Rotblindheit (Rot-Grün)"
 
-#: ../src/general/OptionsMenu.tscn:419
+#: ../src/general/OptionsMenu.tscn:420
 msgid "CORRECTION_TRITANOPE"
 msgstr "Blaublindheit (Blau-Gelb)"
 
@@ -1246,7 +1247,7 @@ msgstr "Erstelle..."
 msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr "Objekte aus Speicherstand erstellen"
 
-#: ../src/general/MainMenu.tscn:351
+#: ../src/general/MainMenu.tscn:352
 msgid "CREDITS"
 msgstr "Abspann"
 
@@ -1271,7 +1272,7 @@ msgstr "Aktuelle Welt"
 msgid "CURRENT_WORLD_STATISTICS"
 msgstr "Organismus-Statistik"
 
-#: ../src/general/OptionsMenu.tscn:1780
+#: ../src/general/OptionsMenu.tscn:1788
 msgid "CUSTOM_USERNAME"
 msgstr "Eigener Nutzername:"
 
@@ -1308,19 +1309,19 @@ msgstr "Tag-/Nachtzyklus aktivieren"
 msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION"
 msgstr "(WARNUNG: Photosynthese wird wesentlich weniger effizient)"
 
-#: ../src/engine/input/ControllerDeadzoneConfiguration.cs:207
+#: ../src/engine/input/ControllerDeadzoneConfiguration.cs:221
 msgid "DEADZONE_CALIBRATION_FINISHED"
 msgstr "Totzonenkalibrierung abgeschlossen. Die neuen Totzonen werden unten dargestellt."
 
-#: ../src/engine/input/ControllerDeadzoneConfiguration.cs:172
+#: ../src/engine/input/ControllerDeadzoneConfiguration.cs:186
 msgid "DEADZONE_CALIBRATION_INPROGRESS"
 msgstr "Totzonen-Kalibrierung im Gange. Bitte drücken Sie keine Tasten und lassen Sie die Sticks auf ihrem Controller in nicht-ausgelenkter Ausgangsstellung und warten ein paar Sekunden."
 
-#: ../src/engine/input/ControllerDeadzoneConfiguration.cs:193
+#: ../src/engine/input/ControllerDeadzoneConfiguration.cs:207
 msgid "DEADZONE_CALIBRATION_IS_RESET"
 msgstr "Totzonenkalibrierungen wurden zurückgesetzt"
 
-#: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:14
+#: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:15
 msgid "DEADZONE_CONFIGURATION"
 msgstr "Totzonen kalibrieren"
 
@@ -1341,13 +1342,13 @@ msgstr "Debug-Fenster"
 msgid "DECEMBER"
 msgstr "Dezember"
 
-#: ../src/general/OptionsMenu.cs:1422
+#: ../src/general/OptionsMenu.cs:1429
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Standardausgabegerät"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:554
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:623
-#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:228
+#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:191
 msgid "DELETE"
 msgstr "Löschen"
 
@@ -1399,11 +1400,11 @@ msgstr "Beschreibung:"
 msgid "DESCRIPTION_TOO_LONG"
 msgstr "Beschreibung ist zu lang"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:102
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:106
 msgid "DESPAWN_ENTITIES"
 msgstr "Alle Objekte entfernen"
 
-#: ../src/general/OptionsMenu.tscn:1077
+#: ../src/general/OptionsMenu.tscn:1085
 msgid "DETECTED_CPU_COUNT"
 msgstr "Ermittelte CPU-Anzahl:"
 
@@ -1418,11 +1419,11 @@ msgstr ""
 msgid "DEVELOPERS"
 msgstr "Entwickler(innen)"
 
-#: ../src/general/MainMenu.tscn:684
+#: ../src/general/MainMenu.tscn:685
 msgid "DEVELOPMENT_FORUM"
 msgstr "Entwickler Forum"
 
-#: ../src/general/MainMenu.tscn:679
+#: ../src/general/MainMenu.tscn:680
 msgid "DEVELOPMENT_FORUM_BUTTON_TOOLTIP"
 msgstr "Sieh Dir Entwicklerupdates in unserem Entwicklerforum an"
 
@@ -1430,11 +1431,11 @@ msgstr "Sieh Dir Entwicklerupdates in unserem Entwicklerforum an"
 msgid "DEVELOPMENT_SUPPORTED_BY"
 msgstr "Entwicklung unterstützt von Revolutionary Games Studio ry"
 
-#: ../src/general/MainMenu.tscn:698
+#: ../src/general/MainMenu.tscn:699
 msgid "DEVELOPMENT_WIKI"
 msgstr "Entwickler-Wiki"
 
-#: ../src/general/MainMenu.tscn:693
+#: ../src/general/MainMenu.tscn:694
 msgid "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
 msgstr "Besuche unser Entwickler-Wiki"
 
@@ -1492,7 +1493,7 @@ msgstr "Normal"
 msgid "DIGESTION_EFFICIENCY"
 msgstr "Verdauungseffizienz"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1037
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1059
 msgid "DIGESTION_EFFICIENCY_COLON"
 msgstr "Verdauungseffizienz:"
 
@@ -1500,7 +1501,7 @@ msgstr "Verdauungseffizienz:"
 msgid "DIGESTION_SPEED"
 msgstr "Ressourcen-Absorptionsgeschwindigkeit"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1027
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1049
 msgid "DIGESTION_SPEED_COLON"
 msgstr "Ressourcen-Absorptionsgeschwindigkeit:"
 
@@ -1516,7 +1517,7 @@ msgstr "Links"
 msgid "DIRECTIONR"
 msgstr "Rechts"
 
-#: ../src/general/OptionsMenu.tscn:332 ../src/general/OptionsMenu.tscn:333
+#: ../src/general/OptionsMenu.tscn:333 ../src/general/OptionsMenu.tscn:334
 msgid "DISABLED"
 msgstr "Deaktiviert"
 
@@ -1524,7 +1525,7 @@ msgstr "Deaktiviert"
 msgid "DISABLE_ALL"
 msgstr "Alle deaktivieren"
 
-#: ../src/general/OptionsMenu.tscn:2113
+#: ../src/general/OptionsMenu.tscn:2121
 msgid "DISCARD_AND_CONTINUE"
 msgstr "Verwerfen und fortfahren"
 
@@ -1552,25 +1553,25 @@ msgstr ""
 "Es gibt Zellen, die nicht mit dem Rest verbunden sind.\n"
 "Bitte verbinde alle platzierten Zellen miteinander oder mach deine Änderungen rückgängig."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1461
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1483
 msgid "DISCONNECTED_ORGANELLES"
 msgstr "Getrennte Organellen"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1463
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1485
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
 "Es gibt Organellen, die nicht mit dem Rest verbunden sind.\n"
 "Bitte verbinde alle platzierten Organellen miteinander oder mach deine Änderungen rückgängig."
 
-#: ../src/general/MainMenu.tscn:856
+#: ../src/general/MainMenu.tscn:857
 msgid "DISCORD_TOOLTIP"
 msgstr "Tritt unserem Discord Server bei"
 
-#: ../src/general/OptionsMenu.tscn:1854
+#: ../src/general/OptionsMenu.tscn:1862
 msgid "DISMISSED_POPUPS_COLON"
 msgstr "Versteckte Pop-ups:"
 
-#: ../src/general/OptionsMenu.tscn:1852 ../src/general/OptionsMenu.tscn:1861
+#: ../src/general/OptionsMenu.tscn:1860 ../src/general/OptionsMenu.tscn:1869
 msgid "DISMISSED_POPUPS_EXPLANATION"
 msgstr ""
 "Dies zeigt an, wie viele Popups vom Spieler dauerhaft ausgeblendet wurden.\n"
@@ -1586,15 +1587,20 @@ msgstr "Dies' nicht wieder anzeigen"
 msgid "DISMISS_WARNING_PERMANENTLY"
 msgstr "Dies' nicht wieder anzeigen"
 
-#: ../src/general/OptionsMenu.tscn:612
+#: ../src/general/OptionsMenu.tscn:637
+#, fuzzy
+msgid "DISPLAY_3D_MENU_BACKGROUNDS"
+msgstr "Hintergrundpartikel anzeigen"
+
+#: ../src/general/OptionsMenu.tscn:613
 msgid "DISPLAY_ABILITIES_BAR"
 msgstr "Fähigkeitenleiste anzeigen"
 
-#: ../src/general/OptionsMenu.tscn:469
+#: ../src/general/OptionsMenu.tscn:470
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr "Hintergrundpartikel anzeigen"
 
-#: ../src/general/OptionsMenu.tscn:629
+#: ../src/general/OptionsMenu.tscn:628
 msgid "DISPLAY_PART_NAMES"
 msgstr "Namen der Teile Schaltflächen anzeigen"
 
@@ -1758,7 +1764,7 @@ msgstr "Easter eggs einbeziehen"
 msgid "EASTER_EGGS_EXPLANATION"
 msgstr "(zufällig generierte Geheimnisse im Spielverlauf)"
 
-#: ../src/general/OptionsMenu.tscn:1544
+#: ../src/general/OptionsMenu.tscn:1552
 #, fuzzy
 msgid "EDGE_PAN_SPEED"
 msgstr "Ressourcen-Absorptionsgeschwindigkeit"
@@ -1772,7 +1778,7 @@ msgstr "Editor"
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "Betritt den Editor und bearbeite deine Spezies"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:42
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:43
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
 "Willkommen in dem Mikrobeneditor.\n"
@@ -1783,7 +1789,7 @@ msgstr ""
 "\n"
 "Wenn du bereit bist, drücke die \"Nächste\"-Schaltfläche unten rechts."
 
-#: ../src/general/OptionsMenu.tscn:333
+#: ../src/general/OptionsMenu.tscn:334
 msgid "EIGHT_TIMES"
 msgstr "8x"
 
@@ -1799,7 +1805,7 @@ msgstr "Alle kompatiblen Mods aktivieren"
 msgid "ENABLE_EDITOR"
 msgstr "Editor aktivieren"
 
-#: ../src/general/OptionsMenu.tscn:620
+#: ../src/general/OptionsMenu.tscn:621
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "GUI-Lichteffekte aktivieren"
 
@@ -1811,15 +1817,15 @@ msgstr "{0}: -{1} ATP"
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2435
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2420
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "Energie in {0} für {1}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2446
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2431
 msgid "ENERGY_SOURCES"
 msgstr "Energiequellen:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2439
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2424
 msgid "ENERGY_SUMMARY_LINE"
 msgstr "Die gesammelte Gesamtenergie beträgt {0} mit individuellen Kosten von {1}, was zu einer unbereinigten Bevölkerung von {2} führt"
 
@@ -1860,7 +1866,7 @@ msgstr "Epipelagial"
 msgid "EQUIPMENT_TYPE_AXE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2141 ../src/general/OptionsMenu.tscn:2149
+#: ../src/general/OptionsMenu.tscn:2149 ../src/general/OptionsMenu.tscn:2157
 msgid "ERROR"
 msgstr "Fehler"
 
@@ -1872,7 +1878,7 @@ msgstr "Fehler beim Erstellen des Ordners für den Mod"
 msgid "ERROR_CREATING_INFO_FILE"
 msgstr "Fehler beim Erstellen der Modinformationsdatei"
 
-#: ../src/general/OptionsMenu.tscn:2151
+#: ../src/general/OptionsMenu.tscn:2159
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr "Fehler: Das Speichern neuer Einstellungen in der Konfigurationsdatei ist fehlgeschlagen."
 
@@ -1917,11 +1923,11 @@ msgstr ""
 "\n"
 "Trifft keins von beidem zu, ist ein Fehler aufgetreten. Bitte benachrichtige das Entwickler Team und stelle Log Dateien zur Verfügung."
 
-#: ../src/general/OptionsMenu.tscn:1920
+#: ../src/general/OptionsMenu.tscn:1928
 msgid "EXACT_VERSION_COLON"
 msgstr "Genaue Thrive Version:"
 
-#: ../src/general/OptionsMenu.tscn:1918 ../src/general/OptionsMenu.tscn:1929
+#: ../src/general/OptionsMenu.tscn:1926 ../src/general/OptionsMenu.tscn:1937
 msgid "EXACT_VERSION_TOOLTIP"
 msgstr "Dies ist die exakte Version dieser Thrive Instanz"
 
@@ -1933,11 +1939,11 @@ msgstr "Während der Verarbeitung geladener Objekte trat ein Fehler auf"
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr "Beim Laden der Speicherdaten ist ein Fehler aufgetreten"
 
-#: ../src/general/PauseMenu.tscn:247
+#: ../src/general/PauseMenu.tscn:251
 msgid "EXIT"
 msgstr "Verlassen"
 
-#: ../src/general/MainMenu.tscn:360
+#: ../src/general/MainMenu.tscn:361
 msgid "EXIT_TO_LAUNCHER"
 msgstr "Beenden zum Launcher"
 
@@ -1953,7 +1959,7 @@ msgstr "Exportiere die Daten aller Welten i CSV-Format (comma-separated values)"
 msgid "EXPORT_SUCCESS"
 msgstr "Erfolgreich exportiert"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:740
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:762
 msgid "EXTERNAL"
 msgstr "Extern"
 
@@ -1987,7 +1993,7 @@ msgstr "ist im Gebiet ausgestorben"
 msgid "EXTINCT_SPECIES"
 msgstr "Ausgestorbene Spezies"
 
-#: ../src/general/MainMenu.tscn:343
+#: ../src/general/MainMenu.tscn:344
 msgid "EXTRAS"
 msgstr "Extras"
 
@@ -1995,11 +2001,11 @@ msgstr "Extras"
 msgid "EXTRA_OPTIONS"
 msgstr "Zusätzliche Optionen"
 
-#: ../src/general/MainMenu.tscn:868
+#: ../src/general/MainMenu.tscn:869
 msgid "FACEBOOK_TOOLTIP"
 msgstr "Besuche unsere Facebook Seite"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1287
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1309
 msgid "FAILED"
 msgstr "Gescheitert"
 
@@ -2062,7 +2068,7 @@ msgstr ""
 msgid "FEED_ITEM_TRUNCATED_NOTICE"
 msgstr ""
 
-#: ../src/gui_common/art_gallery/GalleryViewer.tscn:71
+#: ../src/gui_common/art_gallery/GalleryViewer.tscn:72
 msgid "FILTER_ITEMS_BY_CATEGORY_COLON"
 msgstr "Nach Kategorie sortieren:"
 
@@ -2126,11 +2132,11 @@ msgstr "Drehung:"
 msgid "FLOATING_HAZARD"
 msgstr "Schwimmende Gefahr"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:837
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:859
 msgid "FLUID"
 msgstr "flüssig"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:817
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:839
 msgid "FLUIDITY_RIGIDITY"
 msgstr "Flüssigkeit / Steifigkeit"
 
@@ -2149,7 +2155,7 @@ msgstr ""
 msgid "FOOD_CHAIN"
 msgstr "Nahrungskette"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2452
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2437
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr "{0}Energie:{1}(Fitness:{2})insgesamt verfügbare Energie:{3} (gesamte Fitness:{4})"
 
@@ -2187,7 +2193,7 @@ msgstr "Diese Art fossilisieren (ist bereits fossilisiert)"
 msgid "FOSSILISE"
 msgstr "Versteinern"
 
-#: ../src/general/OptionsMenu.tscn:333
+#: ../src/general/OptionsMenu.tscn:334
 msgid "FOUR_TIMES"
 msgstr "4x"
 
@@ -2218,7 +2224,7 @@ msgstr "Verfügbare Glukosewolke beim Verlassen des Editors"
 msgid "FREE_GLUCOSE_CLOUD_EXPLANATION"
 msgstr "(Starte jede Generation mit einer Gratis-Glukosewolke in der Nähe)"
 
-#: ../src/general/OptionsMenu.tscn:286
+#: ../src/general/OptionsMenu.tscn:287
 msgid "FULLSCREEN"
 msgstr "Vollbild"
 
@@ -2226,7 +2232,7 @@ msgstr "Vollbild"
 msgid "FULL_MOD_INFO"
 msgstr "Vollständige Modinformationen"
 
-#: ../src/gui_common/art_gallery/GalleryViewer.tscn:21
+#: ../src/gui_common/art_gallery/GalleryViewer.tscn:24
 msgid "GALLERY_VIEWER"
 msgstr "Kunstgalerie"
 
@@ -2242,27 +2248,27 @@ msgstr "Allgemein"
 msgid "GENERATIONS"
 msgstr "Generationen"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1059
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1081
 msgid "GENERATION_COLON"
 msgstr "Generation:"
 
-#: ../src/general/MainMenu.tscn:820
+#: ../src/general/MainMenu.tscn:821
 msgid "GITHUB_TOOLTIP"
 msgstr "Besuche unser GitHub Repositorium"
 
-#: ../src/general/OptionsMenu.cs:970
+#: ../src/general/OptionsMenu.cs:977
 msgid "GLES2"
 msgstr "GLES2"
 
-#: ../src/general/MainMenu.tscn:953
+#: ../src/general/MainMenu.tscn:954
 msgid "GLES2_MODE_WARNING"
 msgstr "GLES2-Modus-Warnung"
 
-#: ../src/general/MainMenu.tscn:955
+#: ../src/general/MainMenu.tscn:956
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "Du betreibst Thrive mit GLES2. Dies ist schwerwiegend ungetestet und wird wahrscheinlich Probleme verursachen. Versuche deine Grafiktreiber zu aktualisieren und/oder die Verwendung von AMD- oder Nvidia-Grafiken zur Ausführung von Thrive zu erzwingen."
 
-#: ../src/general/OptionsMenu.cs:975
+#: ../src/general/OptionsMenu.cs:982
 msgid "GLES3"
 msgstr "GLES3"
 
@@ -2289,7 +2295,7 @@ msgstr "Die Glukosekonzentration ist drastisch gesunken!"
 msgid "GLYCOLYSIS"
 msgstr "Glykolyse"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:40
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:44
 msgid "GODMODE"
 msgstr "Unbesiegbar"
 
@@ -2307,7 +2313,7 @@ msgstr "Unbesiegbar"
 msgid "GOOGLY_EYE_CELL"
 msgstr "Kulleraugenzelle"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:159
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:160
 msgid "GOT_IT"
 msgstr "Verstanden"
 
@@ -2315,11 +2321,11 @@ msgstr "Verstanden"
 msgid "GPL_LICENSE_HEADING"
 msgstr "GPL-Lizenztext folgt:"
 
-#: ../src/general/OptionsMenu.tscn:479
+#: ../src/general/OptionsMenu.tscn:480
 msgid "GPU_NAME"
 msgstr "Grafikkarte:"
 
-#: ../src/general/OptionsMenu.tscn:173
+#: ../src/general/OptionsMenu.tscn:174
 msgid "GRAPHICS"
 msgstr "Grafik"
 
@@ -2327,7 +2333,7 @@ msgstr "Grafik"
 msgid "GRAPHICS_TEAM"
 msgstr "Grafikteam"
 
-#: ../src/general/OptionsMenu.tscn:563
+#: ../src/general/OptionsMenu.tscn:564
 msgid "GUI"
 msgstr "Benutzeroberfläche"
 
@@ -2344,7 +2350,7 @@ msgstr ""
 msgid "GUI_TAB_NAVIGATION"
 msgstr "{0} Tsd"
 
-#: ../src/general/OptionsMenu.tscn:811
+#: ../src/general/OptionsMenu.tscn:819
 msgid "GUI_VOLUME"
 msgstr "Menülautstärke"
 
@@ -2358,19 +2364,19 @@ msgstr "Menülautstärke"
 msgid "HEALTH"
 msgstr "Gesundheit"
 
-#: ../src/general/PauseMenu.tscn:216
+#: ../src/general/PauseMenu.tscn:220
 msgid "HELP"
 msgstr "Hilfe"
 
-#: ../src/general/PauseMenu.tscn:215 ../src/microbe_stage/HUDBottomBar.tscn:140
+#: ../src/general/PauseMenu.tscn:219 ../src/microbe_stage/HUDBottomBar.tscn:140
 msgid "HELP_BUTTON_TOOLTIP"
 msgstr "Hilfe"
 
-#: ../src/general/OptionsMenu.tscn:972 ../src/general/OptionsMenu.tscn:1022
+#: ../src/general/OptionsMenu.tscn:980 ../src/general/OptionsMenu.tscn:1030
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
 msgstr "(höhere Werte verbessern die Leistung)"
 
-#: ../src/general/OptionsMenu.tscn:317 ../src/general/OptionsMenu.tscn:1180
+#: ../src/general/OptionsMenu.tscn:318 ../src/general/OptionsMenu.tscn:1188
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr "(höhere Werte verschlechtern die Leistung)"
 
@@ -2395,7 +2401,7 @@ msgstr "Halte [thrive:input]g_free_cursor[/thrive:input] für Mauszeiger"
 msgid "HOME"
 msgstr "Pos1"
 
-#: ../src/general/OptionsMenu.tscn:1292 ../src/general/OptionsMenu.tscn:1402
+#: ../src/general/OptionsMenu.tscn:1300 ../src/general/OptionsMenu.tscn:1410
 msgid "HORIZONTAL_COLON"
 msgstr "Horizontal:"
 
@@ -2404,7 +2410,7 @@ msgstr "Horizontal:"
 msgid "HORIZONTAL_WITH_AXIS_NAME_COLON"
 msgstr "horizontal (Achse: {0})"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1009
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1031
 msgid "HP_COLON"
 msgstr "HP:"
 
@@ -2459,7 +2465,7 @@ msgstr "(einige Funktionen könnten nicht mehr verfügbar sein, wenn Sie die nä
 msgid "INDUSTRIAL_STAGE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:33
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:37
 msgid "INFINITE_COMPOUNDS"
 msgstr "Unendlich Substanzen"
 
@@ -2475,7 +2481,7 @@ msgstr "Aufgenommene Materie"
 msgid "INIT_NEW_WORLD_TOOLTIP"
 msgstr "Neue Welt erstellen"
 
-#: ../src/general/OptionsMenu.tscn:206
+#: ../src/general/OptionsMenu.tscn:207
 msgid "INPUTS"
 msgstr "Eingaben"
 
@@ -2611,8 +2617,8 @@ msgstr ""
 msgid "INVENTORY_TOGGLE_GROUND"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1305 ../src/general/OptionsMenu.tscn:1327
-#: ../src/general/OptionsMenu.tscn:1415 ../src/general/OptionsMenu.tscn:1438
+#: ../src/general/OptionsMenu.tscn:1313 ../src/general/OptionsMenu.tscn:1335
+#: ../src/general/OptionsMenu.tscn:1423 ../src/general/OptionsMenu.tscn:1446
 msgid "INVERTED"
 msgstr "Invertiert"
 
@@ -2634,7 +2640,7 @@ msgstr "Eisen"
 msgid "IRON_CHEMOLITHOAUTOTROPHY"
 msgstr "Eisen-Chemolithoautotrophie"
 
-#: ../src/general/MainMenu.tscn:796
+#: ../src/general/MainMenu.tscn:797
 msgid "ITCH_TOOLTIP"
 msgstr "Besuche unsere Itch.io Seite"
 
@@ -2642,19 +2648,19 @@ msgstr "Besuche unsere Itch.io Seite"
 msgid "JANUARY"
 msgstr "Januar"
 
-#: ../src/general/OptionsMenu.tscn:1886
+#: ../src/general/OptionsMenu.tscn:1894
 msgid "JSON_DEBUG_MODE"
 msgstr "JSON Debug-Modus:"
 
-#: ../src/general/OptionsMenu.tscn:1902
+#: ../src/general/OptionsMenu.tscn:1910
 msgid "JSON_DEBUG_MODE_ALWAYS"
 msgstr "Immer"
 
-#: ../src/general/OptionsMenu.tscn:1901 ../src/general/OptionsMenu.tscn:1902
+#: ../src/general/OptionsMenu.tscn:1909 ../src/general/OptionsMenu.tscn:1910
 msgid "JSON_DEBUG_MODE_AUTO"
 msgstr "Automatisch"
 
-#: ../src/general/OptionsMenu.tscn:1902
+#: ../src/general/OptionsMenu.tscn:1910
 msgid "JSON_DEBUG_MODE_NEVER"
 msgstr "Niemals"
 
@@ -2836,23 +2842,23 @@ msgstr "Num ."
 msgid "KPSUBTRACT"
 msgstr "Num -"
 
-#: ../src/general/OptionsMenu.tscn:887
+#: ../src/general/OptionsMenu.tscn:895
 msgid "LANGUAGE"
 msgstr "Sprache:"
 
-#: ../src/general/OptionsMenu.cs:1462
+#: ../src/general/OptionsMenu.cs:1469
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr "Diese Übersetzung ist zu {0}% vollständig"
 
-#: ../src/general/OptionsMenu.cs:1458
+#: ../src/general/OptionsMenu.cs:1465
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
 msgstr "Diese Übersetzung ist noch in Arbeit ({0}% vollständig)"
 
-#: ../src/general/OptionsMenu.cs:1454
+#: ../src/general/OptionsMenu.cs:1461
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr "Diese Übersetzung ist sehr unvollständig ({0}% fertig). Bitte helfe uns dabei!"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1365
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1348
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr "Letztes Organell kann nicht gelöscht werden"
 
@@ -3010,7 +3016,7 @@ msgstr "←"
 msgid "LEFT_MOUSE"
 msgstr "Linke Maus"
 
-#: ../src/general/MainMenu.tscn:525
+#: ../src/general/MainMenu.tscn:526
 msgid "LICENSES"
 msgstr "Lizenzen"
 
@@ -3058,11 +3064,16 @@ msgstr "Hydrothermalquellen"
 msgid "LIGHT"
 msgstr "Licht"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:511
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:533
 msgid "LIGHT_LEVEL_AVERAGE"
 msgstr "Durchschnitt"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:469
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:470
+#, fuzzy
+msgid "LIGHT_LEVEL_CURRENT"
+msgstr "Nacht"
+
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:491
 msgid "LIGHT_LEVEL_DAY"
 msgstr "Tag"
 
@@ -3070,7 +3081,7 @@ msgstr "Tag"
 msgid "LIGHT_LEVEL_LABEL_AT_NOON"
 msgstr "{0} zur Mittagsstunde"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:490
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:512
 msgid "LIGHT_LEVEL_NIGHT"
 msgstr "Nacht"
 
@@ -3078,7 +3089,7 @@ msgstr "Nacht"
 msgid "LIGHT_MAX"
 msgstr "Licht Maximum"
 
-#: ../src/general/OptionsMenu.tscn:1197
+#: ../src/general/OptionsMenu.tscn:1205
 msgid "LIMIT_EXTREME"
 msgstr "Extrem"
 
@@ -3091,31 +3102,31 @@ msgstr "Beschränke die Nutzung von Wachstums-Substanzen"
 msgid "LIMIT_GROWTH_RATE_EXPLANATION"
 msgstr "(Aktivierung beschränkt die Wachstums-Geschwindigkeit; Deaktivierung lässt nur die verfügbaren Substanzen das Wachstum beeinflussen)"
 
-#: ../src/general/OptionsMenu.tscn:1197
+#: ../src/general/OptionsMenu.tscn:1205
 msgid "LIMIT_HUGE"
 msgstr "Riesig"
 
-#: ../src/general/OptionsMenu.tscn:1197
+#: ../src/general/OptionsMenu.tscn:1205
 msgid "LIMIT_LARGE"
 msgstr "Gross"
 
-#: ../src/general/OptionsMenu.tscn:1197
+#: ../src/general/OptionsMenu.tscn:1205
 msgid "LIMIT_NORMAL"
 msgstr "Normal"
 
-#: ../src/general/OptionsMenu.tscn:1197
+#: ../src/general/OptionsMenu.tscn:1205
 msgid "LIMIT_SMALL"
 msgstr "Klein"
 
-#: ../src/general/OptionsMenu.tscn:1196 ../src/general/OptionsMenu.tscn:1197
+#: ../src/general/OptionsMenu.tscn:1204 ../src/general/OptionsMenu.tscn:1205
 msgid "LIMIT_TINY"
 msgstr "Winzig"
 
-#: ../src/general/OptionsMenu.tscn:1197
+#: ../src/general/OptionsMenu.tscn:1205
 msgid "LIMIT_VERY_LARGE"
 msgstr "Sehr gross"
 
-#: ../src/general/OptionsMenu.tscn:1197
+#: ../src/general/OptionsMenu.tscn:1205
 msgid "LIMIT_VERY_SMALL"
 msgstr "Sehr klein"
 
@@ -3170,12 +3181,12 @@ msgstr "Drücke die Rückgängig-Schaltfläche im Editor, um einen Fehler zu kor
 msgid "LOAD_FINISHED"
 msgstr "Laden beendet"
 
-#: ../src/general/MainMenu.tscn:310 ../src/general/PauseMenu.tscn:200
+#: ../src/general/MainMenu.tscn:311 ../src/general/PauseMenu.tscn:204
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:146
 msgid "LOAD_GAME"
 msgstr "Spiel laden"
 
-#: ../src/general/MainMenu.tscn:308 ../src/general/PauseMenu.tscn:199
+#: ../src/general/MainMenu.tscn:309 ../src/general/PauseMenu.tscn:203
 msgid "LOAD_GAME_BUTTON_TOOLTIP"
 msgstr "Ein zuvor gespeichertes Spiel laden"
 
@@ -3245,7 +3256,7 @@ msgstr "März"
 msgid "MARINE_SNOW"
 msgstr "Meeresschnee"
 
-#: ../src/general/OptionsMenu.tscn:655
+#: ../src/general/OptionsMenu.tscn:663
 msgid "MASTER_VOLUME"
 msgstr "Gesamtlautstärke"
 
@@ -3253,15 +3264,15 @@ msgstr "Gesamtlautstärke"
 msgid "MAXIMUM_SPECIES_IN_PATCH"
 msgstr "Maximale Anzahl an Arten in einem Bereich vor dem erzwungenen Aussterben"
 
-#: ../src/general/OptionsMenu.tscn:371
+#: ../src/general/OptionsMenu.tscn:372
 msgid "MAX_FPS"
 msgstr "Maximale FPS:"
 
-#: ../src/general/OptionsMenu.tscn:386
+#: ../src/general/OptionsMenu.tscn:387
 msgid "MAX_FPS_NO_LIMIT"
 msgstr "Maximale FPS"
 
-#: ../src/general/OptionsMenu.tscn:1173
+#: ../src/general/OptionsMenu.tscn:1181
 msgid "MAX_SPAWNED_ENTITIES"
 msgstr "Maximale Anzahl an Entitäten:"
 
@@ -3300,7 +3311,7 @@ msgstr "Stopp"
 msgid "MEGA_YEARS"
 msgstr "Mya"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:641
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:663
 msgid "MEMBRANE"
 msgstr "Membran"
 
@@ -3308,7 +3319,7 @@ msgstr "Membran"
 msgid "MEMBRANE_RIGIDITY"
 msgstr "Membran-Steifigkeit"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:799
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:821
 msgid "MEMBRANE_TYPES"
 msgstr "Membrantypen"
 
@@ -3375,7 +3386,7 @@ msgid "MICROBES_COUNT"
 msgstr "Einzeller"
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:34
-#: ../src/general/MainMenu.tscn:584
+#: ../src/general/MainMenu.tscn:585
 #, fuzzy
 msgid "MICROBE_BENCHMARK"
 msgstr "Mikrobeneditor"
@@ -3445,7 +3456,7 @@ msgstr "Für jede Generation kannst du 100 Mutationspunkte (MP) ausgeben. Jede �
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
 msgstr "Jedes Mal, wenn du dich reproduzierst, gelangst du in den Mikroben-Editor, wo du Änderungen an deiner Spezies vornehmen kannst (durch Hinzufügen, Verschieben oder Entfernen von Organellen), um den Erfolg deiner Spezies zu steigern. Jeder Besuch des Editors in der Mikrobenphase repräsentiert [thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant] Millionen Jahre Evolution."
 
-#: ../src/general/MainMenu.tscn:402
+#: ../src/general/MainMenu.tscn:403
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Mikroben-Sandboxeditor"
 
@@ -3477,7 +3488,7 @@ msgstr ""
 msgid "MICROBE_STAGE"
 msgstr "Mikroben Stadium"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:204
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:205
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
 "Sammle Glukose (weiße Wolken), indem du dich über sie bewegst.\n"
@@ -3486,14 +3497,14 @@ msgstr ""
 "\n"
 "Folge der Linie von deiner Zelle bis zur einer nahe gelegenen Glukosewolke."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:144
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:145
 msgid "MICROBE_STAGE_CONTROL_TEXT"
 msgstr ""
 "Um deine Zelle zu steuern, verwende die Tasten in der Nähe deiner Zelle (Mitte des Bildschirms) und die Maus, um die Ausrichtung der Zelle zu steuern.\n"
 "\n"
 "Probiere alle Tasten für einige Sekunden aus, um fortzufahren."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:145
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:146
 #, fuzzy
 msgid "MICROBE_STAGE_CONTROL_TEXT_CONTROLLER"
 msgstr ""
@@ -3501,7 +3512,7 @@ msgstr ""
 "\n"
 "Probiere alle Tasten für einige Sekunden aus, um fortzufahren."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:215
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:216
 #, fuzzy
 msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
 msgstr ""
@@ -3510,7 +3521,7 @@ msgstr ""
 "Du regenerierst Gesundheit, solange du ATP hast.\n"
 "Achten darauf, dass du genügend Glukose sammelst, um ATP zu produzieren."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:226
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:227
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
 "Achte auf deinen Gesundheitsbalken neben dem ATP-Balken (unten rechts).\n"
@@ -3629,7 +3640,7 @@ msgstr "Minimum:"
 msgid "MIN_VISIBLE_DATASET_WARNING"
 msgstr "Nicht erlaubt, weniger als {0} Datensatz(e) anzuzeigen!"
 
-#: ../src/general/NewGameSettings.tscn:312 ../src/general/OptionsMenu.tscn:217
+#: ../src/general/NewGameSettings.tscn:312 ../src/general/OptionsMenu.tscn:218
 msgid "MISC"
 msgstr "Sonstiges"
 
@@ -3679,7 +3690,7 @@ msgstr "Anleitungen zum Erstellen eines Mods findest du unter"
 msgid "MODELS"
 msgstr "Modelle"
 
-#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:362
+#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:324
 msgid "MODIFY"
 msgstr "Verändern"
 
@@ -3692,11 +3703,11 @@ msgstr "Organelle modifizieren"
 msgid "MODIFY_TYPE"
 msgstr "Typ modifizieren"
 
-#: ../src/general/MainMenu.tscn:502
+#: ../src/general/MainMenu.tscn:503
 msgid "MODS"
 msgstr "Modifikationen"
 
-#: ../src/general/MainMenu.tscn:962
+#: ../src/general/MainMenu.tscn:967
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 "Installierte Mods wurden erkannt, aber es sind keine Mods aktiviert.\n"
@@ -3785,11 +3796,11 @@ msgstr "Interner (Ordner-)Name:"
 msgid "MOD_LICENSE"
 msgstr "Mod-Lizenz:"
 
-#: ../src/general/MainMenu.tscn:974
+#: ../src/general/MainMenu.tscn:981
 msgid "MOD_LOAD_ERRORS"
 msgstr "Fehler beim Laden der Mods"
 
-#: ../src/general/MainMenu.tscn:975
+#: ../src/general/MainMenu.tscn:982
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "Ein Fehler trat beim Laden einer oder mehreren Modifikationen auf. Das Fehlerprotokoll enthält eventuell weitere informationen."
 
@@ -3842,19 +3853,19 @@ msgstr "Modversion:"
 msgid "MORE_INFO"
 msgstr "Mehr Informationen"
 
-#: ../src/general/OptionsMenu.tscn:1534
+#: ../src/general/OptionsMenu.tscn:1542
 msgid "MOUSE_EDGE_PANNING_OPTION"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1259
+#: ../src/general/OptionsMenu.tscn:1267
 msgid "MOUSE_LOOK_SENSITIVITY"
 msgstr "Mausempfindlichkeit"
 
-#: ../src/general/OptionsMenu.tscn:1333
+#: ../src/general/OptionsMenu.tscn:1341
 msgid "MOUSE_SENSITIVITY_WINDOW_SIZE_ADJUSTMENT"
 msgstr "Mausempfindlichkeit mit Fenstergröße skalieren"
 
-#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:294
+#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:257
 msgid "MOVE"
 msgstr "Bewegen"
 
@@ -3984,7 +3995,7 @@ msgstr "Mehrere Metabälle"
 msgid "MULTIPLE_ORGANELLES"
 msgstr "Mehrere Organellen"
 
-#: ../src/general/OptionsMenu.tscn:310
+#: ../src/general/OptionsMenu.tscn:311
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "Multisample Anti-Aliasing:"
 
@@ -3999,7 +4010,7 @@ msgstr ""
 msgid "MUSIC"
 msgstr "Musik"
 
-#: ../src/general/OptionsMenu.tscn:706
+#: ../src/general/OptionsMenu.tscn:714
 msgid "MUSIC_VOLUME"
 msgstr "Musiklautstärke"
 
@@ -4019,9 +4030,9 @@ msgstr "(Kosten für Organellen, Membranen und andere Gegenstände im Editor)"
 msgid "MUTATION_POINTS"
 msgstr "Mutationspunkte"
 
-#: ../src/general/OptionsMenu.tscn:684 ../src/general/OptionsMenu.tscn:735
-#: ../src/general/OptionsMenu.tscn:770 ../src/general/OptionsMenu.tscn:805
-#: ../src/general/OptionsMenu.tscn:840
+#: ../src/general/OptionsMenu.tscn:692 ../src/general/OptionsMenu.tscn:743
+#: ../src/general/OptionsMenu.tscn:778 ../src/general/OptionsMenu.tscn:813
+#: ../src/general/OptionsMenu.tscn:848
 msgid "MUTE"
 msgstr "Stumm"
 
@@ -4029,11 +4040,11 @@ msgstr "Stumm"
 msgid "NAME"
 msgstr "Name:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1454
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1476
 msgid "NEGATIVE_ATP_BALANCE"
 msgstr "Negativer ATP-Saldo"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1455
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1477
 msgid "NEGATIVE_ATP_BALANCE_TEXT"
 msgstr ""
 "Deine Mikrobe produziert nicht genug ATP zum überleben!\n"
@@ -4057,11 +4068,11 @@ msgstr ""
 msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
 msgstr "Startpopulation einer Biodiversität erhöhenden Spezies"
 
-#: ../src/general/MainMenu.tscn:298
+#: ../src/general/MainMenu.tscn:299
 msgid "NEW_GAME"
 msgstr "Neues Spiel"
 
-#: ../src/general/MainMenu.tscn:293
+#: ../src/general/MainMenu.tscn:294
 msgid "NEW_GAME_BUTTON_TOOLTIP"
 msgstr "Neues Spiel starten"
 
@@ -4085,7 +4096,7 @@ msgstr "Neuer Name:"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:673
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:790
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1416
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1438
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:188
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:770
 msgid "NEXT_CAPITAL"
@@ -4126,7 +4137,7 @@ msgstr "Das Stickstofffixier-Plastid ist ein Protein, das gasförmigen Stickstof
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
 msgstr "Wandelt [thrive:compound type=\"atp\"][/thrive:compound] in [thrive:compound type=\"ammonia\"][/thrive:compound] um. Die Rate hängt von der Konzentration von [thrive:compound type=\"nitrogen\"][/thrive:compound] und [thrive:compound type=\"oxygen\"][/thrive:compound] ab."
 
-#: ../src/general/OptionsMenu.tscn:418 ../src/general/OptionsMenu.tscn:419
+#: ../src/general/OptionsMenu.tscn:419 ../src/general/OptionsMenu.tscn:420
 msgid "NONE"
 msgstr "Nichts"
 
@@ -4151,11 +4162,11 @@ msgstr ""
 msgid "NOTICE_DAMAGED_BY_NO_ATP"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Interior.cs:1511
+#: ../src/microbe_stage/Microbe.Interior.cs:1541
 msgid "NOTICE_ENGULF_DAMAGE_FROM_TOXIN"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Interior.cs:1456
+#: ../src/microbe_stage/Microbe.Interior.cs:1487
 msgid "NOTICE_ENGULF_MISSING_ENZYME"
 msgstr ""
 
@@ -4183,12 +4194,12 @@ msgstr "Nicht begonnen."
 msgid "NOVEMBER"
 msgstr "November"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:47
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:51
 msgid "NO_AI"
 msgstr "Keine KI"
 
 #: ../src/gui_common/charts/line/LineChart.cs:674
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2467
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2452
 msgid "NO_DATA_TO_SHOW"
 msgstr "Keine Daten zu zeigen"
 
@@ -4200,7 +4211,7 @@ msgstr "Keine Ereignisse aufgezeichnet"
 msgid "NO_FOSSIL_DIRECTORY"
 msgstr "Kein Fossilienverzeichnis gefunden"
 
-#: ../src/general/MainMenu.tscn:960
+#: ../src/general/MainMenu.tscn:965
 msgid "NO_MODS_ENABLED"
 msgstr "Keine Mods aktiv"
 
@@ -4217,7 +4228,7 @@ msgstr "keine Speicherstände gefunden"
 msgid "NO_SAVE_DIRECTORY"
 msgstr "Kein Speicherverzeichnis gefunden"
 
-#: ../src/general/OptionsMenu.tscn:2159
+#: ../src/general/OptionsMenu.tscn:2167
 msgid "NO_SCREENSHOT_DIRECTORY"
 msgstr "Kein Bildschirmfotoverzeichnis gefunden"
 
@@ -4230,7 +4241,7 @@ msgstr "Kein Mod ausgewählt"
 msgid "NUCLEUS"
 msgstr "Nukleus"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1363
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1346
 msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 "Der Zellkern kann nicht gelöscht werden, da es sich um eine irreversible Evolution handelt.\n"
@@ -4252,8 +4263,8 @@ msgstr "Num Lock"
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:36
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:46
 #: ../src/microbe_stage/AgentProjectile.cs:26
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2325
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2335
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2310
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2320
 #: ../src/microbe_stage/editor/MicrobePartSelection.tscn:140
 #: ../src/microbe_stage/MicrobeHUD.cs:380
 msgid "N_A"
@@ -4272,17 +4283,18 @@ msgstr "2x"
 msgid "OCTOBER"
 msgstr "Oktober"
 
-#: ../src/general/MainMenu.tscn:656
+#: ../src/general/MainMenu.tscn:657
 msgid "OFFICIAL_WEBSITE"
 msgstr "Offizielle Website"
 
-#: ../src/general/MainMenu.tscn:647
+#: ../src/general/MainMenu.tscn:648
 msgid "OFFICIAL_WEBSITE_BUTTON_TOOLTIP"
 msgstr "Revolutionary Games website besuchen"
 
-#: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:88
-#: ../src/gui_common/dialogs/ErrorDialog.tscn:118
-#: ../src/modding/ModUploader.tscn:357
+#: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:13
+#: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:87
+#: ../src/gui_common/dialogs/ErrorDialog.tscn:114
+#: ../src/modding/ModUploader.tscn:356
 msgid "OK"
 msgstr "OK"
 
@@ -4316,7 +4328,7 @@ msgstr "Hilfemenü öffnen"
 msgid "OPEN_IN_FREEBUILD"
 msgstr "Im Sandboxmodus öffnen"
 
-#: ../src/general/OptionsMenu.tscn:1815
+#: ../src/general/OptionsMenu.tscn:1823
 msgid "OPEN_LOGS_FOLDER"
 msgstr "Logverzeichnis öffnen"
 
@@ -4342,7 +4354,7 @@ msgstr "Speicherverzeichnis öffnen"
 msgid "OPEN_SCIENCE_MENU"
 msgstr "Das Menü öffnen"
 
-#: ../src/general/OptionsMenu.tscn:1807
+#: ../src/general/OptionsMenu.tscn:1815
 msgid "OPEN_SCREENSHOT_FOLDER"
 msgstr "Bildschirmfotoverzeichnis öffnen"
 
@@ -4350,7 +4362,7 @@ msgstr "Bildschirmfotoverzeichnis öffnen"
 msgid "OPEN_THE_MENU"
 msgstr "Das Menü öffnen"
 
-#: ../src/general/OptionsMenu.tscn:924
+#: ../src/general/OptionsMenu.tscn:932
 msgid "OPEN_TRANSLATION_SITE"
 msgstr "Hilf das Spiel zu übersetzen"
 
@@ -4369,15 +4381,15 @@ msgstr ""
 msgid "OPPORTUNISTIC"
 msgstr "Opportunistisch"
 
-#: ../src/general/MainMenu.tscn:319 ../src/general/PauseMenu.tscn:231
+#: ../src/general/MainMenu.tscn:320 ../src/general/PauseMenu.tscn:235
 msgid "OPTIONS"
 msgstr "Einstellungen"
 
-#: ../src/general/MainMenu.tscn:317 ../src/general/PauseMenu.tscn:230
+#: ../src/general/MainMenu.tscn:318 ../src/general/PauseMenu.tscn:234
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "Einstellungen ändern"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:749
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:771
 msgid "ORGANELLES"
 msgstr "Organellen"
 
@@ -4392,7 +4404,7 @@ msgstr "Organellen"
 msgid "ORGANELLE_AXON_DESCRIPTION"
 msgstr "Pili (Singular: Pilus) befinden sich auf der Oberfläche vieler Mikroorganismen und ähneln feinen Haaren. Auf der Oberfläche eines Mikroorganismus können Hunderte von Pili vorhanden sein, die mehreren Zwecken dienen können, wie zum Beispiel der Jagt. Pathogene Mikroorganismen nutzen Pili für ihre Virulenz um sich an Wirtsgewebe anzuheften und zu binden oder um die äußere Membran zu überwinden und Zugang zum Zytoplasma zu erhalten. Es gibt viele ähnliche Pili-Varianten, die jedoch evolutionär nicht miteinander verwandt sind und aus einer konvergenten Evolution hervorgegangen sind. Ein einziger Organismus kann mehrere Arten von Pili ausbilden und diese ständig verändern und ersetzen."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:758
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:780
 #, fuzzy
 msgid "ORGANELLE_CATEGORY_MULTICELLULAR"
 msgstr "Makroskopischer Mehrzeller"
@@ -4421,7 +4433,7 @@ msgstr "Pili (Singular: Pilus) befinden sich auf der Oberfläche vieler Mikroorg
 msgid "ORGANELLE_PILUS_PROCESSES_DESCRIPTION"
 msgstr "Steche damit andere Zellen."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:951
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:973
 msgid "ORGANISM_STATISTICS"
 msgstr "Organismus-Statistik"
 
@@ -4609,7 +4621,7 @@ msgstr "Seitentitel"
 msgid "PATCH_NOTES_LAST_PLAYED_INFO_PLURAL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2169
+#: ../src/general/OptionsMenu.tscn:2177
 #: ../src/gui_common/PatchNotesDisplayer.tscn:26
 #, fuzzy
 msgid "PATCH_NOTES_TITLE"
@@ -4630,7 +4642,7 @@ msgstr ""
 "Genau wie 99% aller Arten, die jemals existiert haben, ist auch deine Art ausgestorben. Andere werden weiterhin deine Nische ausfüllen und gedeihen, aber das wirst nicht du sein. Du wirst vergessen werden, ein fehlgeschlagenes Experiment der Evolution.\n"
 "Aber keine sorge, es ist noch nicht alles verloren, du kannst einen andere Art auswählen mit der du spielen möchtest und ihr beim gedeihen zu helfen (oder auch nicht)!"
 
-#: ../src/general/MainMenu.tscn:808
+#: ../src/general/MainMenu.tscn:809
 msgid "PATREON_TOOLTIP"
 msgstr "Besuche unsere Patreon Seite"
 
@@ -4642,7 +4654,7 @@ msgstr "Patrone"
 msgid "PAUSED"
 msgstr "PAUSIERT"
 
-#: ../src/general/PauseMenu.tscn:183
+#: ../src/general/PauseMenu.tscn:187
 msgid "PAUSE_MENU_RESUME_TOOLTIP"
 msgstr "Spiel fortsetzen"
 
@@ -4681,7 +4693,7 @@ msgstr "Friedlich"
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
 
-#: ../src/general/OptionsMenu.tscn:195
+#: ../src/general/OptionsMenu.tscn:196
 msgid "PERFORMANCE"
 msgstr "Leistung"
 
@@ -4762,7 +4774,7 @@ msgstr "(Koeffizient mit dem die Population der Spielerart bei einem Tod der ges
 msgid "PLAYER_DIED"
 msgstr "Spieler starb"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:82
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:86
 msgid "PLAYER_DUPLICATE"
 msgstr "Spieler duplizieren"
 
@@ -4770,7 +4782,7 @@ msgstr "Spieler duplizieren"
 msgid "PLAYER_EXTINCT"
 msgstr "Spieler ist ausgestorben"
 
-#: ../src/general/OptionsMenu.tscn:1477
+#: ../src/general/OptionsMenu.tscn:1485
 #, fuzzy
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr "Spieler ist ausgestorben"
@@ -4779,29 +4791,29 @@ msgstr "Spieler ist ausgestorben"
 msgid "PLAYER_REPRODUCED"
 msgstr "Spieler-Reproduktion"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:61
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:65
 msgid "PLAYER_SPEED"
 msgstr ""
 "Spieler\n"
 "Tempo"
 
-#: ../src/general/OptionsMenu.tscn:598
+#: ../src/general/OptionsMenu.tscn:599
 msgid "PLAYSTATION_3"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:598
+#: ../src/general/OptionsMenu.tscn:599
 msgid "PLAYSTATION_4"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:598
+#: ../src/general/OptionsMenu.tscn:599
 msgid "PLAYSTATION_5"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1644
+#: ../src/general/OptionsMenu.tscn:1652
 msgid "PLAY_INTRO_VIDEO"
 msgstr "Intro-Video abspielen"
 
-#: ../src/general/OptionsMenu.tscn:1652
+#: ../src/general/OptionsMenu.tscn:1660
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr "Mikroben-Intro bei neuem Spiel abspielen"
 
@@ -4823,7 +4835,7 @@ msgstr "Gesamtbevölkerung:"
 msgid "POPULATION_IN_PATCHES"
 msgstr "Bevölkerung in Gebieten:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2316
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2301
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
@@ -4831,7 +4843,7 @@ msgstr "{0} ({1})"
 msgid "PREDATION_FOOD_SOURCE"
 msgstr "Beute von {0}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1229
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1251
 msgid "PREDICTION_DETAILS_OPEN_TOOLTIP"
 msgstr "Detaillierte Informationen zur Prognose anzeigen"
 
@@ -4868,7 +4880,7 @@ msgstr "Verarbeitung geladener Objekte"
 msgid "PROCESS_ENVIRONMENT_SEPARATOR"
 msgstr "@"
 
-#: ../src/microbe_stage/ProcessPanel.tscn:16
+#: ../src/microbe_stage/ProcessPanel.tscn:17
 msgid "PROCESS_PANEL_TITLE"
 msgstr "Zellprozesse"
 
@@ -4888,7 +4900,7 @@ msgstr "Schützt frisch migrierte Spezies vor Artensterben"
 msgid "PROTECT_NEW_CELLS_FROM_SPECIES_CAP"
 msgstr "Schützt neu kreierte Spezies vor Artensterben"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:731
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:753
 msgid "PROTEINS"
 msgstr "Proteine"
 
@@ -4908,16 +4920,16 @@ msgstr "Schnellladen"
 msgid "QUICK_SAVE"
 msgstr "Schnellspeichern"
 
-#: ../src/general/MainMenu.tscn:372
+#: ../src/general/MainMenu.tscn:373
 msgid "QUIT"
 msgstr "Verlassen"
 
-#: ../src/general/MainMenu.tscn:358 ../src/general/MainMenu.tscn:367
-#: ../src/general/PauseMenu.tscn:246
+#: ../src/general/MainMenu.tscn:359 ../src/general/MainMenu.tscn:368
+#: ../src/general/PauseMenu.tscn:250
 msgid "QUIT_BUTTON_TOOLTIP"
 msgstr "Spiel beenden"
 
-#: ../src/general/PauseMenu.cs:446
+#: ../src/general/PauseMenu.cs:445
 msgid "QUIT_GAME_WARNING"
 msgstr ""
 "Bist du sicher, dass du das Spiel beenden willst?\n"
@@ -4954,7 +4966,7 @@ msgstr "Bereit"
 msgid "RECOMMENDED_THRIVE_VERSION"
 msgstr "Empfohlenes Thrive:"
 
-#: ../src/general/MainMenu.tscn:844
+#: ../src/general/MainMenu.tscn:845
 msgid "REDDIT_TOOLTIP"
 msgstr "Besuche unseren Subreddit"
 
@@ -4979,12 +4991,12 @@ msgstr "Rückkehr der Migranten im Falle des Aussterbens der Art im Zielgebiet"
 msgid "REPORT"
 msgstr "Bericht"
 
-#: ../src/general/MainMenu.tscn:725 ../src/general/PauseMenu.tscn:223
+#: ../src/general/MainMenu.tscn:726 ../src/general/PauseMenu.tscn:227
 #, fuzzy
 msgid "REPORT_BUG"
 msgstr "Bericht"
 
-#: ../src/microbe_stage/Microbe.Interior.cs:1117
+#: ../src/microbe_stage/Microbe.Interior.cs:1144
 msgid "REPRODUCED"
 msgstr "Reproduktion"
 
@@ -5012,31 +5024,31 @@ msgstr "Reproduktion:"
 msgid "REQUIRES_NUCLEUS"
 msgstr "Benötigt Nukleus"
 
-#: ../src/general/OptionsMenu.tscn:905 ../src/general/OptionsMenu.tscn:1990
+#: ../src/general/OptionsMenu.tscn:913 ../src/general/OptionsMenu.tscn:1998
 msgid "RESET"
 msgstr "Zurücksetzen"
 
-#: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:78
+#: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:79
 msgid "RESET_DEADZONES"
 msgstr "Totzonen zurücksetzen"
 
-#: ../src/general/OptionsMenu.tscn:1876
+#: ../src/general/OptionsMenu.tscn:1884
 msgid "RESET_DISMISSED_POPUPS"
 msgstr "Versteckte Pop-ups zurücksetzen"
 
-#: ../src/general/OptionsMenu.tscn:2050
+#: ../src/general/OptionsMenu.tscn:2058
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "Standardeingaben laden?"
 
-#: ../src/general/OptionsMenu.tscn:1603
+#: ../src/general/OptionsMenu.tscn:1611
 msgid "RESET_KEYBINDINGS"
 msgstr "Tastenkombinationen zurücksetzen"
 
-#: ../src/general/OptionsMenu.tscn:2030
+#: ../src/general/OptionsMenu.tscn:2038
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "Standardeinstellungen"
 
-#: ../src/general/OptionsMenu.tscn:2041
+#: ../src/general/OptionsMenu.tscn:2049
 msgid "RESET_TO_DEFAULTS"
 msgstr "Auf Standardeinstellungen zurücksetzen?"
 
@@ -5045,7 +5057,7 @@ msgstr "Auf Standardeinstellungen zurücksetzen?"
 msgid "RESISTANT_TO_BASIC_ENGULFMENT"
 msgstr "Widersteht einfacher Verschlingung"
 
-#: ../src/general/OptionsMenu.tscn:347
+#: ../src/general/OptionsMenu.tscn:348
 msgid "RESOLUTION"
 msgstr "Auflösung:"
 
@@ -5091,7 +5103,7 @@ msgstr "Responsiv"
 msgid "RESTART_REQUIRED"
 msgstr "Neustart erforderlich"
 
-#: ../src/general/PauseMenu.tscn:184
+#: ../src/general/PauseMenu.tscn:188
 msgid "RESUME"
 msgstr "Fortsetzen"
 
@@ -5099,23 +5111,23 @@ msgstr "Fortsetzen"
 msgid "RESUME_TOOLTIP"
 msgstr "Spiel fortsetzen"
 
-#: ../src/general/PauseMenu.tscn:239
+#: ../src/general/PauseMenu.tscn:243
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:155
 msgid "RETURN_TO_MENU"
 msgstr "Zurück zum Hauptmenü"
 
-#: ../src/general/PauseMenu.tscn:238
+#: ../src/general/PauseMenu.tscn:242
 msgid "RETURN_TO_MENU_TOOLTIP"
 msgstr "Zurück zum Hauptmenü"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:1009
-#: ../src/general/PauseMenu.cs:427
+#: ../src/general/PauseMenu.cs:426
 msgid "RETURN_TO_MENU_WARNING"
 msgstr ""
 "Bist du sicher, dass du zum Hauptmenü zurückkehren willst?\n"
 "Alle nicht gespeicherten Fortschritte gehen verloren."
 
-#: ../src/general/MainMenu.tscn:771
+#: ../src/general/MainMenu.tscn:772
 msgid "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
 msgstr "Zeige offizielle Revolutionary Games Seiten.."
 
@@ -5127,7 +5139,7 @@ msgstr "→"
 msgid "RIGHT_MOUSE"
 msgstr "Rechte Maus"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:850
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:872
 msgid "RIGID"
 msgstr "steif"
 
@@ -5143,11 +5155,11 @@ msgstr "Nach rechts rotieren"
 msgid "ROTATE_RIGHT"
 msgstr "Nach links rotieren"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1003
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1025
 msgid "ROTATION_COLON"
 msgstr "Drehung:"
 
-#: ../src/general/OptionsMenu.tscn:1057
+#: ../src/general/OptionsMenu.tscn:1065
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "Auto-Evo während des Spielens ausführen"
 
@@ -5202,7 +5214,7 @@ msgstr "Rusticyanin ist ein Protein, welches in der Lage ist [thrive:compound ty
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr "Wandelt [thrive:compound type=\"iron\"][/thrive:compound] in [thrive:compound type=\"atp\"][/thrive:compound] um. Rate skaliert mit der Konzentration von [thrive:compound type=\"carbondioxide\"][/thrive:compound] und [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
-#: ../src/general/MainMenu.tscn:970
+#: ../src/general/MainMenu.tscn:977
 msgid "SAFE_MODE_EXPLANATION"
 msgstr ""
 "Thrive wurde aufgrund eines Fehlstarts im abgesicherten Modus gestartet.\n"
@@ -5214,15 +5226,15 @@ msgstr ""
 "\n"
 "Wenn das Problem, das den Startfehler verursacht, nicht behoben wird, müssen Sie Thrive mehrmals neu starten und abstürzen lassen, um wieder in den abgesicherten Modus zu gelangen."
 
-#: ../src/general/MainMenu.tscn:968
+#: ../src/general/MainMenu.tscn:975
 msgid "SAFE_MODE_TITLE"
 msgstr "Thrive im abgesicherten Modus gestartet"
 
-#: ../src/general/OptionsMenu.tscn:2004 ../src/saving/NewSaveMenu.tscn:80
+#: ../src/general/OptionsMenu.tscn:2012 ../src/saving/NewSaveMenu.tscn:80
 msgid "SAVE"
 msgstr "Speichern"
 
-#: ../src/general/OptionsMenu.tscn:2103
+#: ../src/general/OptionsMenu.tscn:2111
 msgid "SAVE_AND_CONTINUE"
 msgstr "Speichern und fortfahren"
 
@@ -5238,11 +5250,11 @@ msgstr "Das Löschen dieses Spielstandes kann nicht rückgängig gemacht werden,
 msgid "SAVE_FAILED"
 msgstr "Speichern fehlgeschlagen"
 
-#: ../src/general/PauseMenu.tscn:192
+#: ../src/general/PauseMenu.tscn:196
 msgid "SAVE_GAME"
 msgstr "Spiel speichern"
 
-#: ../src/general/PauseMenu.tscn:191
+#: ../src/general/PauseMenu.tscn:195
 msgid "SAVE_GAME_BUTTON_TOOLTIP"
 msgstr "Speichermenü aufrufen um den gegenwärtigen Spielstand zu speichern"
 
@@ -5322,20 +5334,20 @@ msgstr "Speichern ist aus folgenden Gründen nicht möglich:"
 msgid "SAVING_SUCCEEDED"
 msgstr "Speichern erfolgreich"
 
-#: ../src/general/OptionsMenu.tscn:1345 ../src/general/OptionsMenu.tscn:1346
+#: ../src/general/OptionsMenu.tscn:1353 ../src/general/OptionsMenu.tscn:1354
 msgid "SCALING_NONE"
 msgstr "deaktiviert"
 
-#: ../src/general/OptionsMenu.tscn:1346
+#: ../src/general/OptionsMenu.tscn:1354
 msgid "SCALING_ON"
 msgstr "skaliert"
 
-#: ../src/general/OptionsMenu.tscn:1346
+#: ../src/general/OptionsMenu.tscn:1354
 msgid "SCALING_ON_INVERSE"
 msgstr "invers skaliert"
 
-#: ../src/general/OptionsMenu.tscn:1477 ../src/general/OptionsMenu.tscn:1510
-#: ../src/general/OptionsMenu.tscn:1511
+#: ../src/general/OptionsMenu.tscn:1485 ../src/general/OptionsMenu.tscn:1518
+#: ../src/general/OptionsMenu.tscn:1519
 #, fuzzy
 msgid "SCREEN_RELATIVE_MOVEMENT"
 msgstr "um die Mobilität zu erhöhen"
@@ -5344,7 +5356,7 @@ msgstr "um die Mobilität zu erhöhen"
 msgid "SCROLLLOCK"
 msgstr "Rollen"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:715
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:737
 msgid "SEARCH_DOT_DOT_DOT"
 msgstr "Suche..."
 
@@ -5363,7 +5375,7 @@ msgid "SECRETE_SLIME"
 msgstr "Schleim absondern"
 
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:153
-#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:234
+#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:275
 #: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.cs:127
 #: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.tscn:88
 msgid "SEED_LABEL"
@@ -5413,7 +5425,7 @@ msgstr "Wähle Enzyme aus:"
 msgid "SELECT_OPTION"
 msgstr "Eine Option auswählen"
 
-#: ../src/modding/ModUploader.tscn:325
+#: ../src/modding/ModUploader.tscn:326
 msgid "SELECT_PREVIEW_IMAGE"
 msgstr "Vorschaubild auswählen"
 
@@ -5437,7 +5449,7 @@ msgstr "Sessil"
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr "Diese Option wird erst nach einem Neustart angewendet"
 
-#: ../src/general/OptionsMenu.tscn:776
+#: ../src/general/OptionsMenu.tscn:784
 msgid "SFX_VOLUME"
 msgstr "Effektlautstärke"
 
@@ -5449,29 +5461,29 @@ msgstr "Shift"
 msgid "SHOW_HELP"
 msgstr "Hilfe anzeigen"
 
-#: ../src/general/OptionsMenu.tscn:1832
+#: ../src/general/OptionsMenu.tscn:1840
 #, fuzzy
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr "{0} {1}"
 
-#: ../src/general/OptionsMenu.tscn:1830
+#: ../src/general/OptionsMenu.tscn:1838
 #, fuzzy
 msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
 msgstr "{0} {1}"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:110
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:111
 msgid "SHOW_TUTORIALS"
 msgstr "Einführung anzeigen"
 
-#: ../src/general/OptionsMenu.tscn:1742
+#: ../src/general/OptionsMenu.tscn:1750
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Tutorials anzeigen (im aktuellen Spiel)"
 
-#: ../src/general/OptionsMenu.tscn:1734
+#: ../src/general/OptionsMenu.tscn:1742
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Tutorials anzeigen (in neuen Spielen)"
 
-#: ../src/general/OptionsMenu.tscn:1749
+#: ../src/general/OptionsMenu.tscn:1757
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr "Warnung vor ungesichertem Fortschritt anzeigen"
 
@@ -5479,7 +5491,7 @@ msgstr "Warnung vor ungesichertem Fortschritt anzeigen"
 msgid "SHOW_UNSAVED_PROGRESS_WARNING_TOOLTIP"
 msgstr "Aktiviert/deaktiviert das Popup-Fenster mit der Warnung vor ungespeichertem Fortschritt, wenn der Spieler versucht, das Spiel zu beenden."
 
-#: ../src/general/OptionsMenu.tscn:1823
+#: ../src/general/OptionsMenu.tscn:1831
 msgid "SHOW_WEB_NEWS_FEED"
 msgstr ""
 
@@ -5529,16 +5541,16 @@ msgstr "Siliciumdioxid"
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr "Diese Membran hat eine starke Wand aus Siliciumdioxid. Sie widersteht gut gegen allgemeine Beschädigungen und ist sehr widerstandsfähig gegen physische Schäden. Sie benötigt auch weniger Energie, um ihre Form zu erhalten. Allerdings verlangsamt sie die Zelle um einen großen Faktor und die Zelle absorbiert Ressourcen mit einer reduzierten Geschwindigkeit."
 
-#: ../src/general/OptionsMenu.tscn:333
+#: ../src/general/OptionsMenu.tscn:334
 msgid "SIXTEEN_TIMES"
 msgstr "16x"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1015
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1037
 msgid "SIZE_COLON"
 msgstr "Größe:"
 
-#: ../src/gui_common/art_gallery/GalleryViewer.tscn:129
-#: ../src/gui_common/art_gallery/SlideScreen.tscn:177
+#: ../src/gui_common/art_gallery/GalleryViewer.tscn:130
+#: ../src/gui_common/art_gallery/SlideScreen.tscn:179
 msgid "SLIDESHOW"
 msgstr "Diashow"
 
@@ -5574,7 +5586,7 @@ msgstr "Kleiner Eisenbrocken"
 msgid "SOCIETY_STAGE"
 msgstr "Mikroben Stadium"
 
-#: ../src/general/OptionsMenu.tscn:184
+#: ../src/general/OptionsMenu.tscn:185
 msgid "SOUND"
 msgstr "Sound"
 
@@ -5603,11 +5615,11 @@ msgstr "Mikroben Stadium"
 msgid "SPAWN_AMMONIA"
 msgstr "Ammoniak erzeugen"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:92
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:96
 msgid "SPAWN_ENEMY"
 msgstr "Gegner spawnen"
 
-#: ../src/microbe_stage/MicrobeStage.cs:784
+#: ../src/microbe_stage/MicrobeStage.cs:794
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "Der Cheat Code zum Spawnen von Gegnern kann in diesem Gebiet nicht genutzt werden, da hier keine feindlichen Spezies leben"
 
@@ -5691,7 +5703,7 @@ msgstr "{0} mit Bevölkerung: {1}"
 msgid "SPEED"
 msgstr "Geschwindigkeit"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:997
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1019
 msgid "SPEED_COLON"
 msgstr "Geschwindigkeit:"
 
@@ -5707,7 +5719,7 @@ msgstr "Pause-Menü"
 msgid "STARTING"
 msgstr "Startet"
 
-#: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:66
+#: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:67
 msgid "START_CALIBRATION"
 msgstr "Starte Kalibrierung"
 
@@ -5782,18 +5794,18 @@ msgstr "Steam ist momentan nicht erreichbar, bitte versuche es erneut"
 msgid "STEAM_ERROR_UNKNOWN"
 msgstr "Unbekannter Steam-Fehler ist aufgetreten"
 
-#: ../src/general/MainMenu.tscn:988
+#: ../src/general/MainMenu.tscn:998
 #, fuzzy
 msgid "STEAM_INIT_FAILED"
 msgstr "Initialisierung der Steam-Client-Bibliothek fehlgeschlagen"
 
-#: ../src/general/MainMenu.tscn:990
+#: ../src/general/MainMenu.tscn:1000
 msgid "STEAM_INIT_FAILED_DESCRIPTION"
 msgstr ""
 "Initialisierung der Steam-Client-Bibliothek fehlgeschlagen. Steam-Funktionen sind nicht verfügbar.\n"
 "Bitte stellen Sie sicher, dass Steam läuft und Sie mit dem richtigen Account angemeldet sind. Bitte starten Sie das Spiel mittels der Steam-Client-Software, wenn dieser Fehler nicht anders verschwindet."
 
-#: ../src/general/MainMenu.tscn:784
+#: ../src/general/MainMenu.tscn:785
 msgid "STEAM_TOOLTIP"
 msgstr "Unsere Steam Seite besuchen"
 
@@ -5829,11 +5841,11 @@ msgstr "Stopp"
 msgid "STORAGE"
 msgstr "Speicher"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1021
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1043
 msgid "STORAGE_COLON"
 msgstr "Speicherplatz:"
 
-#: ../src/general/MainMenu.cs:507
+#: ../src/general/MainMenu.cs:571
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Angemeldet als: {0}"
 
@@ -5846,13 +5858,13 @@ msgstr "Mikroben Stadium"
 msgid "STRICT_NICHE_COMPETITION"
 msgstr "Harter Nischenwettbewerb (Fitnessunterschiede sind übertrieben)"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:722
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:744
 msgid "STRUCTURAL"
 msgstr "Strukturell"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:435
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:436
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:619
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:641
 msgid "STRUCTURE"
 msgstr "Struktur"
 
@@ -5902,7 +5914,7 @@ msgstr "Suizid"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:166
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4128
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:442
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:443
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:651
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:344
 msgid "SUNLIGHT"
@@ -5996,7 +6008,7 @@ msgstr "Temp."
 msgid "TESTING_TEAM"
 msgstr "Test Team"
 
-#: ../src/general/MainMenu.cs:226 ../src/general/MainMenu.tscn:982
+#: ../src/general/MainMenu.cs:244 ../src/general/MainMenu.tscn:990
 msgid "THANKS_FOR_BUYING_THRIVE"
 msgstr ""
 "Vielen Dank, dass du die Entwicklung von Thrive durch deinen Kauf dieser Steam-Version unterstützt.\n"
@@ -6012,7 +6024,7 @@ msgstr ""
 "\n"
 "Falls du das Spiel genossen hast, erzähle bitte deinen Freunden von uns."
 
-#: ../src/general/MainMenu.tscn:980
+#: ../src/general/MainMenu.tscn:988
 msgid "THANK_YOU_TITLE"
 msgstr "Vielen Dank"
 
@@ -6055,7 +6067,7 @@ msgstr "Thermosynthese"
 msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 msgstr "Die Glukosemenge wurde auf {0} der vorherigen Menge reduziert."
 
-#: ../src/thriveopedia/pages/ThriveopediaHomePage.tscn:46
+#: ../src/thriveopedia/pages/ThriveopediaHomePage.tscn:47
 msgid "THE_DISTURBANCE"
 msgstr "Die Verstörung (Thrive Maskottchen)"
 
@@ -6067,11 +6079,11 @@ msgstr "Dies ist ein lokal installierter Mod"
 msgid "THIS_IS_WORKSHOP_MOD"
 msgstr "Dieser Mod wurde vom Steam-Workshop heruntergeladen"
 
-#: ../src/general/OptionsMenu.tscn:1126
+#: ../src/general/OptionsMenu.tscn:1134
 msgid "THREADS"
 msgstr "Threads:"
 
-#: ../src/general/MainMenu.tscn:489 ../src/general/PauseMenu.tscn:208
+#: ../src/general/MainMenu.tscn:490 ../src/general/PauseMenu.tscn:212
 msgid "THRIVEOPEDIA"
 msgstr "Thriveopedia"
 
@@ -6083,11 +6095,11 @@ msgstr "Gegenwärtige Welt"
 msgid "THRIVEOPEDIA_EVOLUTIONARY_TREE_PAGE_TITLE"
 msgstr "Evolutionsbaum"
 
-#: ../src/general/PauseMenu.tscn:207
+#: ../src/general/PauseMenu.tscn:211
 msgid "THRIVEOPEDIA_HINT_IN_GAME"
 msgstr "Öffne Thriveopedia"
 
-#: ../src/thriveopedia/pages/ThriveopediaHomePage.tscn:39
+#: ../src/thriveopedia/pages/ThriveopediaHomePage.tscn:40
 msgid "THRIVEOPEDIA_HOME_INFO"
 msgstr ""
 "Die Thriveopedia ist die zentrale Datenbank und Informationsquelle für Informationen zu Thrive. Hier findest du Antworten auf alle Fragen, die du über das Spiel, deine Spielwelt oder das Thrive-Entwicklungsprojekt haben könntest.\n"
@@ -6233,7 +6245,7 @@ msgstr "Pausieren/Fortsetzen"
 msgid "TOGGLE_UNBINDING"
 msgstr "Verbinden umschalten"
 
-#: ../src/general/MainMenu.tscn:327
+#: ../src/general/MainMenu.tscn:328
 msgid "TOOLS"
 msgstr "Werkzeuge"
 
@@ -6241,7 +6253,7 @@ msgstr "Werkzeuge"
 msgid "TOOL_HAND_AXE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1293
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1315
 msgid "TOTAL_POPULATION_COLON"
 msgstr "Gesamtbevölkerung:"
 
@@ -6298,20 +6310,19 @@ msgstr "Versuche ein paar Fossilien zu machen!"
 msgid "TRY_MAKING_A_SAVE"
 msgstr "Versuche das Spiel zu speichern!"
 
-#: ../src/general/OptionsMenu.tscn:2161
+#: ../src/general/OptionsMenu.tscn:2169
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "Versuche ein paar Screenshots zu machen!"
 
 #: ../src/gui_common/dialogs/TutorialDialog.tscn:17
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:123
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:194
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:60
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:286
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:381
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:61
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:287
 msgid "TUTORIAL"
 msgstr "Anleitung"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:382
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:381
 msgid "TUTORIAL_EARLY_MULTICELLULAR_STAGE_WELCOME"
 msgstr ""
 "Willkommen im frühen multizellulären Stadium!\n"
@@ -6324,7 +6335,7 @@ msgstr ""
 "\n"
 "Wenn du Knospung als Fortpflanzung benutzt (was Standard ist), beginnst du in Kontrolle einer kleinen Knospe und musst den Rest deines zellulären Layouts wachsen lassen."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:176
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:177
 msgid "TUTORIAL_MICROBE_EDITOR_AUTO-EVO_PREDICTION"
 msgstr ""
 "Dieses Feld zeigt eine Vorhersage deiner zukünftigen Bevölkerung. Diese Zahlen stammen aus der Bevölkerungssimulation von Auto-Evo.\n"
@@ -6335,7 +6346,7 @@ msgstr ""
 "\n"
 "Du kannst dir detailliertere Informationen zur Vorhersage ansehen, indem du auf das Fragezeichen in dem Feld klickst. Drücke es um fortzufahren."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:69
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:70
 msgid "TUTORIAL_MICROBE_EDITOR_CELL_TEXT"
 msgstr ""
 "Dies ist der Zelleneditor, in dem du deine Spezies durch Ausgeben von Mutationspunkten (MP) entwickeln kannst. Du wirst in jeder Generation exakt 100 MP ausgeben können, also ist ansparen von MP nicht möglich.\n"
@@ -6355,7 +6366,7 @@ msgstr ""
 "\n"
 "Viel Glück!"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:56
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:57
 msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
 msgstr ""
 "Dies ist die Gebietskarte.\n"
@@ -6366,7 +6377,7 @@ msgstr ""
 "\n"
 "Versuche, ein Gebiet auszuwählen, um fortzufahren."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:84
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:85
 msgid "TUTORIAL_MICROBE_EDITOR_REMOVE_ORGANELLE_TEXT"
 msgstr ""
 "Das Entfernen von Organellen kostet ebenfalls MP, da es sich um eine Mutation deiner Spezies handelt; es sei denn, sie wurden in der aktuellen Editor-Sitzung platziert.\n"
@@ -6377,7 +6388,7 @@ msgstr ""
 "\n"
 "Klicke auf die Rückgängig-Schaltfläche, um fortzufahren."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:102
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:103
 msgid "TUTORIAL_MICROBE_EDITOR_SELECT_ORGANELLE_TEXT"
 msgstr ""
 "Achte bei der Auswahl der hinzuzufügenden Organellen auf die Tooltipps der Organellen, um zu sehen was diese machen. Organellen können mehr Nachteile als Vorteile bringen, wenn man sich deren Funktionen nicht bewusst ist.\n"
@@ -6395,7 +6406,7 @@ msgstr ""
 "\n"
 "Eine mögliche Strategie ist es, ein einzelnes Hexagon an Cytoplasma zu bleiben um zu den Gebieten an der Oberfläche zu wandern, bevor du Organellen mit Photosynthese hinzufügst."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:258
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:259
 msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
 "Du hast genügend Ressourcen gesammelt, damit sich deine Zelle teilen kann.\n"
@@ -6404,7 +6415,7 @@ msgstr ""
 "\n"
 "Um den Editor zu öffnen, drücke auf die blinkende Schaltfläche unten rechts."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:356
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:359
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFED_TEXT"
 msgstr ""
 "Deine Zelle wurde von einer Anderen Zelle umschlungen, welche dich jetzt verdaut.\n"
@@ -6414,14 +6425,14 @@ msgstr ""
 "\n"
 "Drücke den Apoptose (Suizid) Knopf um den Verdauungsprozess zu überspringen und schneller reinkarniert zu werden. Bedenke aber, dass immer eine Chance besteht zu entkommen!"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:332
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:335
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_FULL_TEXT"
 msgstr ""
 "Deine Zelle kann nur eine begrenzte Menge an Objekten auf einmal verschlingen. Die Grenze hängt von der Größe der Zelle ab, kleinere Zellen haben weniger Kapazität. \n"
 "\n"
 "Eine volle Zelle kann nichts mehr verschlingen. Warte bis einige verschlungene Objekte verdaut sind."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:343
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:346
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_TEXT"
 msgstr ""
 "Verschlinge Objekte indem du dich im Verschling-Modus über sie bewegst. Schalte Verschlingen an oder aus indem du [thrive:input]g_toggle_engulf[/thrive:input] drückst. \n"
@@ -6430,14 +6441,14 @@ msgstr ""
 "\n"
 "Folge der Linie zum nächsten verschlingbaren Objekt."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:287
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:288
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr ""
 "Solltest du Probleme mit den Spielmechaniken haben, kannst du jederzeit das Hilfemenü aufrufen. Dieses findest du, indem du auf das Fragezeichen in der unteren linken Ecke klickst.\n"
 "\n"
 "Ein weiterer Tipp: Du kannst mit dem Mausrad herein- und herauszoomen."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:368
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:371
 msgid "TUTORIAL_MICROBE_STAGE_LEAVE_COLONY_TEXT"
 msgstr ""
 "Du bist voll mit [thrive:compound type=\"ammonia\"][/thrive:compound] und [thrive:compound type=\"phosphates\"][/thrive:compound]. Da du dich aber in einer nicht-multizellulären Kolonie befindest, machst du keinen Reproduktions Fortschritt. \n"
@@ -6445,29 +6456,29 @@ msgstr ""
 "Wenn du nicht planst multizellulär zu werden, musst du die Kolonie verlassen um dich fortzupflanzen und zum Editor zu gelangen. \n"
 "Verlasse die Kolonie und wachse weiter, indem du [thrive:input]g_unbind_all[/thrive:input] drückst."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:238
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:239
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
 "Um sich mittels Mitose zu vermehren, müssen sich zunächst alle deiner Organellen verdoppeln, indem Du genügend [thrive:compound type=\"ammonia\"][/thrive:compound] und [thrive:compound type=\"phosphates\"][/thrive:compound] sammelst.\n"
 "\n"
 "Schaue auf die Indikatoren unten rechts, um zu sehen, wie viele Ressourcen noch für eine Zellteilung benötigt werden. Diese Indikatoren werden weiß, wenn sie komplett gefüllt sind."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:270
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:271
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
 "Du hast den \"Bindung aufheben\"-Modus aufgerufen. In diesem Modus kannst du auf die Mitglieder deiner Kolonie klicken, um deren Verbindung zu lösen.\n"
 "\n"
 "Um die Kolonie ganz zu verlassen, kannst du auf deine eigene Zelle klicken oder [thrive:input]g_unbind_all[/thrive:input] drücken."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:321
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:324
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Tutorial ansehen"
 
-#: ../src/general/MainMenu.tscn:880
+#: ../src/general/MainMenu.tscn:881
 msgid "TWITTER_TOOLTIP"
 msgstr "Besuche unseren Twitter Feed"
 
-#: ../src/general/OptionsMenu.tscn:333
+#: ../src/general/OptionsMenu.tscn:334
 msgid "TWO_TIMES"
 msgstr "2x"
 
@@ -6492,7 +6503,7 @@ msgstr "Alle Verbindungen lösen"
 msgid "UNBIND_HELP_TEXT"
 msgstr "Entbindungsmodus"
 
-#: ../src/general/OptionsMenu.cs:1523
+#: ../src/general/OptionsMenu.cs:1530
 msgid "UNCERTAIN_VERSION_WARNING"
 msgstr "Dies ist eine Debug-Version und die Info unten ist vermutlich nicht aktuell"
 
@@ -6512,7 +6523,7 @@ msgstr "Letzte Aktion rückgängig machen"
 msgid "UNKNOWN"
 msgstr "Unbekannt"
 
-#: ../src/general/OptionsMenu.cs:980
+#: ../src/general/OptionsMenu.cs:987
 msgid "UNKNOWN_DISPLAY_DRIVER"
 msgstr "Unbekannt"
 
@@ -6524,7 +6535,7 @@ msgstr "Unbekannte Maus"
 msgid "UNKNOWN_ON_WINDOWS"
 msgstr "Für Windows unbekannt"
 
-#: ../src/general/OptionsMenu.cs:1530
+#: ../src/general/OptionsMenu.cs:1537
 msgid "UNKNOWN_VERSION"
 msgstr "Unbekannte Version"
 
@@ -6532,7 +6543,7 @@ msgstr "Unbekannte Version"
 msgid "UNKNOWN_WORKSHOP_ID"
 msgstr "Unbekannte Workshop-ID für diesen Mod"
 
-#: ../src/general/OptionsMenu.tscn:2080
+#: ../src/general/OptionsMenu.tscn:2088
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 "Es wurden ungespeicherte Änderungen vorgenommen.\n"
@@ -6568,7 +6579,7 @@ msgstr "Hochladen"
 msgid "UPLOADING_DOT_DOT_DOT"
 msgstr "Lade hoch..."
 
-#: ../src/modding/ModUploader.tscn:336
+#: ../src/modding/ModUploader.tscn:335
 msgid "UPLOAD_SUCCEEDED"
 msgstr "Hochladen erfolgreich"
 
@@ -6576,7 +6587,7 @@ msgstr "Hochladen erfolgreich"
 msgid "USED_LIBRARIES_LICENSES"
 msgstr "Lizenzen und verwendete Bibliotheken"
 
-#: ../src/general/OptionsMenu.tscn:509
+#: ../src/general/OptionsMenu.tscn:510
 msgid "USED_RENDERER_NAME"
 msgstr "Verwendeter Renderer:"
 
@@ -6592,7 +6603,7 @@ msgstr "Nutze Auto Harmony Laden"
 msgid "USE_AUTO_HARMONY_TOOLTIP"
 msgstr "Harmony Updates automatisch vom Assembler laden (Mod class muss nicht spezifiziert werden)"
 
-#: ../src/general/OptionsMenu.tscn:1769
+#: ../src/general/OptionsMenu.tscn:1777
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Eigenen Nutzernamen verwenden"
 
@@ -6600,11 +6611,11 @@ msgstr "Eigenen Nutzernamen verwenden"
 msgid "USE_BIODIVERSITY_FORCE_SPLIT"
 msgstr "Schaffung einer Spezies, die die Artenvielfalt erhöht entzieht, der bestehenden Art Population"
 
-#: ../src/general/OptionsMenu.tscn:1116
+#: ../src/general/OptionsMenu.tscn:1124
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr "Anzahl der Hintergrund-Threads manuell einstellen"
 
-#: ../src/general/OptionsMenu.tscn:1360
+#: ../src/general/OptionsMenu.tscn:1368
 msgid "USE_VIRTUAL_WINDOW_SIZE"
 msgstr "Verwende virtuelle Fenstergröße"
 
@@ -6631,7 +6642,7 @@ msgstr "{0} {1}"
 msgid "VERSION_COLON"
 msgstr "Version:"
 
-#: ../src/general/OptionsMenu.tscn:1311 ../src/general/OptionsMenu.tscn:1421
+#: ../src/general/OptionsMenu.tscn:1319 ../src/general/OptionsMenu.tscn:1429
 msgid "VERTICAL_COLON"
 msgstr "Vertikal:"
 
@@ -6640,11 +6651,11 @@ msgstr "Vertikal:"
 msgid "VERTICAL_WITH_AXIS_NAME_COLON"
 msgstr "vertikal (Axis: {0})"
 
-#: ../src/general/OptionsMenu.tscn:536
+#: ../src/general/OptionsMenu.tscn:537
 msgid "VIDEO_MEMORY"
 msgstr "Derzeit belegter Grafikspeicher:"
 
-#: ../src/general/OptionsMenu.cs:989 ../src/general/OptionsMenu.tscn:549
+#: ../src/general/OptionsMenu.cs:996 ../src/general/OptionsMenu.tscn:550
 msgid "VIDEO_MEMORY_MIB"
 msgstr "{0} MiB"
 
@@ -6658,17 +6669,17 @@ msgstr "Beobachter"
 msgid "VIEW_ALL"
 msgstr "Alle deaktivieren"
 
-#: ../src/general/OptionsMenu.tscn:1840
+#: ../src/general/OptionsMenu.tscn:1848
 #, fuzzy
 msgid "VIEW_PATCH_NOTES"
 msgstr "{0} {1}"
 
-#: ../src/general/OptionsMenu.tscn:1838
+#: ../src/general/OptionsMenu.tscn:1846
 #, fuzzy
 msgid "VIEW_PATCH_NOTES_TOOLTIP"
 msgstr "{0} {1}"
 
-#: ../src/general/MainMenu.tscn:335
+#: ../src/general/MainMenu.tscn:336
 msgid "VIEW_SOURCE_CODE"
 msgstr "Quellcode anschauen"
 
@@ -6680,7 +6691,7 @@ msgstr "VIP Unterstützer"
 msgid "VISIBLE"
 msgstr "Sichtbar"
 
-#: ../src/general/MainMenu.tscn:538 ../src/general/MainMenu.tscn:743
+#: ../src/general/MainMenu.tscn:539 ../src/general/MainMenu.tscn:744
 msgid "VISIT_SUGGESTIONS_SITE"
 msgstr "Schlage eine Funktion vor"
 
@@ -6700,15 +6711,15 @@ msgstr "Lautstärke stumm"
 msgid "VOLUMEUP"
 msgstr "Lautstärke hoch"
 
-#: ../src/general/OptionsMenu.tscn:278
+#: ../src/general/OptionsMenu.tscn:279
 msgid "VSYNC"
 msgstr "VSync"
 
-#: ../src/general/base_stage/EditorBase.cs:256
+#: ../src/general/base_stage/EditorBase.cs:250
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "Warte auf Auto-Evo:"
 
-#: ../src/thriveopedia/pages/ThriveopediaHomePage.tscn:21
+#: ../src/thriveopedia/pages/ThriveopediaHomePage.tscn:22
 msgid "WELCOME_TO_THRIVEOPEDIA"
 msgstr "Willkommen bei Thriveopedia"
 
@@ -6807,24 +6818,24 @@ msgstr ""
 "Prototypen späterer Phasen miteinbeziehen: {0}\n"
 "Easter eggs miteinbeziehen: {1}"
 
-#: ../src/general/OptionsMenu.tscn:1511
+#: ../src/general/OptionsMenu.tscn:1519
 #, fuzzy
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "um die Mobilität zu erhöhen"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1331
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1353
 msgid "WORST_PATCH_COLON"
 msgstr "Schlechtestes Gebiet:"
 
-#: ../src/general/OptionsMenu.tscn:598
+#: ../src/general/OptionsMenu.tscn:599
 msgid "XBOX360"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:598
+#: ../src/general/OptionsMenu.tscn:599
 msgid "XBOX_ONE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:598
+#: ../src/general/OptionsMenu.tscn:599
 msgid "XBOX_SERIES"
 msgstr ""
 
@@ -6836,7 +6847,7 @@ msgstr ""
 msgid "YEARS"
 msgstr "Jahre"
 
-#: ../src/general/MainMenu.tscn:832
+#: ../src/general/MainMenu.tscn:833
 msgid "YOUTUBE_TOOLTIP"
 msgstr "Besuche unseren YouTube Kanal"
 

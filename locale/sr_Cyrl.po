@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-04-06 15:10+0300\n"
+"POT-Creation-Date: 2023-04-14 13:04+0300\n"
 "PO-Revision-Date: 2021-02-25 13:33+0000\n"
 "Last-Translator: icedjuro <milandjurovic625@gmail.com>\n"
 "Language-Team: Serbian (cyrillic) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sr_Cyrl/>\n"
@@ -19,7 +19,7 @@ msgstr ""
 "X-Generator: Weblate 4.4\n"
 "Generated-By: Babel 2.9.0\n"
 
-#: ../src/general/OptionsMenu.tscn:1459
+#: ../src/general/OptionsMenu.tscn:1467
 msgid "2D_MOVEMENT_TYPE_SELECTION"
 msgstr ""
 
@@ -33,7 +33,7 @@ msgstr "Уређивач"
 msgid "3D_MOVEMENT"
 msgstr "Покрет"
 
-#: ../src/general/OptionsMenu.tscn:1491
+#: ../src/general/OptionsMenu.tscn:1499
 msgid "3D_MOVEMENT_TYPE_SELECTION"
 msgstr ""
 
@@ -66,7 +66,7 @@ msgid "ACTION_AWAKEN_TOOLTIP"
 msgstr "Додајте ново везивање тастера"
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:410
-#: ../src/general/base_stage/EditorBase.cs:684
+#: ../src/general/base_stage/EditorBase.cs:678
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:464
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:50
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
@@ -76,7 +76,7 @@ msgstr ""
 msgid "ACTIVE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1094
+#: ../src/general/OptionsMenu.tscn:1102
 #, fuzzy
 msgid "ACTIVE_THREAD_COUNT"
 msgstr "Сачувај и настави"
@@ -169,7 +169,7 @@ msgstr "Статистика Организма"
 msgid "ALT"
 msgstr "Alt"
 
-#: ../src/general/OptionsMenu.tscn:741
+#: ../src/general/OptionsMenu.tscn:749
 msgid "AMBIANCE_VOLUME"
 msgstr "Амбијента јачина звука"
 
@@ -180,11 +180,11 @@ msgstr "Амбијента јачина звука"
 msgid "AMMONIA"
 msgstr "Амонијак"
 
-#: ../src/general/OptionsMenu.tscn:1679
+#: ../src/general/OptionsMenu.tscn:1687
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "Количина аутоматског чувања да задржати:"
 
-#: ../src/general/OptionsMenu.tscn:1707
+#: ../src/general/OptionsMenu.tscn:1715
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Количина брзог чувања да задржати:"
 
@@ -196,7 +196,7 @@ msgstr "Анаеробна Фиксација Азота"
 msgid "APPEARANCE"
 msgstr "Изглед"
 
-#: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:117
+#: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:118
 #: ../src/modding/ModUploader.tscn:158
 msgid "APPLY"
 msgstr ""
@@ -209,11 +209,11 @@ msgstr ""
 msgid "APRIL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2042
+#: ../src/general/OptionsMenu.tscn:2050
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr "Да ли сте сигурни да желите да вратите СВА подешавања на подразумеване вредности?"
 
-#: ../src/general/OptionsMenu.tscn:2051
+#: ../src/general/OptionsMenu.tscn:2059
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr "Да ли сте сигурни да желите да вратите поставке уноса на подразумеване вредности?"
 
@@ -231,7 +231,7 @@ msgstr "ВИ СТЕ ПРОСПЕРИРАЛИ!"
 msgid "ART_BY"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:515
+#: ../src/general/MainMenu.tscn:516
 msgid "ART_GALLERY"
 msgstr ""
 
@@ -243,7 +243,7 @@ msgstr ""
 msgid "ASSEMBLY_REQUIRED_WITH_HARMONY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1108
+#: ../src/general/OptionsMenu.tscn:1116
 msgid "ASSUME_HYPERTHREADING"
 msgstr ""
 
@@ -262,7 +262,7 @@ msgstr "Атмосферски Гасови"
 msgid "ATP"
 msgstr "ATP"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1104
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1126
 msgid "ATP_BALANCE"
 msgstr "ATP Равнотежа"
 
@@ -284,7 +284,7 @@ msgstr "Аутоматска-еволуција није успела"
 msgid "AT_CURSOR"
 msgstr "На Курсору:"
 
-#: ../src/general/OptionsMenu.tscn:858
+#: ../src/general/OptionsMenu.tscn:866
 msgid "AUDIO_OUTPUT_DEVICE"
 msgstr "Уређај за аудио"
 
@@ -292,12 +292,12 @@ msgstr "Уређај за аудио"
 msgid "AUGUST"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:597 ../src/general/OptionsMenu.tscn:598
-#: ../src/general/OptionsMenu.tscn:1476 ../src/general/OptionsMenu.tscn:1477
+#: ../src/general/OptionsMenu.tscn:598 ../src/general/OptionsMenu.tscn:599
+#: ../src/general/OptionsMenu.tscn:1484 ../src/general/OptionsMenu.tscn:1485
 msgid "AUTO"
 msgstr "аутоматски"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1523
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1545
 #, fuzzy
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
 msgstr "Број популације од {0} променио се за {1} због: {2}"
@@ -307,13 +307,13 @@ msgstr "Број популације од {0} променио се за {1} з
 msgid "AUTO-EVO_POPULATION_CHANGED_2"
 msgstr "Број популације од {0} променио се за {1} због: {2}"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1221
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1479
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1243
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1500
 #, fuzzy
 msgid "AUTO-EVO_PREDICTION"
 msgstr "{0:F1}% завршено. {1:n0}/{2:n0} корака."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1217
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1239
 #, fuzzy
 msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 msgstr "Моћ ћелије. Митохондрион (множина: митохондрије) је двострука мембранска структура испуњена протеинима и ензимима. То је прокариот који је асимилирао за употребу од свог еукариотског домаћина. У стању је да претвори глукозу у ATP са много већом ефикасношћу него што се то може учинити у цитоплазми у процесу који се назива аеробно дисање. Међутим, потребан му је кисеоник да би функционисао, а нижи нивои кисеоника у околини успориће брзину његове производње ATP."
@@ -322,7 +322,7 @@ msgstr "Моћ ћелије. Митохондрион (множина: мито�
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr "{0:F1}% завршено. {1:n0}/{2:n0} корака."
 
-#: ../src/general/OptionsMenu.tscn:1668
+#: ../src/general/OptionsMenu.tscn:1676
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Аутоматско чување током игре"
 
@@ -330,7 +330,7 @@ msgstr "Аутоматско чување током игре"
 msgid "AUTO_EVO"
 msgstr "Аутоматска-Еволуција"
 
-#: ../src/general/MainMenu.tscn:413
+#: ../src/general/MainMenu.tscn:414
 #, fuzzy
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr "статус покретања:"
@@ -361,7 +361,7 @@ msgstr "статус покретања:"
 msgid "AUTO_MOVE_FORWARDS"
 msgstr "Аутоматско кретање напред"
 
-#: ../src/general/OptionsMenu.cs:956 ../src/general/OptionsMenu.tscn:360
+#: ../src/general/OptionsMenu.cs:963 ../src/general/OptionsMenu.tscn:361
 #, fuzzy
 msgid "AUTO_RESOLUTION"
 msgstr "Резолуција:"
@@ -387,10 +387,10 @@ msgstr ""
 "Да бисте преживели у овом непријатељском свету, мораћете да сакупите сва једињења која можете пронаћи и да еволуирате сваку генерацију да би се такмичили против других врста микроба."
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:998
-#: ../src/general/MainMenu.tscn:458 ../src/general/MainMenu.tscn:554
-#: ../src/general/MainMenu.tscn:610 ../src/general/MainMenu.tscn:933
+#: ../src/general/MainMenu.tscn:459 ../src/general/MainMenu.tscn:555
+#: ../src/general/MainMenu.tscn:611 ../src/general/MainMenu.tscn:934
 #: ../src/general/NewGameSettings.tscn:1142
-#: ../src/general/OptionsMenu.tscn:1979 ../src/general/PauseMenu.tscn:282
+#: ../src/general/OptionsMenu.tscn:1987 ../src/general/PauseMenu.tscn:286
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:76
 #: ../src/modding/ModManager.tscn:79 ../src/saving/NewSaveMenu.tscn:122
 #: ../src/saving/SaveManagerGUI.tscn:115
@@ -457,13 +457,13 @@ msgstr ""
 msgid "BECOME_MULTICELLULAR"
 msgstr ""
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:127
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:128
 msgid "BEGIN_THRIVING"
 msgstr "Почните Просперирати"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:477
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:479
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:663
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:685
 #, fuzzy
 msgid "BEHAVIOUR"
 msgstr "Понашање"
@@ -497,7 +497,7 @@ msgstr "Понашање"
 msgid "BELOW_SEA_LEVEL"
 msgstr "{0}-{1}м испод нивоа мора"
 
-#: ../src/general/MainMenu.tscn:427
+#: ../src/general/MainMenu.tscn:428
 msgid "BENCHMARKS"
 msgstr ""
 
@@ -514,7 +514,7 @@ msgstr ""
 msgid "BENCHMARK_RESULTS_COLON"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1306
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1328
 #, fuzzy
 msgid "BEST_PATCH_COLON"
 msgstr "Врсте:"
@@ -555,7 +555,7 @@ msgstr "Нитрогеназа је протеин у стању да корис
 msgid "BINDING_AGENT_PROCESSES_DESCRIPTION"
 msgstr "Нитрогеназа је протеин у стању да користи гасовити азот и ћелијску енергију у облику ATP за производњу амонијака, кључног хранљивог састојка за раст ћелија. Ово је процес који се назива анаеробна фиксација азота. Пошто је нитрогеназа суспендована директно у цитоплазми, околна течност врши ферментацију."
 
-#: ../src/general/OptionsMenu.tscn:1280 ../src/general/OptionsMenu.tscn:1390
+#: ../src/general/OptionsMenu.tscn:1288 ../src/general/OptionsMenu.tscn:1398
 msgid "BIND_AXES_SENSITIVITY"
 msgstr ""
 
@@ -629,8 +629,9 @@ msgstr "Камера"
 
 #: ../src/awakening_stage/gui/InteractablePopup.tscn:64
 #: ../src/awakening_stage/gui/SelectBuildingPopup.tscn:48
-#: ../src/general/OptionsMenu.tscn:2130
-#: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:75
+#: ../src/general/OptionsMenu.tscn:2138
+#: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:14
+#: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:74
 #: ../src/modding/NewModGUI.tscn:472
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:164
 msgid "CANCEL"
@@ -638,7 +639,7 @@ msgstr "Отказати"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:659
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:776
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1400
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1422
 #, fuzzy
 msgid "CANCEL_ACTION_CAPITAL"
 msgstr "ПОТВРДИ"
@@ -753,7 +754,7 @@ msgstr "Целулоза"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Ова мембрана има зид, што резултира бољом заштитом од укупних оштећења, а посебно од физичких оштећења. Такође кошта мање енергије да би задржао облик, али не може брзо да апсорбује ресурсе и спорији је."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:667
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:664
 msgid "CELL_TYPE_NAME"
 msgstr ""
 
@@ -768,11 +769,11 @@ msgstr "Промените симетрију"
 
 #: ../simulation_parameters/common/input_options.json:286
 #: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:15
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:12
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:16
 msgid "CHEATS"
 msgstr "Варање"
 
-#: ../src/general/OptionsMenu.tscn:1761
+#: ../src/general/OptionsMenu.tscn:1769
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "Укључи тастери за варања"
 
@@ -871,7 +872,7 @@ msgstr "Хлоропласт је двострука мембранска стр
 msgid "CHOSEN_FILENAME_ALREADY_EXISTS"
 msgstr "Изабрано име датотеке ({0}) већ постоји. Преписати?"
 
-#: ../src/general/OptionsMenu.tscn:440
+#: ../src/general/OptionsMenu.tscn:441
 msgid "CHROMATIC_ABERRATION"
 msgstr "Хроматске аберације:"
 
@@ -905,27 +906,27 @@ msgid "CLEAN_UP_OLD_SAVES"
 msgstr "Очистите Старе Чување"
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:168
-#: ../src/general/HelpScreen.tscn:104 ../src/general/OptionsMenu.tscn:2205
-#: ../src/gui_common/art_gallery/GalleryViewer.tscn:122
+#: ../src/general/HelpScreen.tscn:104 ../src/general/OptionsMenu.tscn:2213
+#: ../src/gui_common/art_gallery/GalleryViewer.tscn:123
 #: ../src/gui_common/charts/line/LineChart.tscn:261
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:114
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1532
-#: ../src/microbe_stage/ProcessPanel.tscn:73
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1554
+#: ../src/microbe_stage/ProcessPanel.tscn:74
 #: ../src/modding/ModManager.tscn:1001
 #: ../src/thriveopedia/Thriveopedia.tscn:315
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:230
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:231
 msgid "CLOSE"
 msgstr "Затвори"
 
-#: ../src/general/OptionsMenu.tscn:2060
+#: ../src/general/OptionsMenu.tscn:2068
 msgid "CLOSE_OPTIONS"
 msgstr "Затворити опције?"
 
-#: ../src/general/OptionsMenu.tscn:1015
+#: ../src/general/OptionsMenu.tscn:1023
 msgid "CLOUD_RESOLUTION_DIVISOR"
 msgstr "Делитељ Облачне Резолуције:"
 
-#: ../src/general/OptionsMenu.tscn:965
+#: ../src/general/OptionsMenu.tscn:973
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr ""
 "Минимум Интервал од Симулације\n"
@@ -939,11 +940,11 @@ msgstr "Приобални"
 msgid "COLLISION_SHAPE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:883
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:905
 msgid "COLOUR"
 msgstr "Боја"
 
-#: ../src/general/OptionsMenu.tscn:402
+#: ../src/general/OptionsMenu.tscn:403
 msgid "COLOURBLIND_CORRECTION"
 msgstr "Корекција далтониста:"
 
@@ -1014,25 +1015,25 @@ msgstr "Способности"
 msgid "COMMON_EDITING_AND_STRATEGY"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:670
+#: ../src/general/MainMenu.tscn:671
 msgid "COMMUNITY_FORUM"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:665
+#: ../src/general/MainMenu.tscn:666
 #, fuzzy
 msgid "COMMUNITY_FORUM_BUTTON_TOOLTIP"
 msgstr "Додајте ново везивање тастера"
 
-#: ../src/general/MainMenu.tscn:712
+#: ../src/general/MainMenu.tscn:713
 msgid "COMMUNITY_WIKI"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:707
+#: ../src/general/MainMenu.tscn:708
 #, fuzzy
 msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
 msgstr "Додајте ново везивање тастера"
 
-#: ../src/general/OptionsMenu.tscn:1948
+#: ../src/general/OptionsMenu.tscn:1956
 #, fuzzy
 msgid "COMPILED_AT_COLON"
 msgstr "Једињења:"
@@ -1059,7 +1060,7 @@ msgstr "Једињења:"
 msgid "COMPOUND_BALANCE_TITLE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:950
+#: ../src/general/OptionsMenu.tscn:958
 msgid "COMPOUND_CLOUDS"
 msgstr "Облак једињења"
 
@@ -1100,7 +1101,7 @@ msgid "CONFIRM_CAPITAL"
 msgstr "ПОТВРДИ"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:1008
-#: ../src/general/PauseMenu.tscn:319
+#: ../src/general/PauseMenu.tscn:323
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:143
 #, fuzzy
 msgid "CONFIRM_EXIT"
@@ -1125,7 +1126,7 @@ msgstr "Додајте ново везивање тастера"
 msgid "CONTENT_UPLOADED_FROM"
 msgstr ""
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:416
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:404
 #, fuzzy
 msgid "CONTINUE_THRIVING"
 msgstr "Почните Просперирати"
@@ -1138,15 +1139,15 @@ msgstr ""
 msgid "CONTINUE_TO_PROTOTYPES_PROMPT"
 msgstr ""
 
-#: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:94
+#: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:95
 msgid "CONTROLLER_AXIS_VISUALIZERS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1449
+#: ../src/general/OptionsMenu.tscn:1457
 msgid "CONTROLLER_DEADZONES"
 msgstr ""
 
-#: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:49
+#: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:50
 #, fuzzy
 msgid "CONTROLLER_DEADZONE_CALIBRATION_EXPLANATION"
 msgstr "Број популације од {0} променио се за {1} због: {2}"
@@ -1156,15 +1157,15 @@ msgstr "Број популације од {0} променио се за {1} з
 msgid "CONTROLLER_DEADZONE_COLON"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:580
+#: ../src/general/OptionsMenu.tscn:581
 msgid "CONTROLLER_PROMPT_TYPE_SETTING"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1377
+#: ../src/general/OptionsMenu.tscn:1385
 msgid "CONTROLLER_SENSITIVITY"
 msgstr ""
 
-#: ../src/gui_common/dialogs/ErrorDialog.tscn:109
+#: ../src/gui_common/dialogs/ErrorDialog.tscn:105
 msgid "COPY_ERROR_TO_CLIPBOARD"
 msgstr "Копирај Грешку у Међуспремник"
 
@@ -1173,11 +1174,11 @@ msgstr "Копирај Грешку у Међуспремник"
 msgid "COPY_RESULTS"
 msgstr "Резултати аутоматске-еволуције:"
 
-#: ../src/general/OptionsMenu.tscn:419
+#: ../src/general/OptionsMenu.tscn:420
 msgid "CORRECTION_PROTANOPE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:419
+#: ../src/general/OptionsMenu.tscn:420
 msgid "CORRECTION_TRITANOPE"
 msgstr ""
 
@@ -1303,7 +1304,7 @@ msgstr "Тражи..."
 msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr "Креирање објеката из саве"
 
-#: ../src/general/MainMenu.tscn:351
+#: ../src/general/MainMenu.tscn:352
 msgid "CREDITS"
 msgstr "Кредити"
 
@@ -1328,7 +1329,7 @@ msgstr ""
 msgid "CURRENT_WORLD_STATISTICS"
 msgstr "Статистика Организма"
 
-#: ../src/general/OptionsMenu.tscn:1780
+#: ../src/general/OptionsMenu.tscn:1788
 msgid "CUSTOM_USERNAME"
 msgstr "Корисничко име:"
 
@@ -1367,20 +1368,20 @@ msgstr ""
 msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION"
 msgstr ""
 
-#: ../src/engine/input/ControllerDeadzoneConfiguration.cs:207
+#: ../src/engine/input/ControllerDeadzoneConfiguration.cs:221
 #, fuzzy
 msgid "DEADZONE_CALIBRATION_FINISHED"
 msgstr "Аутоматска-еволуција није успела"
 
-#: ../src/engine/input/ControllerDeadzoneConfiguration.cs:172
+#: ../src/engine/input/ControllerDeadzoneConfiguration.cs:186
 msgid "DEADZONE_CALIBRATION_INPROGRESS"
 msgstr ""
 
-#: ../src/engine/input/ControllerDeadzoneConfiguration.cs:193
+#: ../src/engine/input/ControllerDeadzoneConfiguration.cs:207
 msgid "DEADZONE_CALIBRATION_IS_RESET"
 msgstr ""
 
-#: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:14
+#: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:15
 #, fuzzy
 msgid "DEADZONE_CONFIGURATION"
 msgstr "Брисање овог чувања не може се опозвати. Да ли сте сигурни да желите трајно да га избришете?"
@@ -1402,13 +1403,13 @@ msgstr ""
 msgid "DECEMBER"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1422
+#: ../src/general/OptionsMenu.cs:1429
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr ""
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:554
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:623
-#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:228
+#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:191
 msgid "DELETE"
 msgstr ""
 
@@ -1465,11 +1466,11 @@ msgstr "Опис:"
 msgid "DESCRIPTION_TOO_LONG"
 msgstr "Опис:"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:102
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:106
 msgid "DESPAWN_ENTITIES"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1077
+#: ../src/general/OptionsMenu.tscn:1085
 #, fuzzy
 msgid "DETECTED_CPU_COUNT"
 msgstr "Одабрано:"
@@ -1482,11 +1483,11 @@ msgstr ""
 msgid "DEVELOPERS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:684
+#: ../src/general/MainMenu.tscn:685
 msgid "DEVELOPMENT_FORUM"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:679
+#: ../src/general/MainMenu.tscn:680
 #, fuzzy
 msgid "DEVELOPMENT_FORUM_BUTTON_TOOLTIP"
 msgstr "Додајте ново везивање тастера"
@@ -1495,11 +1496,11 @@ msgstr "Додајте ново везивање тастера"
 msgid "DEVELOPMENT_SUPPORTED_BY"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:698
+#: ../src/general/MainMenu.tscn:699
 msgid "DEVELOPMENT_WIKI"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:693
+#: ../src/general/MainMenu.tscn:694
 #, fuzzy
 msgid "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
 msgstr "Додајте ново везивање тастера"
@@ -1548,7 +1549,7 @@ msgstr ""
 msgid "DIGESTION_EFFICIENCY"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1037
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1059
 #, fuzzy
 msgid "DIGESTION_EFFICIENCY_COLON"
 msgstr "Опис:"
@@ -1558,7 +1559,7 @@ msgstr "Опис:"
 msgid "DIGESTION_SPEED"
 msgstr "Брзина Апсорпције Брзине"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1027
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1049
 #, fuzzy
 msgid "DIGESTION_SPEED_COLON"
 msgstr "Брзина:"
@@ -1577,7 +1578,7 @@ msgstr "Опис:"
 msgid "DIRECTIONR"
 msgstr "Опис:"
 
-#: ../src/general/OptionsMenu.tscn:332 ../src/general/OptionsMenu.tscn:333
+#: ../src/general/OptionsMenu.tscn:333 ../src/general/OptionsMenu.tscn:334
 msgid "DISABLED"
 msgstr ""
 
@@ -1585,7 +1586,7 @@ msgstr ""
 msgid "DISABLE_ALL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2113
+#: ../src/general/OptionsMenu.tscn:2121
 msgid "DISCARD_AND_CONTINUE"
 msgstr "Одбаци и настави"
 
@@ -1618,27 +1619,27 @@ msgstr ""
 "Постоје постављене органеле, које нису повезане са осталим.\n"
 "Повежите све постављене органеле једни са другима или поништите промене."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1461
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1483
 msgid "DISCONNECTED_ORGANELLES"
 msgstr "Искључене Органеле"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1463
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1485
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
 "Постоје постављене органеле, које нису повезане са осталим.\n"
 "Повежите све постављене органеле једни са другима или поништите промене."
 
-#: ../src/general/MainMenu.tscn:856
+#: ../src/general/MainMenu.tscn:857
 #, fuzzy
 msgid "DISCORD_TOOLTIP"
 msgstr "Додајте ново везивање тастера"
 
-#: ../src/general/OptionsMenu.tscn:1854
+#: ../src/general/OptionsMenu.tscn:1862
 #, fuzzy
 msgid "DISMISSED_POPUPS_COLON"
 msgstr "Брзина:"
 
-#: ../src/general/OptionsMenu.tscn:1852 ../src/general/OptionsMenu.tscn:1861
+#: ../src/general/OptionsMenu.tscn:1860 ../src/general/OptionsMenu.tscn:1869
 #, fuzzy
 msgid "DISMISSED_POPUPS_EXPLANATION"
 msgstr "Број популације од {0} променио се за {1} због: {2}"
@@ -1651,16 +1652,20 @@ msgstr ""
 msgid "DISMISS_WARNING_PERMANENTLY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:612
+#: ../src/general/OptionsMenu.tscn:637
+msgid "DISPLAY_3D_MENU_BACKGROUNDS"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:613
 #, fuzzy
 msgid "DISPLAY_ABILITIES_BAR"
 msgstr "Способности"
 
-#: ../src/general/OptionsMenu.tscn:469
+#: ../src/general/OptionsMenu.tscn:470
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:629
+#: ../src/general/OptionsMenu.tscn:628
 #, fuzzy
 msgid "DISPLAY_PART_NAMES"
 msgstr "Способности"
@@ -1830,7 +1835,7 @@ msgstr "Забавна чињеница: Дидинијум и Парамеци�
 msgid "EASTER_EGGS_EXPLANATION"
 msgstr "Број популације од {0} променио се за {1} због: {2}"
 
-#: ../src/general/OptionsMenu.tscn:1544
+#: ../src/general/OptionsMenu.tscn:1552
 #, fuzzy
 msgid "EDGE_PAN_SPEED"
 msgstr "Брзина Апсорпције Брзине"
@@ -1845,7 +1850,7 @@ msgstr "Уређивач"
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "Додајте ново везивање тастера"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:42
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:43
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
 "Добродошли у Уредник Микроба.\n"
@@ -1855,7 +1860,7 @@ msgstr ""
 "\n"
 "Да бисте прешли на следећу картицу уређивача, притисните следеће дугме у доњем десном углу."
 
-#: ../src/general/OptionsMenu.tscn:333
+#: ../src/general/OptionsMenu.tscn:334
 #, fuzzy
 msgid "EIGHT_TIMES"
 msgstr "Десни миш"
@@ -1874,7 +1879,7 @@ msgstr "Изабрано чување је некомпатибилно"
 msgid "ENABLE_EDITOR"
 msgstr "Омогућите уређивач"
 
-#: ../src/general/OptionsMenu.tscn:620
+#: ../src/general/OptionsMenu.tscn:621
 #, fuzzy
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Спољни ефекти:"
@@ -1887,15 +1892,15 @@ msgstr ""
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2435
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2420
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2446
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2431
 msgid "ENERGY_SOURCES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2439
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2424
 msgid "ENERGY_SUMMARY_LINE"
 msgstr ""
 
@@ -1940,7 +1945,7 @@ msgstr "Епипелагик"
 msgid "EQUIPMENT_TYPE_AXE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2141 ../src/general/OptionsMenu.tscn:2149
+#: ../src/general/OptionsMenu.tscn:2149 ../src/general/OptionsMenu.tscn:2157
 msgid "ERROR"
 msgstr "Грешка"
 
@@ -1953,7 +1958,7 @@ msgstr "Грешка при чувању"
 msgid "ERROR_CREATING_INFO_FILE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2151
+#: ../src/general/OptionsMenu.tscn:2159
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr "Грешка: Није успело чување нових поставки у конфигурационој датотеци."
 
@@ -1996,12 +2001,12 @@ msgstr ""
 msgid "EVOLUTIONARY_TREE_DISABLED_LABEL"
 msgstr "Додајте ново везивање тастера"
 
-#: ../src/general/OptionsMenu.tscn:1920
+#: ../src/general/OptionsMenu.tscn:1928
 #, fuzzy
 msgid "EXACT_VERSION_COLON"
 msgstr "Генерација:"
 
-#: ../src/general/OptionsMenu.tscn:1918 ../src/general/OptionsMenu.tscn:1929
+#: ../src/general/OptionsMenu.tscn:1926 ../src/general/OptionsMenu.tscn:1937
 #, fuzzy
 msgid "EXACT_VERSION_TOOLTIP"
 msgstr "Додајте ново везивање тастера"
@@ -2016,11 +2021,11 @@ msgstr "Изузетак се догодио током обраде учита�
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr "Изнимка се догодила приликом учитавања података за чување"
 
-#: ../src/general/PauseMenu.tscn:247
+#: ../src/general/PauseMenu.tscn:251
 msgid "EXIT"
 msgstr "Изаћи"
 
-#: ../src/general/MainMenu.tscn:360
+#: ../src/general/MainMenu.tscn:361
 msgid "EXIT_TO_LAUNCHER"
 msgstr ""
 
@@ -2037,7 +2042,7 @@ msgstr "Додајте ново везивање тастера"
 msgid "EXPORT_SUCCESS"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:740
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:762
 msgid "EXTERNAL"
 msgstr "Спољни"
 
@@ -2075,7 +2080,7 @@ msgstr "Изаберите зону да бисте овде приказали 
 msgid "EXTINCT_SPECIES"
 msgstr "ИЗУМИРАЊЕ"
 
-#: ../src/general/MainMenu.tscn:343
+#: ../src/general/MainMenu.tscn:344
 msgid "EXTRAS"
 msgstr "Додатне"
 
@@ -2083,12 +2088,12 @@ msgstr "Додатне"
 msgid "EXTRA_OPTIONS"
 msgstr "Додатне Опције"
 
-#: ../src/general/MainMenu.tscn:868
+#: ../src/general/MainMenu.tscn:869
 #, fuzzy
 msgid "FACEBOOK_TOOLTIP"
 msgstr "Додајте ново везивање тастера"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1287
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1309
 #, fuzzy
 msgid "FAILED"
 msgstr "Сачување није успело"
@@ -2131,7 +2136,7 @@ msgstr ""
 msgid "FEED_ITEM_TRUNCATED_NOTICE"
 msgstr ""
 
-#: ../src/gui_common/art_gallery/GalleryViewer.tscn:71
+#: ../src/gui_common/art_gallery/GalleryViewer.tscn:72
 msgid "FILTER_ITEMS_BY_CATEGORY_COLON"
 msgstr ""
 
@@ -2200,11 +2205,11 @@ msgstr "популација:"
 msgid "FLOATING_HAZARD"
 msgstr "Плутајућа опасност"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:837
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:859
 msgid "FLUID"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:817
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:839
 msgid "FLUIDITY_RIGIDITY"
 msgstr "Течност / Ригидност"
 
@@ -2220,7 +2225,7 @@ msgstr ""
 msgid "FOOD_CHAIN"
 msgstr "Ланац Исхране"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2452
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2437
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr ""
 
@@ -2262,7 +2267,7 @@ msgstr ""
 msgid "FOSSILISE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:333
+#: ../src/general/OptionsMenu.tscn:334
 msgid "FOUR_TIMES"
 msgstr ""
 
@@ -2295,7 +2300,7 @@ msgstr ""
 msgid "FREE_GLUCOSE_CLOUD_EXPLANATION"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:286
+#: ../src/general/OptionsMenu.tscn:287
 msgid "FULLSCREEN"
 msgstr "Цео екран"
 
@@ -2303,7 +2308,7 @@ msgstr "Цео екран"
 msgid "FULL_MOD_INFO"
 msgstr ""
 
-#: ../src/gui_common/art_gallery/GalleryViewer.tscn:21
+#: ../src/gui_common/art_gallery/GalleryViewer.tscn:24
 msgid "GALLERY_VIEWER"
 msgstr ""
 
@@ -2321,28 +2326,28 @@ msgstr "Генерација:"
 msgid "GENERATIONS"
 msgstr "Генерација:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1059
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1081
 msgid "GENERATION_COLON"
 msgstr "Генерација:"
 
-#: ../src/general/MainMenu.tscn:820
+#: ../src/general/MainMenu.tscn:821
 #, fuzzy
 msgid "GITHUB_TOOLTIP"
 msgstr "Додајте ново везивање тастера"
 
-#: ../src/general/OptionsMenu.cs:970
+#: ../src/general/OptionsMenu.cs:977
 msgid "GLES2"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:953
+#: ../src/general/MainMenu.tscn:954
 msgid "GLES2_MODE_WARNING"
 msgstr "Упозорење у режиму GLES2"
 
-#: ../src/general/MainMenu.tscn:955
+#: ../src/general/MainMenu.tscn:956
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr "Користите Thrive витх GLES2. Ово је озбиљно непроверено и вероватно ће изазвати проблеме. Покушајте да ажурирате управљачке програме за видео и / или присилите АМД или Нвидиа графику да се користи за покретање програма Thrive."
 
-#: ../src/general/OptionsMenu.cs:975
+#: ../src/general/OptionsMenu.cs:982
 msgid "GLES3"
 msgstr ""
 
@@ -2369,7 +2374,7 @@ msgstr ""
 msgid "GLYCOLYSIS"
 msgstr "Гликолиза"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:40
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:44
 msgid "GODMODE"
 msgstr ""
 
@@ -2388,7 +2393,7 @@ msgstr ""
 msgid "GOOGLY_EYE_CELL"
 msgstr "играч је умро"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:159
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:160
 msgid "GOT_IT"
 msgstr "Схватио сам"
 
@@ -2396,12 +2401,12 @@ msgstr "Схватио сам"
 msgid "GPL_LICENSE_HEADING"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:479
+#: ../src/general/OptionsMenu.tscn:480
 #, fuzzy
 msgid "GPU_NAME"
 msgstr "Пећина"
 
-#: ../src/general/OptionsMenu.tscn:173
+#: ../src/general/OptionsMenu.tscn:174
 msgid "GRAPHICS"
 msgstr "Графика"
 
@@ -2410,7 +2415,7 @@ msgstr "Графика"
 msgid "GRAPHICS_TEAM"
 msgstr "Графика"
 
-#: ../src/general/OptionsMenu.tscn:563
+#: ../src/general/OptionsMenu.tscn:564
 msgid "GUI"
 msgstr ""
 
@@ -2423,7 +2428,7 @@ msgstr "Моћ ћелије. Митохондрион (множина: мито�
 msgid "GUI_TAB_NAVIGATION"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:811
+#: ../src/general/OptionsMenu.tscn:819
 msgid "GUI_VOLUME"
 msgstr "Тон интерфејса"
 
@@ -2437,20 +2442,20 @@ msgstr "Тон интерфејса"
 msgid "HEALTH"
 msgstr "Здравље"
 
-#: ../src/general/PauseMenu.tscn:216
+#: ../src/general/PauseMenu.tscn:220
 msgid "HELP"
 msgstr "Помоћ"
 
-#: ../src/general/PauseMenu.tscn:215 ../src/microbe_stage/HUDBottomBar.tscn:140
+#: ../src/general/PauseMenu.tscn:219 ../src/microbe_stage/HUDBottomBar.tscn:140
 #, fuzzy
 msgid "HELP_BUTTON_TOOLTIP"
 msgstr "Додајте ново везивање тастера"
 
-#: ../src/general/OptionsMenu.tscn:972 ../src/general/OptionsMenu.tscn:1022
+#: ../src/general/OptionsMenu.tscn:980 ../src/general/OptionsMenu.tscn:1030
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
 msgstr "(веће вредности побољшавају перформансе)"
 
-#: ../src/general/OptionsMenu.tscn:317 ../src/general/OptionsMenu.tscn:1180
+#: ../src/general/OptionsMenu.tscn:318 ../src/general/OptionsMenu.tscn:1188
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr "(веће вредности погоршавају перформансе)"
 
@@ -2474,7 +2479,7 @@ msgstr ""
 msgid "HOME"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1292 ../src/general/OptionsMenu.tscn:1402
+#: ../src/general/OptionsMenu.tscn:1300 ../src/general/OptionsMenu.tscn:1410
 #, fuzzy
 msgid "HORIZONTAL_COLON"
 msgstr "Генерација:"
@@ -2484,7 +2489,7 @@ msgstr "Генерација:"
 msgid "HORIZONTAL_WITH_AXIS_NAME_COLON"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1009
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1031
 msgid "HP_COLON"
 msgstr "Здрав.:"
 
@@ -2540,7 +2545,7 @@ msgstr ""
 msgid "INDUSTRIAL_STAGE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:33
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:37
 #, fuzzy
 msgid "INFINITE_COMPOUNDS"
 msgstr "Једињење"
@@ -2558,7 +2563,7 @@ msgstr ""
 msgid "INIT_NEW_WORLD_TOOLTIP"
 msgstr "Додајте ново везивање тастера"
 
-#: ../src/general/OptionsMenu.tscn:206
+#: ../src/general/OptionsMenu.tscn:207
 msgid "INPUTS"
 msgstr "Уноси"
 
@@ -2696,8 +2701,8 @@ msgstr ""
 msgid "INVENTORY_TOGGLE_GROUND"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1305 ../src/general/OptionsMenu.tscn:1327
-#: ../src/general/OptionsMenu.tscn:1415 ../src/general/OptionsMenu.tscn:1438
+#: ../src/general/OptionsMenu.tscn:1313 ../src/general/OptionsMenu.tscn:1335
+#: ../src/general/OptionsMenu.tscn:1423 ../src/general/OptionsMenu.tscn:1446
 msgid "INVERTED"
 msgstr ""
 
@@ -2716,7 +2721,7 @@ msgstr "Гвожђе"
 msgid "IRON_CHEMOLITHOAUTOTROPHY"
 msgstr "Хемолитоаутотрофија гвожђа"
 
-#: ../src/general/MainMenu.tscn:796
+#: ../src/general/MainMenu.tscn:797
 #, fuzzy
 msgid "ITCH_TOOLTIP"
 msgstr "Додајте ново везивање тастера"
@@ -2725,19 +2730,19 @@ msgstr "Додајте ново везивање тастера"
 msgid "JANUARY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1886
+#: ../src/general/OptionsMenu.tscn:1894
 msgid "JSON_DEBUG_MODE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1902
+#: ../src/general/OptionsMenu.tscn:1910
 msgid "JSON_DEBUG_MODE_ALWAYS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1901 ../src/general/OptionsMenu.tscn:1902
+#: ../src/general/OptionsMenu.tscn:1909 ../src/general/OptionsMenu.tscn:1910
 msgid "JSON_DEBUG_MODE_AUTO"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1902
+#: ../src/general/OptionsMenu.tscn:1910
 msgid "JSON_DEBUG_MODE_NEVER"
 msgstr ""
 
@@ -2926,23 +2931,23 @@ msgstr ""
 msgid "KPSUBTRACT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:887
+#: ../src/general/OptionsMenu.tscn:895
 msgid "LANGUAGE"
 msgstr "Језик:"
 
-#: ../src/general/OptionsMenu.cs:1462
+#: ../src/general/OptionsMenu.cs:1469
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1458
+#: ../src/general/OptionsMenu.cs:1465
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1454
+#: ../src/general/OptionsMenu.cs:1461
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1365
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1348
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 
@@ -3103,7 +3108,7 @@ msgstr "Леви миш"
 msgid "LEFT_MOUSE"
 msgstr "Леви миш"
 
-#: ../src/general/MainMenu.tscn:525
+#: ../src/general/MainMenu.tscn:526
 msgid "LICENSES"
 msgstr ""
 
@@ -3152,11 +3157,16 @@ msgstr ""
 msgid "LIGHT"
 msgstr "Светлост"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:511
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:533
 msgid "LIGHT_LEVEL_AVERAGE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:469
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:470
+#, fuzzy
+msgid "LIGHT_LEVEL_CURRENT"
+msgstr "Померите се удесно"
+
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:491
 msgid "LIGHT_LEVEL_DAY"
 msgstr ""
 
@@ -3164,7 +3174,7 @@ msgstr ""
 msgid "LIGHT_LEVEL_LABEL_AT_NOON"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:490
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:512
 #, fuzzy
 msgid "LIGHT_LEVEL_NIGHT"
 msgstr "Померите се удесно"
@@ -3174,7 +3184,7 @@ msgstr "Померите се удесно"
 msgid "LIGHT_MAX"
 msgstr "Светлост"
 
-#: ../src/general/OptionsMenu.tscn:1197
+#: ../src/general/OptionsMenu.tscn:1205
 #, fuzzy
 msgid "LIMIT_EXTREME"
 msgstr "Додатне"
@@ -3189,32 +3199,32 @@ msgstr "ПОТВРДИ"
 msgid "LIMIT_GROWTH_RATE_EXPLANATION"
 msgstr "Број популације од {0} променио се за {1} због: {2}"
 
-#: ../src/general/OptionsMenu.tscn:1197
+#: ../src/general/OptionsMenu.tscn:1205
 msgid "LIMIT_HUGE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1197
+#: ../src/general/OptionsMenu.tscn:1205
 msgid "LIMIT_LARGE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1197
+#: ../src/general/OptionsMenu.tscn:1205
 #, fuzzy
 msgid "LIMIT_NORMAL"
 msgstr "ПОТВРДИ"
 
-#: ../src/general/OptionsMenu.tscn:1197
+#: ../src/general/OptionsMenu.tscn:1205
 msgid "LIMIT_SMALL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1196 ../src/general/OptionsMenu.tscn:1197
+#: ../src/general/OptionsMenu.tscn:1204 ../src/general/OptionsMenu.tscn:1205
 msgid "LIMIT_TINY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1197
+#: ../src/general/OptionsMenu.tscn:1205
 msgid "LIMIT_VERY_LARGE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1197
+#: ../src/general/OptionsMenu.tscn:1205
 msgid "LIMIT_VERY_SMALL"
 msgstr ""
 
@@ -3274,12 +3284,12 @@ msgstr "Притисните дугме поништи у уређивачу д�
 msgid "LOAD_FINISHED"
 msgstr "Учитавање завршено"
 
-#: ../src/general/MainMenu.tscn:310 ../src/general/PauseMenu.tscn:200
+#: ../src/general/MainMenu.tscn:311 ../src/general/PauseMenu.tscn:204
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:146
 msgid "LOAD_GAME"
 msgstr "Учитајте Игру"
 
-#: ../src/general/MainMenu.tscn:308 ../src/general/PauseMenu.tscn:199
+#: ../src/general/MainMenu.tscn:309 ../src/general/PauseMenu.tscn:203
 #, fuzzy
 msgid "LOAD_GAME_BUTTON_TOOLTIP"
 msgstr "Додајте ново везивање тастера"
@@ -3355,7 +3365,7 @@ msgstr ""
 msgid "MARINE_SNOW"
 msgstr "Морски снег"
 
-#: ../src/general/OptionsMenu.tscn:655
+#: ../src/general/OptionsMenu.tscn:663
 msgid "MASTER_VOLUME"
 msgstr "Главна јачина звука"
 
@@ -3364,16 +3374,16 @@ msgstr "Главна јачина звука"
 msgid "MAXIMUM_SPECIES_IN_PATCH"
 msgstr "Изаберите зону да бисте овде приказали детаље"
 
-#: ../src/general/OptionsMenu.tscn:371
+#: ../src/general/OptionsMenu.tscn:372
 msgid "MAX_FPS"
 msgstr "Максимални FPS:"
 
-#: ../src/general/OptionsMenu.tscn:386
+#: ../src/general/OptionsMenu.tscn:387
 #, fuzzy
 msgid "MAX_FPS_NO_LIMIT"
 msgstr "Максимални FPS:"
 
-#: ../src/general/OptionsMenu.tscn:1173
+#: ../src/general/OptionsMenu.tscn:1181
 msgid "MAX_SPAWNED_ENTITIES"
 msgstr ""
 
@@ -3414,7 +3424,7 @@ msgstr ""
 msgid "MEGA_YEARS"
 msgstr "ма"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:641
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:663
 #, fuzzy
 msgid "MEMBRANE"
 msgstr "Врсте Мембрана"
@@ -3423,7 +3433,7 @@ msgstr "Врсте Мембрана"
 msgid "MEMBRANE_RIGIDITY"
 msgstr "Ригидност Мембране"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:799
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:821
 msgid "MEMBRANE_TYPES"
 msgstr "Врсте Мембрана"
 
@@ -3490,7 +3500,7 @@ msgstr ""
 "Да бисте преживели у овом непријатељском свету, мораћете да сакупите сва једињења која можете пронаћи и да еволуирате сваку генерацију да би се такмичили против других врста микроба."
 
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:34
-#: ../src/general/MainMenu.tscn:584
+#: ../src/general/MainMenu.tscn:585
 #, fuzzy
 msgid "MICROBE_BENCHMARK"
 msgstr "Учитавање Уређивача Микроба"
@@ -3575,7 +3585,7 @@ msgstr "Свака генерација имаш 100 мутациски поен
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
 msgstr "Сваки пут када се размножавате, ући ћете у уређивач микроба, где можете да измените врсту (додавањем, премештањем или уклањањем органела) да бисте повећали успех своје врсте. Свака посета уреднику на сцени микроба представља 100 милиона година еволуције."
 
-#: ../src/general/MainMenu.tscn:402
+#: ../src/general/MainMenu.tscn:403
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Слободна-Градња Уређивач Микроба"
 
@@ -3608,21 +3618,21 @@ msgstr ""
 "\n"
 "Да бисте преживели у овом непријатељском свету, мораћете да сакупите сва једињења која можете пронаћи и да еволуирате сваку генерацију да би се такмичили против других врста микроба."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:204
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:205
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
 "Сакупљајте глукозу (бели облаци) премештањем преко њих.\n"
 "Вашој ћелији је потребна глукоза да би произвела енергију да би остала жива.\n"
 "Пратите линију од ћелије до оближње глукозе."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:144
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:145
 msgid "MICROBE_STAGE_CONTROL_TEXT"
 msgstr ""
 "За контролу ћелије користите тастере приказане у близини ћелије (центар екрана) и мишем за контролу оријентације ћелије.\n"
 "\n"
 "Покушајте неколико тастера неколико секунди да бисте наставили."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:145
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:146
 #, fuzzy
 msgid "MICROBE_STAGE_CONTROL_TEXT_CONTROLLER"
 msgstr ""
@@ -3630,7 +3640,7 @@ msgstr ""
 "\n"
 "Покушајте неколико тастера неколико секунди да бисте наставили."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:215
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:216
 #, fuzzy
 msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
 msgstr ""
@@ -3639,7 +3649,7 @@ msgstr ""
 "Обнављате здравље док имате ATP.\n"
 "Обавезно сакупите довољно глукозе за производњу ATP."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:226
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:227
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
 "Припазите на своју здравствену траку поред ATP траке (доле десно).\n"
@@ -3763,7 +3773,7 @@ msgstr "Верзија:"
 msgid "MIN_VISIBLE_DATASET_WARNING"
 msgstr "Брисање овог чувања не може се опозвати. Да ли сте сигурни да желите трајно избрисати {0}?"
 
-#: ../src/general/NewGameSettings.tscn:312 ../src/general/OptionsMenu.tscn:217
+#: ../src/general/NewGameSettings.tscn:312 ../src/general/OptionsMenu.tscn:218
 msgid "MISC"
 msgstr "Остало"
 
@@ -3818,7 +3828,7 @@ msgstr ""
 msgid "MODELS"
 msgstr ""
 
-#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:362
+#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:324
 msgid "MODIFY"
 msgstr ""
 
@@ -3832,11 +3842,11 @@ msgstr "Макните органелу"
 msgid "MODIFY_TYPE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:502
+#: ../src/general/MainMenu.tscn:503
 msgid "MODS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:962
+#: ../src/general/MainMenu.tscn:967
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 
@@ -3927,11 +3937,11 @@ msgstr ""
 msgid "MOD_LICENSE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:974
+#: ../src/general/MainMenu.tscn:981
 msgid "MOD_LOAD_ERRORS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:975
+#: ../src/general/MainMenu.tscn:982
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr ""
 
@@ -3990,19 +4000,19 @@ msgstr "Верзија:"
 msgid "MORE_INFO"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1534
+#: ../src/general/OptionsMenu.tscn:1542
 msgid "MOUSE_EDGE_PANNING_OPTION"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1259
+#: ../src/general/OptionsMenu.tscn:1267
 msgid "MOUSE_LOOK_SENSITIVITY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1333
+#: ../src/general/OptionsMenu.tscn:1341
 msgid "MOUSE_SENSITIVITY_WINDOW_SIZE_ADJUSTMENT"
 msgstr ""
 
-#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:294
+#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:257
 #, fuzzy
 msgid "MOVE"
 msgstr "Покрет"
@@ -4128,7 +4138,7 @@ msgstr "Поставите органелу"
 msgid "MULTIPLE_ORGANELLES"
 msgstr "Поставите органелу"
 
-#: ../src/general/OptionsMenu.tscn:310
+#: ../src/general/OptionsMenu.tscn:311
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "Мултисампле анти-алиасинг:"
 
@@ -4140,7 +4150,7 @@ msgstr ""
 msgid "MUSIC"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:706
+#: ../src/general/OptionsMenu.tscn:714
 msgid "MUSIC_VOLUME"
 msgstr "Јачина музике"
 
@@ -4161,9 +4171,9 @@ msgstr ""
 msgid "MUTATION_POINTS"
 msgstr "Мутације Поени"
 
-#: ../src/general/OptionsMenu.tscn:684 ../src/general/OptionsMenu.tscn:735
-#: ../src/general/OptionsMenu.tscn:770 ../src/general/OptionsMenu.tscn:805
-#: ../src/general/OptionsMenu.tscn:840
+#: ../src/general/OptionsMenu.tscn:692 ../src/general/OptionsMenu.tscn:743
+#: ../src/general/OptionsMenu.tscn:778 ../src/general/OptionsMenu.tscn:813
+#: ../src/general/OptionsMenu.tscn:848
 msgid "MUTE"
 msgstr "Пригуши звук"
 
@@ -4171,11 +4181,11 @@ msgstr "Пригуши звук"
 msgid "NAME"
 msgstr "Име:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1454
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1476
 msgid "NEGATIVE_ATP_BALANCE"
 msgstr "Негативан ATP Биланс"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1455
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1477
 msgid "NEGATIVE_ATP_BALANCE_TEXT"
 msgstr ""
 "Ваш микроб не производи довољно ATP-а да би преживео!\n"
@@ -4199,11 +4209,11 @@ msgstr ""
 msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:298
+#: ../src/general/MainMenu.tscn:299
 msgid "NEW_GAME"
 msgstr "Нова игра"
 
-#: ../src/general/MainMenu.tscn:293
+#: ../src/general/MainMenu.tscn:294
 #, fuzzy
 msgid "NEW_GAME_BUTTON_TOOLTIP"
 msgstr "Додајте ново везивање тастера"
@@ -4231,7 +4241,7 @@ msgstr "Брзина:"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:673
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:790
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1416
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1438
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:188
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:770
 msgid "NEXT_CAPITAL"
@@ -4275,7 +4285,7 @@ msgstr "Пластид за фиксирање азота је протеин к
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
 msgstr "Пластид за фиксирање азота је протеин који може да користи гасовити азот и кисеоник и ћелијску енергију у облику ATP за производњу амонијака, кључног хранљивог састојка за раст ћелија. Ово је процес који се назива аеробна фиксација азота."
 
-#: ../src/general/OptionsMenu.tscn:418 ../src/general/OptionsMenu.tscn:419
+#: ../src/general/OptionsMenu.tscn:419 ../src/general/OptionsMenu.tscn:420
 msgid "NONE"
 msgstr ""
 
@@ -4300,11 +4310,11 @@ msgstr ""
 msgid "NOTICE_DAMAGED_BY_NO_ATP"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Interior.cs:1511
+#: ../src/microbe_stage/Microbe.Interior.cs:1541
 msgid "NOTICE_ENGULF_DAMAGE_FROM_TOXIN"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Interior.cs:1456
+#: ../src/microbe_stage/Microbe.Interior.cs:1487
 msgid "NOTICE_ENGULF_MISSING_ENZYME"
 msgstr ""
 
@@ -4335,12 +4345,12 @@ msgstr "Прекинуто."
 msgid "NOVEMBER"
 msgstr "Покрет"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:47
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:51
 msgid "NO_AI"
 msgstr ""
 
 #: ../src/gui_common/charts/line/LineChart.cs:674
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2467
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2452
 msgid "NO_DATA_TO_SHOW"
 msgstr ""
 
@@ -4353,7 +4363,7 @@ msgstr ""
 msgid "NO_FOSSIL_DIRECTORY"
 msgstr "Отворите Сачувај Директоријум"
 
-#: ../src/general/MainMenu.tscn:960
+#: ../src/general/MainMenu.tscn:965
 #, fuzzy
 msgid "NO_MODS_ENABLED"
 msgstr "Укључи тастери за варања"
@@ -4373,7 +4383,7 @@ msgstr ""
 msgid "NO_SAVE_DIRECTORY"
 msgstr "Отворите Сачувај Директоријум"
 
-#: ../src/general/OptionsMenu.tscn:2159
+#: ../src/general/OptionsMenu.tscn:2167
 #, fuzzy
 msgid "NO_SCREENSHOT_DIRECTORY"
 msgstr "Отворите Сачувај Директоријум"
@@ -4388,7 +4398,7 @@ msgstr "Одабрано:"
 msgid "NUCLEUS"
 msgstr "Ћелијско Језгро"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1363
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1346
 msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 
@@ -4412,8 +4422,8 @@ msgstr ""
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:36
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:46
 #: ../src/microbe_stage/AgentProjectile.cs:26
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2325
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2335
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2310
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2320
 #: ../src/microbe_stage/editor/MicrobePartSelection.tscn:140
 #: ../src/microbe_stage/MicrobeHUD.cs:380
 #, fuzzy
@@ -4433,18 +4443,19 @@ msgstr "Десни миш"
 msgid "OCTOBER"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:656
+#: ../src/general/MainMenu.tscn:657
 msgid "OFFICIAL_WEBSITE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:647
+#: ../src/general/MainMenu.tscn:648
 #, fuzzy
 msgid "OFFICIAL_WEBSITE_BUTTON_TOOLTIP"
 msgstr "Додајте ново везивање тастера"
 
-#: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:88
-#: ../src/gui_common/dialogs/ErrorDialog.tscn:118
-#: ../src/modding/ModUploader.tscn:357
+#: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:13
+#: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:87
+#: ../src/gui_common/dialogs/ErrorDialog.tscn:114
+#: ../src/modding/ModUploader.tscn:356
 msgid "OK"
 msgstr "У реду"
 
@@ -4477,7 +4488,7 @@ msgstr "Отворите екран помоћи"
 msgid "OPEN_IN_FREEBUILD"
 msgstr "Слободна-Градећи"
 
-#: ../src/general/OptionsMenu.tscn:1815
+#: ../src/general/OptionsMenu.tscn:1823
 msgid "OPEN_LOGS_FOLDER"
 msgstr ""
 
@@ -4503,7 +4514,7 @@ msgstr "Отворите Сачувај Директоријум"
 msgid "OPEN_SCIENCE_MENU"
 msgstr "Отворите мени"
 
-#: ../src/general/OptionsMenu.tscn:1807
+#: ../src/general/OptionsMenu.tscn:1815
 msgid "OPEN_SCREENSHOT_FOLDER"
 msgstr ""
 
@@ -4511,7 +4522,7 @@ msgstr ""
 msgid "OPEN_THE_MENU"
 msgstr "Отворите мени"
 
-#: ../src/general/OptionsMenu.tscn:924
+#: ../src/general/OptionsMenu.tscn:932
 msgid "OPEN_TRANSLATION_SITE"
 msgstr ""
 
@@ -4528,16 +4539,16 @@ msgstr ""
 msgid "OPPORTUNISTIC"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:319 ../src/general/PauseMenu.tscn:231
+#: ../src/general/MainMenu.tscn:320 ../src/general/PauseMenu.tscn:235
 msgid "OPTIONS"
 msgstr "Опције"
 
-#: ../src/general/MainMenu.tscn:317 ../src/general/PauseMenu.tscn:230
+#: ../src/general/MainMenu.tscn:318 ../src/general/PauseMenu.tscn:234
 #, fuzzy
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "Додајте ново везивање тастера"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:749
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:771
 msgid "ORGANELLES"
 msgstr "Органеле"
 
@@ -4552,7 +4563,7 @@ msgstr "Органеле"
 msgid "ORGANELLE_AXON_DESCRIPTION"
 msgstr "Избодите друге ћелије са ово."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:758
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:780
 #, fuzzy
 msgid "ORGANELLE_CATEGORY_MULTICELLULAR"
 msgstr "Поставите органелу"
@@ -4582,7 +4593,7 @@ msgstr "Избодите друге ћелије са ово."
 msgid "ORGANELLE_PILUS_PROCESSES_DESCRIPTION"
 msgstr "Избодите друге ћелије са ово."
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:951
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:973
 msgid "ORGANISM_STATISTICS"
 msgstr "Статистика Организма"
 
@@ -4781,7 +4792,7 @@ msgstr "ВИ СТЕ ПРОСПЕРИРАЛИ!"
 msgid "PATCH_NOTES_LAST_PLAYED_INFO_PLURAL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2169
+#: ../src/general/OptionsMenu.tscn:2177
 #: ../src/gui_common/PatchNotesDisplayer.tscn:26
 #, fuzzy
 msgid "PATCH_NOTES_TITLE"
@@ -4800,7 +4811,7 @@ msgstr ""
 msgid "PATCH_NOTE_LINK_VISIT_TEXT"
 msgstr "Баш као и 99% свих врста које су икада постојале, и ваша врста је изумрла. Други ће наставити да попуњавају вашу нишу и просперирати, али то нећете бити ви. Бићете заборављени, неуспели експеримент у еволуцији."
 
-#: ../src/general/MainMenu.tscn:808
+#: ../src/general/MainMenu.tscn:809
 #, fuzzy
 msgid "PATREON_TOOLTIP"
 msgstr "Додајте ново везивање тастера"
@@ -4813,7 +4824,7 @@ msgstr ""
 msgid "PAUSED"
 msgstr ""
 
-#: ../src/general/PauseMenu.tscn:183
+#: ../src/general/PauseMenu.tscn:187
 #, fuzzy
 msgid "PAUSE_MENU_RESUME_TOOLTIP"
 msgstr "Наставити"
@@ -4855,7 +4866,7 @@ msgstr ""
 msgid "PERCENTAGE_VALUE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:195
+#: ../src/general/OptionsMenu.tscn:196
 msgid "PERFORMANCE"
 msgstr "Перформансе"
 
@@ -4932,7 +4943,7 @@ msgstr "Број популације од {0} променио се за {1} з
 msgid "PLAYER_DIED"
 msgstr "играч је умро"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:82
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:86
 #, fuzzy
 msgid "PLAYER_DUPLICATE"
 msgstr "играч је умро"
@@ -4942,7 +4953,7 @@ msgstr "играч је умро"
 msgid "PLAYER_EXTINCT"
 msgstr "играч је умро"
 
-#: ../src/general/OptionsMenu.tscn:1477
+#: ../src/general/OptionsMenu.tscn:1485
 #, fuzzy
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr "играч је умро"
@@ -4951,28 +4962,28 @@ msgstr "играч је умро"
 msgid "PLAYER_REPRODUCED"
 msgstr "Играч се репродуковао"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:61
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:65
 #, fuzzy
 msgid "PLAYER_SPEED"
 msgstr "играч је умро"
 
-#: ../src/general/OptionsMenu.tscn:598
+#: ../src/general/OptionsMenu.tscn:599
 msgid "PLAYSTATION_3"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:598
+#: ../src/general/OptionsMenu.tscn:599
 msgid "PLAYSTATION_4"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:598
+#: ../src/general/OptionsMenu.tscn:599
 msgid "PLAYSTATION_5"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1644
+#: ../src/general/OptionsMenu.tscn:1652
 msgid "PLAY_INTRO_VIDEO"
 msgstr "Пусти уводни видео"
 
-#: ../src/general/OptionsMenu.tscn:1652
+#: ../src/general/OptionsMenu.tscn:1660
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr "Пустите уводни видео за микробе на Новој Игри"
 
@@ -4995,7 +5006,7 @@ msgstr "популација:"
 msgid "POPULATION_IN_PATCHES"
 msgstr "ПОПУЛАЦИЈА:"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2316
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2301
 #, fuzzy
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "ПОПУЛАЦИЈА:"
@@ -5004,7 +5015,7 @@ msgstr "ПОПУЛАЦИЈА:"
 msgid "PREDATION_FOOD_SOURCE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1229
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1251
 #, fuzzy
 msgid "PREDICTION_DETAILS_OPEN_TOOLTIP"
 msgstr "Наставити"
@@ -5044,7 +5055,7 @@ msgstr "Обрада учитаних објеката"
 msgid "PROCESS_ENVIRONMENT_SEPARATOR"
 msgstr ""
 
-#: ../src/microbe_stage/ProcessPanel.tscn:16
+#: ../src/microbe_stage/ProcessPanel.tscn:17
 msgid "PROCESS_PANEL_TITLE"
 msgstr ""
 
@@ -5064,7 +5075,7 @@ msgstr ""
 msgid "PROTECT_NEW_CELLS_FROM_SPECIES_CAP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:731
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:753
 msgid "PROTEINS"
 msgstr "Протеини"
 
@@ -5084,17 +5095,17 @@ msgstr "Учитајте брзу копију"
 msgid "QUICK_SAVE"
 msgstr "Брза копија"
 
-#: ../src/general/MainMenu.tscn:372
+#: ../src/general/MainMenu.tscn:373
 msgid "QUIT"
 msgstr "Одустати"
 
-#: ../src/general/MainMenu.tscn:358 ../src/general/MainMenu.tscn:367
-#: ../src/general/PauseMenu.tscn:246
+#: ../src/general/MainMenu.tscn:359 ../src/general/MainMenu.tscn:368
+#: ../src/general/PauseMenu.tscn:250
 #, fuzzy
 msgid "QUIT_BUTTON_TOOLTIP"
 msgstr "Додајте ново везивање тастера"
 
-#: ../src/general/PauseMenu.cs:446
+#: ../src/general/PauseMenu.cs:445
 #, fuzzy
 msgid "QUIT_GAME_WARNING"
 msgstr "Упозорење у режиму GLES2"
@@ -5132,7 +5143,7 @@ msgstr ""
 msgid "RECOMMENDED_THRIVE_VERSION"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:844
+#: ../src/general/MainMenu.tscn:845
 #, fuzzy
 msgid "REDDIT_TOOLTIP"
 msgstr "Наставити"
@@ -5158,12 +5169,12 @@ msgstr ""
 msgid "REPORT"
 msgstr "Извештај"
 
-#: ../src/general/MainMenu.tscn:725 ../src/general/PauseMenu.tscn:223
+#: ../src/general/MainMenu.tscn:726 ../src/general/PauseMenu.tscn:227
 #, fuzzy
 msgid "REPORT_BUG"
 msgstr "Извештај"
 
-#: ../src/microbe_stage/Microbe.Interior.cs:1117
+#: ../src/microbe_stage/Microbe.Interior.cs:1144
 #, fuzzy
 msgid "REPRODUCED"
 msgstr "Производи"
@@ -5197,33 +5208,33 @@ msgstr "Производи"
 msgid "REQUIRES_NUCLEUS"
 msgstr "Ћелијско Језгро"
 
-#: ../src/general/OptionsMenu.tscn:905 ../src/general/OptionsMenu.tscn:1990
+#: ../src/general/OptionsMenu.tscn:913 ../src/general/OptionsMenu.tscn:1998
 msgid "RESET"
 msgstr "Ресетовати"
 
-#: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:78
+#: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:79
 #, fuzzy
 msgid "RESET_DEADZONES"
 msgstr "Ресетуј до почетног?"
 
-#: ../src/general/OptionsMenu.tscn:1876
+#: ../src/general/OptionsMenu.tscn:1884
 msgid "RESET_DISMISSED_POPUPS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2050
+#: ../src/general/OptionsMenu.tscn:2058
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "Ресетовати уносе на подразумеване вредности?"
 
-#: ../src/general/OptionsMenu.tscn:1603
+#: ../src/general/OptionsMenu.tscn:1611
 #, fuzzy
 msgid "RESET_KEYBINDINGS"
 msgstr "Ресетујте Уноси"
 
-#: ../src/general/OptionsMenu.tscn:2030
+#: ../src/general/OptionsMenu.tscn:2038
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "Подразумеване вредности"
 
-#: ../src/general/OptionsMenu.tscn:2041
+#: ../src/general/OptionsMenu.tscn:2049
 msgid "RESET_TO_DEFAULTS"
 msgstr "Ресетуј до почетног?"
 
@@ -5232,7 +5243,7 @@ msgstr "Ресетуј до почетног?"
 msgid "RESISTANT_TO_BASIC_ENGULFMENT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:347
+#: ../src/general/OptionsMenu.tscn:348
 msgid "RESOLUTION"
 msgstr "Резолуција:"
 
@@ -5278,7 +5289,7 @@ msgstr ""
 msgid "RESTART_REQUIRED"
 msgstr ""
 
-#: ../src/general/PauseMenu.tscn:184
+#: ../src/general/PauseMenu.tscn:188
 msgid "RESUME"
 msgstr "Наставити"
 
@@ -5287,23 +5298,23 @@ msgstr "Наставити"
 msgid "RESUME_TOOLTIP"
 msgstr "Наставити"
 
-#: ../src/general/PauseMenu.tscn:239
+#: ../src/general/PauseMenu.tscn:243
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:155
 msgid "RETURN_TO_MENU"
 msgstr "Вратите се у Мени"
 
-#: ../src/general/PauseMenu.tscn:238
+#: ../src/general/PauseMenu.tscn:242
 #, fuzzy
 msgid "RETURN_TO_MENU_TOOLTIP"
 msgstr "Вратите се у Мени"
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:1009
-#: ../src/general/PauseMenu.cs:427
+#: ../src/general/PauseMenu.cs:426
 #, fuzzy
 msgid "RETURN_TO_MENU_WARNING"
 msgstr "Вратите се у Мени"
 
-#: ../src/general/MainMenu.tscn:771
+#: ../src/general/MainMenu.tscn:772
 #, fuzzy
 msgid "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
 msgstr "Додајте ново везивање тастера"
@@ -5317,7 +5328,7 @@ msgstr "Десни миш"
 msgid "RIGHT_MOUSE"
 msgstr "Десни миш"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:850
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:872
 msgid "RIGID"
 msgstr ""
 
@@ -5333,12 +5344,12 @@ msgstr "Ротирајте лево"
 msgid "ROTATE_RIGHT"
 msgstr "Ротирајте десно"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1003
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1025
 #, fuzzy
 msgid "ROTATION_COLON"
 msgstr "популација:"
 
-#: ../src/general/OptionsMenu.tscn:1057
+#: ../src/general/OptionsMenu.tscn:1065
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "Покрените аутоматску-еволуцију током играња"
 
@@ -5396,20 +5407,20 @@ msgstr "Рустицијанин је протеин који може да ко
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr "Рустицијанин је протеин који може да користи гасовити угљен-диоксид и кисеоник за оксидацију гвожђа из једног хемијског стања у друго. Овај процес, назван Респирација гвожђа, ослобађа енергију коју ћелија тада може да сакупи."
 
-#: ../src/general/MainMenu.tscn:970
+#: ../src/general/MainMenu.tscn:977
 #, fuzzy
 msgid "SAFE_MODE_EXPLANATION"
 msgstr "Број популације од {0} променио се за {1} због: {2}"
 
-#: ../src/general/MainMenu.tscn:968
+#: ../src/general/MainMenu.tscn:975
 msgid "SAFE_MODE_TITLE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2004 ../src/saving/NewSaveMenu.tscn:80
+#: ../src/general/OptionsMenu.tscn:2012 ../src/saving/NewSaveMenu.tscn:80
 msgid "SAVE"
 msgstr "Сачувати"
 
-#: ../src/general/OptionsMenu.tscn:2103
+#: ../src/general/OptionsMenu.tscn:2111
 msgid "SAVE_AND_CONTINUE"
 msgstr "Сачувај и настави"
 
@@ -5425,11 +5436,11 @@ msgstr "Брисање овог чувања не може се опозвати
 msgid "SAVE_FAILED"
 msgstr "Сачување није успело"
 
-#: ../src/general/PauseMenu.tscn:192
+#: ../src/general/PauseMenu.tscn:196
 msgid "SAVE_GAME"
 msgstr "Сачувај Игру"
 
-#: ../src/general/PauseMenu.tscn:191
+#: ../src/general/PauseMenu.tscn:195
 #, fuzzy
 msgid "SAVE_GAME_BUTTON_TOOLTIP"
 msgstr "Додајте ново везивање тастера"
@@ -5511,23 +5522,23 @@ msgstr "Чување није успело! Догоди се изузетак"
 msgid "SAVING_SUCCEEDED"
 msgstr "Чување је успело"
 
-#: ../src/general/OptionsMenu.tscn:1345 ../src/general/OptionsMenu.tscn:1346
+#: ../src/general/OptionsMenu.tscn:1353 ../src/general/OptionsMenu.tscn:1354
 msgid "SCALING_NONE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1346
+#: ../src/general/OptionsMenu.tscn:1354
 #, fuzzy
 msgid "SCALING_ON"
 msgstr ""
 "Постоји сукоб са {0}.\n"
 "Да ли желите да уклоните унос из {1}?"
 
-#: ../src/general/OptionsMenu.tscn:1346
+#: ../src/general/OptionsMenu.tscn:1354
 msgid "SCALING_ON_INVERSE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1477 ../src/general/OptionsMenu.tscn:1510
-#: ../src/general/OptionsMenu.tscn:1511
+#: ../src/general/OptionsMenu.tscn:1485 ../src/general/OptionsMenu.tscn:1518
+#: ../src/general/OptionsMenu.tscn:1519
 #, fuzzy
 msgid "SCREEN_RELATIVE_MOVEMENT"
 msgstr "за повећање кретања"
@@ -5536,7 +5547,7 @@ msgstr "за повећање кретања"
 msgid "SCROLLLOCK"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:715
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:737
 msgid "SEARCH_DOT_DOT_DOT"
 msgstr "Тражи..."
 
@@ -5555,7 +5566,7 @@ msgid "SECRETE_SLIME"
 msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:153
-#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:234
+#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:275
 #: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.cs:127
 #: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.tscn:88
 #, fuzzy
@@ -5614,7 +5625,7 @@ msgstr "Одабрано:"
 msgid "SELECT_OPTION"
 msgstr "Одабрано:"
 
-#: ../src/modding/ModUploader.tscn:325
+#: ../src/modding/ModUploader.tscn:326
 msgid "SELECT_PREVIEW_IMAGE"
 msgstr ""
 
@@ -5638,7 +5649,7 @@ msgstr ""
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:776
+#: ../src/general/OptionsMenu.tscn:784
 msgid "SFX_VOLUME"
 msgstr "Том од звучних ефеката"
 
@@ -5650,29 +5661,29 @@ msgstr "Shift"
 msgid "SHOW_HELP"
 msgstr "Покажите помоћ"
 
-#: ../src/general/OptionsMenu.tscn:1832
+#: ../src/general/OptionsMenu.tscn:1840
 #, fuzzy
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr "Пећина"
 
-#: ../src/general/OptionsMenu.tscn:1830
+#: ../src/general/OptionsMenu.tscn:1838
 #, fuzzy
 msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
 msgstr "Пећина"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:110
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:111
 msgid "SHOW_TUTORIALS"
 msgstr "Прикажи туторијале"
 
-#: ../src/general/OptionsMenu.tscn:1742
+#: ../src/general/OptionsMenu.tscn:1750
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Прикажи водиче (у тренутној игри)"
 
-#: ../src/general/OptionsMenu.tscn:1734
+#: ../src/general/OptionsMenu.tscn:1742
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Прикажи водиче (у новим играма)"
 
-#: ../src/general/OptionsMenu.tscn:1749
+#: ../src/general/OptionsMenu.tscn:1757
 #, fuzzy
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr ""
@@ -5686,7 +5697,7 @@ msgstr ""
 "Имате несачуване промене које ће бити одбачене.\n"
 "Да ли желите да наставите?"
 
-#: ../src/general/OptionsMenu.tscn:1823
+#: ../src/general/OptionsMenu.tscn:1831
 msgid "SHOW_WEB_NEWS_FEED"
 msgstr ""
 
@@ -5747,16 +5758,16 @@ msgstr "Силицијум-Диоксид"
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr "Ова мембрана има јак зид од силицијум диоксида. Може се добро одупрети укупној штети и врло је отпоран на физичка оштећења. Такође захтева мање енергије за одржавање форме. Међутим, успорава ћелију великим фактором и ћелија апсорбује ресурсе смањеном брзином."
 
-#: ../src/general/OptionsMenu.tscn:333
+#: ../src/general/OptionsMenu.tscn:334
 msgid "SIXTEEN_TIMES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1015
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1037
 msgid "SIZE_COLON"
 msgstr "Величина:"
 
-#: ../src/gui_common/art_gallery/GalleryViewer.tscn:129
-#: ../src/gui_common/art_gallery/SlideScreen.tscn:177
+#: ../src/gui_common/art_gallery/GalleryViewer.tscn:130
+#: ../src/gui_common/art_gallery/SlideScreen.tscn:179
 msgid "SLIDESHOW"
 msgstr ""
 
@@ -5801,7 +5812,7 @@ msgstr ""
 "\n"
 "Да бисте преживели у овом непријатељском свету, мораћете да сакупите сва једињења која можете пронаћи и да еволуирате сваку генерацију да би се такмичили против других врста микроба."
 
-#: ../src/general/OptionsMenu.tscn:184
+#: ../src/general/OptionsMenu.tscn:185
 msgid "SOUND"
 msgstr "Звук"
 
@@ -5838,11 +5849,11 @@ msgstr ""
 msgid "SPAWN_AMMONIA"
 msgstr "Поставите амонијак"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:92
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:96
 msgid "SPAWN_ENEMY"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:784
+#: ../src/microbe_stage/MicrobeStage.cs:794
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr ""
 
@@ -5922,7 +5933,7 @@ msgstr "Врсте:"
 msgid "SPEED"
 msgstr "Брзина"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:997
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1019
 msgid "SPEED_COLON"
 msgstr "Брзина:"
 
@@ -5939,7 +5950,7 @@ msgstr "Додајте ново везивање тастера"
 msgid "STARTING"
 msgstr "Почиње"
 
-#: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:66
+#: ../src/engine/input/ControllerDeadzoneConfiguration.tscn:67
 msgid "START_CALIBRATION"
 msgstr ""
 
@@ -6017,17 +6028,17 @@ msgstr ""
 msgid "STEAM_ERROR_UNKNOWN"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:988
+#: ../src/general/MainMenu.tscn:998
 #, fuzzy
 msgid "STEAM_INIT_FAILED"
 msgstr "Чување није успело! Догоди се изузетак"
 
-#: ../src/general/MainMenu.tscn:990
+#: ../src/general/MainMenu.tscn:1000
 #, fuzzy
 msgid "STEAM_INIT_FAILED_DESCRIPTION"
 msgstr "Вакуола је унутрашња мембранска органела која се користи за складиштење у ћелији. Састоје се од неколико везикула, мањих опнастих структура које се широко користе у ћелијама за складиштење, а које су се стопиле. Испуњен је водом која се користи да садржи молекуле, ензиме, чврсте материје и друге супстанце. Њихов облик је течан и може се разликовати између ћелија."
 
-#: ../src/general/MainMenu.tscn:784
+#: ../src/general/MainMenu.tscn:785
 #, fuzzy
 msgid "STEAM_TOOLTIP"
 msgstr "Наставити"
@@ -6065,12 +6076,12 @@ msgstr ""
 msgid "STORAGE"
 msgstr "Складиште"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1021
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1043
 #, fuzzy
 msgid "STORAGE_COLON"
 msgstr "Складиште"
 
-#: ../src/general/MainMenu.cs:507
+#: ../src/general/MainMenu.cs:571
 msgid "STORE_LOGGED_IN_AS"
 msgstr ""
 
@@ -6090,13 +6101,13 @@ msgstr ""
 msgid "STRICT_NICHE_COMPETITION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:722
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:744
 msgid "STRUCTURAL"
 msgstr "Структурни"
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:435
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:436
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:619
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:641
 msgid "STRUCTURE"
 msgstr "Структура"
 
@@ -6147,7 +6158,7 @@ msgstr "Додајте ново везивање тастера"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:166
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:4128
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:442
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:443
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:651
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:344
 msgid "SUNLIGHT"
@@ -6241,7 +6252,7 @@ msgstr "Темп."
 msgid "TESTING_TEAM"
 msgstr ""
 
-#: ../src/general/MainMenu.cs:226 ../src/general/MainMenu.tscn:982
+#: ../src/general/MainMenu.cs:244 ../src/general/MainMenu.tscn:990
 msgid "THANKS_FOR_BUYING_THRIVE"
 msgstr ""
 
@@ -6249,7 +6260,7 @@ msgstr ""
 msgid "THANKS_FOR_PLAYING"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:980
+#: ../src/general/MainMenu.tscn:988
 #, fuzzy
 msgid "THANK_YOU_TITLE"
 msgstr "ВИ СТЕ ПРОСПЕРИРАЛИ!"
@@ -6298,7 +6309,7 @@ msgstr "Хемосинтеза"
 msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 msgstr "Количина глукозе је смањена на {0} од претходне количине."
 
-#: ../src/thriveopedia/pages/ThriveopediaHomePage.tscn:46
+#: ../src/thriveopedia/pages/ThriveopediaHomePage.tscn:47
 msgid "THE_DISTURBANCE"
 msgstr ""
 
@@ -6310,11 +6321,11 @@ msgstr ""
 msgid "THIS_IS_WORKSHOP_MOD"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1126
+#: ../src/general/OptionsMenu.tscn:1134
 msgid "THREADS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:489 ../src/general/PauseMenu.tscn:208
+#: ../src/general/MainMenu.tscn:490 ../src/general/PauseMenu.tscn:212
 msgid "THRIVEOPEDIA"
 msgstr ""
 
@@ -6326,11 +6337,11 @@ msgstr ""
 msgid "THRIVEOPEDIA_EVOLUTIONARY_TREE_PAGE_TITLE"
 msgstr ""
 
-#: ../src/general/PauseMenu.tscn:207
+#: ../src/general/PauseMenu.tscn:211
 msgid "THRIVEOPEDIA_HINT_IN_GAME"
 msgstr ""
 
-#: ../src/thriveopedia/pages/ThriveopediaHomePage.tscn:39
+#: ../src/thriveopedia/pages/ThriveopediaHomePage.tscn:40
 msgid "THRIVEOPEDIA_HOME_INFO"
 msgstr ""
 
@@ -6475,7 +6486,7 @@ msgstr ""
 msgid "TOGGLE_UNBINDING"
 msgstr "Укључи одвајање"
 
-#: ../src/general/MainMenu.tscn:327
+#: ../src/general/MainMenu.tscn:328
 msgid "TOOLS"
 msgstr "Алати"
 
@@ -6483,7 +6494,7 @@ msgstr "Алати"
 msgid "TOOL_HAND_AXE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1293
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1315
 #, fuzzy
 msgid "TOTAL_POPULATION_COLON"
 msgstr "Број популације од {0} променио се за {1} због: {2}"
@@ -6544,7 +6555,7 @@ msgstr "Направите снимак екрана"
 msgid "TRY_MAKING_A_SAVE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2161
+#: ../src/general/OptionsMenu.tscn:2169
 #, fuzzy
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "Направите снимак екрана"
@@ -6552,18 +6563,17 @@ msgstr "Направите снимак екрана"
 #: ../src/gui_common/dialogs/TutorialDialog.tscn:17
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:123
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:194
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:60
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:286
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:381
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:61
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:287
 msgid "TUTORIAL"
 msgstr "Приручник"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:382
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:381
 #, fuzzy
 msgid "TUTORIAL_EARLY_MULTICELLULAR_STAGE_WELCOME"
 msgstr "Учитавање Уређивача Микроба"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:176
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:177
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_AUTO-EVO_PREDICTION"
 msgstr ""
@@ -6576,7 +6586,7 @@ msgstr ""
 "\n"
 "Изаберите зону за наставак."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:69
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:70
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_CELL_TEXT"
 msgstr ""
@@ -6599,7 +6609,7 @@ msgstr ""
 "\n"
 "Срећно!"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:56
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:57
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
 msgstr ""
@@ -6610,7 +6620,7 @@ msgstr ""
 "\n"
 "Да бисте прешли на следећу картицу уређивача, притисните следеће дугме у доњем десном углу."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:84
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:85
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_REMOVE_ORGANELLE_TEXT"
 msgstr ""
@@ -6621,7 +6631,7 @@ msgstr ""
 "\n"
 "Кликните на дугме поништи да бисте наставили."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:102
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:103
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_SELECT_ORGANELLE_TEXT"
 msgstr ""
@@ -6643,7 +6653,7 @@ msgstr ""
 "\n"
 "Да бисте наставили, одаберите органелу са табле са леве стране (цитоплазма је добар избор). Затим кликните левим тастером миша поред шестерокута приказаног у средини екрана да бисте додали ту органелу својој врсти."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:258
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:259
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
@@ -6655,7 +6665,7 @@ msgstr ""
 "\n"
 "Да бисте преживели у овом непријатељском свету, мораћете да сакупите сва једињења која можете пронаћи и да еволуирате сваку генерацију да би се такмичили против других врста микроба."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:356
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:359
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFED_TEXT"
 msgstr ""
@@ -6663,7 +6673,7 @@ msgstr ""
 "\n"
 "Покушајте неколико тастера неколико секунди да бисте наставили."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:332
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:335
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_FULL_TEXT"
 msgstr ""
@@ -6671,7 +6681,7 @@ msgstr ""
 "\n"
 "Покушајте неколико тастера неколико секунди да бисте наставили."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:343
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:346
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFMENT_TEXT"
 msgstr ""
@@ -6679,12 +6689,12 @@ msgstr ""
 "\n"
 "Покушајте неколико тастера неколико секунди да бисте наставили."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:287
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:288
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr "W, A, S, D и миш за кретање. Е да пуцате ОксиТокси НТ ако имате отровна вацуоле. G за пребацивање режима гутања."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:368
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:371
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_LEAVE_COLONY_TEXT"
 msgstr ""
@@ -6692,14 +6702,14 @@ msgstr ""
 "\n"
 "Покушајте неколико тастера неколико секунди да бисте наставили."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:238
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:239
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
 "Да бисте се репродуковали, потребно је да дуплирате све своје органеле сакупљајући довољно амонијака и фосфата.\n"
 "Погледајте индикатор у доњем десном углу да бисте видели колико вам још треба."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:270
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:271
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
@@ -6707,16 +6717,16 @@ msgstr ""
 "\n"
 "Покушајте неколико тастера неколико секунди да бисте наставили."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:321
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:324
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Погледај сад"
 
-#: ../src/general/MainMenu.tscn:880
+#: ../src/general/MainMenu.tscn:881
 #, fuzzy
 msgid "TWITTER_TOOLTIP"
 msgstr "Додајте ново везивање тастера"
 
-#: ../src/general/OptionsMenu.tscn:333
+#: ../src/general/OptionsMenu.tscn:334
 msgid "TWO_TIMES"
 msgstr ""
 
@@ -6743,7 +6753,7 @@ msgstr "Одвоји све"
 msgid "UNBIND_HELP_TEXT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1523
+#: ../src/general/OptionsMenu.cs:1530
 #, fuzzy
 msgid "UNCERTAIN_VERSION_WARNING"
 msgstr ""
@@ -6767,7 +6777,7 @@ msgstr "Опозови последњу акцију"
 msgid "UNKNOWN"
 msgstr "Непознати миш"
 
-#: ../src/general/OptionsMenu.cs:980
+#: ../src/general/OptionsMenu.cs:987
 #, fuzzy
 msgid "UNKNOWN_DISPLAY_DRIVER"
 msgstr "Способности"
@@ -6781,7 +6791,7 @@ msgstr "Непознати миш"
 msgid "UNKNOWN_ON_WINDOWS"
 msgstr "Непознати миш"
 
-#: ../src/general/OptionsMenu.cs:1530
+#: ../src/general/OptionsMenu.cs:1537
 #, fuzzy
 msgid "UNKNOWN_VERSION"
 msgstr "Верзија:"
@@ -6791,7 +6801,7 @@ msgstr "Верзија:"
 msgid "UNKNOWN_WORKSHOP_ID"
 msgstr "Непознати миш"
 
-#: ../src/general/OptionsMenu.tscn:2080
+#: ../src/general/OptionsMenu.tscn:2088
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 "Имате несачуване промене које ће бити одбачене.\n"
@@ -6830,7 +6840,7 @@ msgstr "Учитавање"
 msgid "UPLOADING_DOT_DOT_DOT"
 msgstr "Учитавање..."
 
-#: ../src/modding/ModUploader.tscn:336
+#: ../src/modding/ModUploader.tscn:335
 #, fuzzy
 msgid "UPLOAD_SUCCEEDED"
 msgstr "Чување је успело"
@@ -6839,7 +6849,7 @@ msgstr "Чување је успело"
 msgid "USED_LIBRARIES_LICENSES"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:509
+#: ../src/general/OptionsMenu.tscn:510
 msgid "USED_RENDERER_NAME"
 msgstr ""
 
@@ -6857,7 +6867,7 @@ msgstr ""
 msgid "USE_AUTO_HARMONY_TOOLTIP"
 msgstr "Додајте ново везивање тастера"
 
-#: ../src/general/OptionsMenu.tscn:1769
+#: ../src/general/OptionsMenu.tscn:1777
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Користите прилагођено корисничко име"
 
@@ -6865,11 +6875,11 @@ msgstr "Користите прилагођено корисничко име"
 msgid "USE_BIODIVERSITY_FORCE_SPLIT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1116
+#: ../src/general/OptionsMenu.tscn:1124
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1360
+#: ../src/general/OptionsMenu.tscn:1368
 msgid "USE_VIRTUAL_WINDOW_SIZE"
 msgstr ""
 
@@ -6898,7 +6908,7 @@ msgstr ""
 msgid "VERSION_COLON"
 msgstr "Генерација:"
 
-#: ../src/general/OptionsMenu.tscn:1311 ../src/general/OptionsMenu.tscn:1421
+#: ../src/general/OptionsMenu.tscn:1319 ../src/general/OptionsMenu.tscn:1429
 #, fuzzy
 msgid "VERTICAL_COLON"
 msgstr "Генерација:"
@@ -6909,11 +6919,11 @@ msgstr "Генерација:"
 msgid "VERTICAL_WITH_AXIS_NAME_COLON"
 msgstr "Брзина:"
 
-#: ../src/general/OptionsMenu.tscn:536
+#: ../src/general/OptionsMenu.tscn:537
 msgid "VIDEO_MEMORY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:989 ../src/general/OptionsMenu.tscn:549
+#: ../src/general/OptionsMenu.cs:996 ../src/general/OptionsMenu.tscn:550
 msgid "VIDEO_MEMORY_MIB"
 msgstr ""
 
@@ -6926,17 +6936,17 @@ msgstr ""
 msgid "VIEW_ALL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1840
+#: ../src/general/OptionsMenu.tscn:1848
 #, fuzzy
 msgid "VIEW_PATCH_NOTES"
 msgstr "Пећина"
 
-#: ../src/general/OptionsMenu.tscn:1838
+#: ../src/general/OptionsMenu.tscn:1846
 #, fuzzy
 msgid "VIEW_PATCH_NOTES_TOOLTIP"
 msgstr "Пећина"
 
-#: ../src/general/MainMenu.tscn:335
+#: ../src/general/MainMenu.tscn:336
 msgid "VIEW_SOURCE_CODE"
 msgstr "Погледајте Изворни Код"
 
@@ -6948,7 +6958,7 @@ msgstr ""
 msgid "VISIBLE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:538 ../src/general/MainMenu.tscn:743
+#: ../src/general/MainMenu.tscn:539 ../src/general/MainMenu.tscn:744
 msgid "VISIT_SUGGESTIONS_SITE"
 msgstr ""
 
@@ -6971,15 +6981,15 @@ msgstr "Том од звучних ефеката"
 msgid "VOLUMEUP"
 msgstr "Том од звучних ефеката"
 
-#: ../src/general/OptionsMenu.tscn:278
+#: ../src/general/OptionsMenu.tscn:279
 msgid "VSYNC"
 msgstr "В-синц"
 
-#: ../src/general/base_stage/EditorBase.cs:256
+#: ../src/general/base_stage/EditorBase.cs:250
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "Чека се аутоматска-еволуција:"
 
-#: ../src/thriveopedia/pages/ThriveopediaHomePage.tscn:21
+#: ../src/thriveopedia/pages/ThriveopediaHomePage.tscn:22
 msgid "WELCOME_TO_THRIVEOPEDIA"
 msgstr ""
 
@@ -7082,25 +7092,25 @@ msgstr "Статистика Организма"
 msgid "WORLD_MISC_DETAILS_STRING"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1511
+#: ../src/general/OptionsMenu.tscn:1519
 #, fuzzy
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "за повећање кретања"
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1331
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1353
 #, fuzzy
 msgid "WORST_PATCH_COLON"
 msgstr "Врсте:"
 
-#: ../src/general/OptionsMenu.tscn:598
+#: ../src/general/OptionsMenu.tscn:599
 msgid "XBOX360"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:598
+#: ../src/general/OptionsMenu.tscn:599
 msgid "XBOX_ONE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:598
+#: ../src/general/OptionsMenu.tscn:599
 msgid "XBOX_SERIES"
 msgstr ""
 
@@ -7112,7 +7122,7 @@ msgstr ""
 msgid "YEARS"
 msgstr "године"
 
-#: ../src/general/MainMenu.tscn:832
+#: ../src/general/MainMenu.tscn:833
 #, fuzzy
 msgid "YOUTUBE_TOOLTIP"
 msgstr "Наставити"
