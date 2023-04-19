@@ -111,7 +111,14 @@ public class Voronoi
         return determinant;
     }
 
-    // http://www.gdmc.nl/publications/2007/Computing_3D_Voronoi_Diagram.pdf
+    /// <summary>
+    /// <para>Hugo Ledoux 'Computing the 3D Voronoi Diagram Robustly: An Easy Explanation'</para>
+    /// Delft University of Technology (OTB-section GIS Technology) [Internet] 2007
+    /// <para>Available from: http://www.gdmc.nl/publications/2007/Computing_3D_Voronoi_Diagram.pdf</para>
+    /// </summary>
+    /// <returns>
+    /// initialized voronoi diagram
+    /// </returns>
     private List<Cell>? InitializeDiagram(List<Vector3> seeds)
     {
         var voronoiCells = new List<Cell>();

@@ -27,7 +27,6 @@ public class VoxelGrid
         Vector3 fieldB = default(Vector3);
 
         Random rng = new Random();
-        Vector3 voxelPos = default(Vector3);
         var activeVoxels = new List<Vector3>();
 
         for (int i = 0; i < fields.Count; i++)
@@ -41,7 +40,7 @@ public class VoxelGrid
             fieldB.Z = fields[i + 1].Position.z;
 
             int point = Voxels.Random(rng);
-            voxelPos = new Vector3(point / (Width * Height),
+            var voxelPos = new Vector3(point / (Width * Height),
                 (point - Length * Width * Height) / Width,
                 point % Width);
 

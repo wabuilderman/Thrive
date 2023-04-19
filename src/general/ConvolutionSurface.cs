@@ -5,25 +5,6 @@ using Godot;
 using Array = System.Array;
 using Vector3 = System.Numerics.Vector3;
 
-/// <summary>
-///    point: a point in space to test against the surface; P
-///    segA: Start of line segment associated with surface's skeleton; A
-///    segB: End of line segment associated with surface's skeleton; B
-///    i: Order of the kernel
-///    k: For determining recurrences (See HAL Id: inria-00429358, section 3.2: Recurrences)
-///
-///    This function ultimately boils down to integrating:
-///        \integral_0^1 (1 / (at^2-2bt+c)) ^ (1/2) dx
-///
-///    a= |AB|^2
-///    b= Vector(AB) * Vector(AP)
-///    c= |AP|^2
-///    t= time
-///
-///    a-2b+c = |BP|^2
-///    a-b= Vector(BA) * Vector(BP)
-///    delta= |AB|^2 * |AP|^2 - (Vector(AB) * Vector(AP))^2
-/// </summary>
 public class ConvolutionSurface
 {
     public static float GetIntegralAtPoint(Vector3 segA, Vector3 segB, Vector3 point, float sigma)
@@ -70,6 +51,29 @@ public class ConvolutionSurface
         return sigma * sigma * (i - 3) / (i - 2) * NormalizationFactor(i - 2, sigma);
     }
 
+    /// <summary>
+    /// <para>E.Hubert, M-P.Cani 'Convolution Surfaces based on Polygonal Curve Skeletons'</para>
+    /// HAL Open Science (https://hal.science) [Internet] 30 October 2009. id: inria-00429358
+    /// <para>Available from: https://inria.hal.science/inria-00429358v1/document</para>
+    /// </summary>
+    /// <param name="point">a point in space to test against the surface; P</param>
+    /// <param name="segA">Start of line segment associated with surface's skeleton; A</param>
+    /// <param name="segB">End of line segment associated with surface's skeleton; B</param>
+    /// <param name="i">Order of the kernel</param>
+    /// <param name="k">For recurrence (See HAL Id: inria-00429358, section 3.2: Recurrences)</param>
+    /// <remarks>
+    ///    This function ultimately boils down to integrating:
+    ///        \integral_0^1 (1 / (at^2-2bt+c)) ^ (1/2) dx<para/>
+    ///
+    ///    a= |AB|^2
+    ///    <para>b= Vector(AB) * Vector(AP)</para>
+    ///    c= |AP|^2
+    ///    <para>t= time</para>
+    ///
+    ///    a-2b+c = |BP|^2
+    ///    <para>a-b= Vector(BA) * Vector(BP)</para>
+    ///    delta= |AB|^2 * |AP|^2 - (Vector(AB) * Vector(AP))^2
+    /// </remarks>
     private static float Convolution(Vector3 point, Vector3 segA, Vector3 segB, int i, int k)
     {
         float distAnB = Vector3.Distance(segA, segB);
