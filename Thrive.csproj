@@ -224,7 +224,9 @@
     <Compile Include="src\general\base_stage\StageBase.cs" />
     <Compile Include="src\general\base_stage\StrategyStageBase.cs" />
     <Compile Include="src\general\base_stage\StrategyStageHUDBase.cs" />
+    <Compile Include="src\general\ConvolutionSurface.cs" />
     <Compile Include="src\general\CustomDifficulty.cs" />
+    <Compile Include="src\general\HexCluster.cs" />
     <Compile Include="src\general\IDifficulty.cs" />
     <Compile Include="src\general\IInspectableEntity.cs" />
     <Compile Include="src\general\IPlayerReadableName.cs" />
@@ -246,6 +248,8 @@
     <Compile Include="src\general\utils\TranslationHelper.cs" />
     <Compile Include="src\general\utils\TypeUtils.cs" />
     <Compile Include="src\general\utils\VersionUtils.cs" />
+    <Compile Include="src\general\Voronoi.cs" />
+    <Compile Include="src\general\VoxelGrid.cs" />
     <Compile Include="src\gui_common\art_gallery\TextureThumbnailResource.cs" />
     <Compile Include="src\gui_common\CustomWindow.cs" />
     <Compile Include="src\gui_common\CustomPopupMenu.cs" />

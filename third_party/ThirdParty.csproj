@@ -20,4 +20,8 @@
     <OutputPath>../.mono/temp/lib/$(Configuration)/</OutputPath>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Supercluster.KDTree.Standard" Version="1.0.5" />
+  </ItemGroup>
+
 </Project>

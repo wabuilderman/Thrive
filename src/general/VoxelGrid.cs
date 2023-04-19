@@ -21,14 +21,14 @@ public class VoxelGrid
         Voxels = new List<int>(x * y * z);
     }
 
-    public List<Vector3> GetActiveVoxels(MetaballLayout<Metaball> fields)
+    public ICollection<Vector3> GetRandomSeeds(MetaballLayout<Metaball> fields)
     {
         Vector3 fieldA = default(Vector3);
         Vector3 fieldB = default(Vector3);
 
         Random rng = new Random();
         Vector3 voxelPos = default(Vector3);
-        List<Vector3> activeVoxels = new List<Vector3>();
+        var activeVoxels = new List<Vector3>();
 
         for (int i = 0; i < fields.Count; i++)
         {
@@ -52,6 +52,8 @@ public class VoxelGrid
                 activeVoxels.Add(voxelPos);
         }
 
-        return activeVoxels;
+        ICollection<Vector3> seeds = activeVoxels;
+
+        return seeds;
     }
 }
