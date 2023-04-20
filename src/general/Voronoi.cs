@@ -6,15 +6,27 @@ using System.Linq;
 using System.Numerics;
 using System.Threading;
 using System.Threading.Tasks;
+using Godot.Collections;
 using Supercluster.KDTree;
+using Array = Godot.Collections.Array;
 using Vector3 = Godot.Vector3;
 
 public class Voronoi
 {
-    public ICollection<Cell>? Diagram;
+    public ICollection<Cell>? VoronoiDiagram;
+    public ICollection<Simplex>? DelaunayDiagram;
+
+    // very big tetrahedron, will automate making this
+    private readonly float[][] bigTetra =
+    {
+        new[] { 0, -24999.75f, -74999.25f },
+        new[] { 0, 74999.25f, 0 },
+        new[] { 53032.61968f, -24999.75f, -53032.61968f },
+        new[] { -53032.61968f, -24999.75f, -53032.61968f },
+    };
 
     // standard euclidean distance
-    private Func<float[], float[], double> l2Norm = (p, q) =>
+    private readonly Func<float[], float[], double> l2Norm = (p, q) =>
     {
         double dist = 0;
         for (int i = 0; i < p.Length; i++)
@@ -25,18 +37,9 @@ public class Voronoi
         return dist;
     };
 
-    // very big tetrahedron, will automate making this
-    private float[,] bigTetra =
-    {
-        { 0, -24999.75f, -74999.25f },
-        { 0, 74999.25f, 0 },
-        { 53032.61968f, -74999.25f, 53032.61968f },
-        { -53032.61968f, -74999.25f, -53032.61968f },
-    };
-
     public Voronoi(List<Vector3> seeds)
     {
-        Diagram = InitializeDiagram(seeds);
+        DelaunayDiagram = InitializeDiagram(seeds);
     }
 
     /// <summary>
@@ -112,6 +115,56 @@ public class Voronoi
     }
 
     /// <summary>
+    /// <para>O.Devillers, S.Pion, and M.Teillaud 'Walking in a Triangulation'</para>
+    /// International Journal of Foundations of Computer Science, 13(2):181-199, 2002
+    /// <para>Available from: https://inria.hal.science/inria-00102194/document</para>
+    /// </summary>
+    /// <param name="simplexes">triangles to walk</param>
+    /// <param name="point">query point</param>
+    private Tetrahedron Walk(ICollection<Simplex> simplexes, Vector3 point)
+    {
+        // Remembering Stochastic Walk
+        // from q to p. t=qrl is a triangle of simplexes
+        // previous = t; end = false;
+        // while( not end)
+        //  e = random edge of t;
+        //  if( p not neighbor of previous through e ) && ( p on other side of e )
+        //      previous = t; t = neighbor( t through e);
+        //  else
+        //      e = next edge of t;
+        //      if( p not neighbor of previous through e ) && ( p on other side of e )
+        //          previous = t; t = neighbor( t through e);
+        //       else end = true;
+        // t contains p
+
+        throw new NotImplementedException();
+    }
+
+    private void Flip()
+    {
+        throw new NotImplementedException();
+    }
+
+    // this inserts a point and calculates new tetrahedrons
+    private void InsertPoint(ICollection<Simplex> delaunay, Vector3 point)
+    {
+        // tet <--walk
+        Tetrahedron tet = Walk(delaunay, point);
+
+        // insert point in tet with a flip14
+        // push 4 new tets on stack
+        // while stack is non-empty do
+        //   tet = {p, a, b, c} <--pop from stack
+        //   tet[a] = {a, b, c, d} <--get adjacent tet of delaunay having abc as facet
+        //   if d is inside circumsphere of delaunay then
+        //       Flip(delaunay, delaunay[a])
+        //   end if
+        // end while
+
+        throw new NotImplementedException();
+    }
+
+    /// <summary>
     /// <para>Hugo Ledoux 'Computing the 3D Voronoi Diagram Robustly: An Easy Explanation'</para>
     /// Delft University of Technology (OTB-section GIS Technology) [Internet] 2007
     /// <para>Available from: http://www.gdmc.nl/publications/2007/Computing_3D_Voronoi_Diagram.pdf</para>
@@ -119,16 +172,33 @@ public class Voronoi
     /// <returns>
     /// initialized voronoi diagram
     /// </returns>
-    private List<Cell>? InitializeDiagram(List<Vector3> seeds)
+    private List<Simplex>? InitializeDiagram(List<Vector3> seeds)
     {
-        var voronoiCells = new List<Cell>();
+        // big tetrahedron that contains all points to start
+        var triangulation = new List<Simplex>();
+        triangulation.Add(new Simplex(bigTetra[0], bigTetra[2], bigTetra[1]));
+        triangulation.Add(new Simplex(bigTetra[0], bigTetra[3], bigTetra[1]));
+        triangulation.Add(new Simplex(bigTetra[0], bigTetra[2], bigTetra[3]));
+        triangulation.Add(new Simplex(bigTetra[1], bigTetra[2], bigTetra[3]));
 
+        // insert seeds as query points, then rebuild diagram until we triangulate every point.
+        // gives low poly initial triangulation that we make more detailed with Del-Iso
         for (int i = 0; i < seeds.Count; i++)
         {
-            Vector3 root = seeds[i];
+            Vector3 query = seeds[i];
         }
 
-        return voronoiCells;
+        return triangulation;
+    }
+
+    private ICollection<Cell> RefineDiagram(ICollection<Cell> diagram)
+    {
+        throw new NotImplementedException();
+    }
+
+    private ICollection<Cell> RecoverDiagram(ICollection<Cell> diagram)
+    {
+        throw new NotImplementedException();
     }
 
     // find nearest neighbours using a kd tree
@@ -148,18 +218,52 @@ public class Voronoi
         var tree = new KDTree<float, string>(3, treeData, treeNodes, l2Norm);
 
         // gotta work on this one a lot
-        return null;
+        throw new NotImplementedException();
     }
 
+    // voronoi cell
     public struct Cell
     {
-        public ICollection<Vector3> Corners;
+        public List<Vector3> Corners;
         public Vector3 Site;
 
         public Cell(Vector3 seed, List<Vector3> verts)
         {
             Site = seed;
             Corners = verts;
+        }
+    }
+
+    // delaunay triangle
+    public struct Simplex
+    {
+        public Array<Vector3> Corners;
+        public Vector3 Centroid;
+
+        public Simplex(float[] a, float[] b, float[] c)
+        {
+            Corners = new Array<Vector3>
+            {
+                new(a[0], a[1], a[2]),
+                new(b[0], b[1], b[2]),
+                new(c[0], c[1], c[2]),
+            };
+
+            float centroidX = (Corners[0].x + Corners[1].x + Corners[2].x) / 3;
+            float centroidY = (Corners[0].y + Corners[1].y + Corners[2].y) / 3;
+            float centroidZ = (Corners[0].z + Corners[1].z + Corners[2].z) / 3;
+            Centroid = new Vector3(centroidX, centroidY, centroidZ);
+        }
+    }
+
+    // a tetrahedron that helps form a 3D delaunay diagram
+    public struct Tetrahedron
+    {
+        public Array<Simplex> Faces;
+
+        public Tetrahedron(Array<Simplex> facets)
+        {
+            Faces = facets;
         }
     }
 }
