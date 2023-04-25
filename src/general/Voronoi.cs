@@ -115,26 +115,56 @@ public class Voronoi
     }
 
     /// <summary>
-    /// <para>O.Devillers, S.Pion, and M.Teillaud 'Walking in a Triangulation'</para>
+    ///     <para>
+    ///         O.Devillers, S.Pion, and M.Teillaud 'Walking in a Triangulation'
+    ///     </para>
     /// International Journal of Foundations of Computer Science, 13(2):181-199, 2002
-    /// <para>Available from: https://inria.hal.science/inria-00102194/document</para>
+    ///     <para>
+    ///         Available from: https://inria.hal.science/inria-00102194/document
+    ///     </para>
     /// </summary>
-    /// <param name="simplexes">triangles to walk</param>
+    /// <param name="tet">tetrahedron to walk from</param>
     /// <param name="point">query point</param>
-    private Tetrahedron Walk(ICollection<Simplex> simplexes, Vector3 point)
+    private Tetrahedron Walk(Tetrahedron tet, Vector3 point)
     {
         // Remembering Stochastic Walk
-        // from q to p. t=qrl is a triangle of simplexes
-        // previous = t; end = false;
-        // while( not end)
-        //  e = random edge of t;
-        //  if( p not neighbor of previous through e ) && ( p on other side of e )
-        //      previous = t; t = neighbor( t through e);
-        //  else
-        //      e = next edge of t;
-        //      if( p not neighbor of previous through e ) && ( p on other side of e )
-        //          previous = t; t = neighbor( t through e);
-        //       else end = true;
+        // from q(uery) to p(oint). tet=abcd is a tetrahedron of simplexes (faces)
+        // previous = tet; end = false;
+        var previous = tet;
+        bool end = false;
+
+        while (!end)
+        {
+            // face = random facet of tet;
+            int random = new Random().Next(3);
+            Simplex face = tet.Faces[random];
+            bool neighbor = false;
+            bool otherSide = false;
+
+            // if( point not neighbor of previous through face ) && ( point on other side of face )
+            if (!neighbor && otherSide)
+            {
+                // previous = tet;
+                // tet = neighbor( tet through face);
+            }
+            else
+            {
+                // face = next facet of tet;
+                face = random < 4 ? tet.Faces[random++] : tet.Faces[0];
+
+                // if( point not neighbor of previous through face ) && ( point on other side of face )
+                if (!neighbor && otherSide)
+                {
+                    // previous = tet;
+                    // tet = neighbor( tet through face);
+                }
+                else
+                {
+                    end = true;
+                }
+            }
+        }
+
         // t contains p
 
         throw new NotImplementedException();
@@ -149,7 +179,7 @@ public class Voronoi
     private void InsertPoint(ICollection<Simplex> delaunay, Vector3 point)
     {
         // tet <--walk
-        Tetrahedron tet = Walk(delaunay, point);
+        // Tetrahedron tet = Walk(delaunay, point);
 
         // insert point in tet with a flip14
         // push 4 new tets on stack
