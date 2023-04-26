@@ -206,26 +206,30 @@ public class Voronoi
         return tet;
     }
 
-    private void Flip()
+    private ICollection<Tetrahedron> Flip(Tetrahedron tet, Vector3 point)
     {
         throw new NotImplementedException();
     }
 
     // this inserts a point and calculates new tetrahedrons
-    private void InsertPoint(ICollection<Simplex> delaunay, Vector3 point)
+    private void InsertPoint(IList<Tetrahedron> delaunay, Vector3 point)
     {
         // tet <--walk
-        // Tetrahedron tet = Walk(delaunay, point);
+        Tetrahedron tet = Walk(delaunay[0], point);
 
         // insert point in tet with a flip14
+        ICollection<Tetrahedron> newTets = Flip(tet, point);
+
         // push 4 new tets on stack
-        // while stack is non-empty do
-        //   tet = {p, a, b, c} <--pop from stack
-        //   tet[a] = {a, b, c, d} <--get adjacent tet of delaunay having abc as facet
-        //   if d is inside circumsphere of delaunay then
-        //       Flip(delaunay, delaunay[a])
-        //   end if
-        // end while
+        while (newTets.Count > 0)
+        {
+            // tet = {p, a, b, c} <--pop from stack
+            // tet[a] = {a, b, c, d} <--get adjacent tet of delaunay having abc as facet
+            // if d is inside circumsphere of delaunay then
+            //     Flip(delaunay, delaunay[a])
+            //     end if
+            // end while
+        }
 
         throw new NotImplementedException();
     }

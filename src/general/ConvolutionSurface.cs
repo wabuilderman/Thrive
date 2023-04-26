@@ -52,9 +52,13 @@ public class ConvolutionSurface
     }
 
     /// <summary>
-    /// <para>E.Hubert, M-P.Cani 'Convolution Surfaces based on Polygonal Curve Skeletons'</para>
+    ///     <para>
+    ///         E.Hubert, M-P.Cani 'Convolution Surfaces based on Polygonal Curve Skeletons'
+    ///     </para>
     /// HAL Open Science (https://hal.science) [Internet] 30 October 2009. id: inria-00429358
-    /// <para>Available from: https://inria.hal.science/inria-00429358v1/document</para>
+    ///     <para>
+    ///         Available from: https://inria.hal.science/inria-00429358v1/document
+    ///     </para>
     /// </summary>
     /// <param name="point">a point in space to test against the surface; P</param>
     /// <param name="segA">Start of line segment associated with surface's skeleton; A</param>
