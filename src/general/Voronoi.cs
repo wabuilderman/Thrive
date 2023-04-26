@@ -15,7 +15,7 @@ using Vector3 = Godot.Vector3;
 public class Voronoi
 {
     public ICollection<Cell>? VoronoiDiagram;
-    public ICollection<Simplex>? DelaunayDiagram;
+    public List<Tetrahedron> DelaunayDiagram;
 
     // very big tetrahedron, will automate making this
     private readonly float[][] bigTetra =
@@ -206,25 +206,25 @@ public class Voronoi
         return tet;
     }
 
-    private ICollection<Tetrahedron> Flip(Tetrahedron tet, Vector3 point)
+    private List<Tetrahedron> Flip(Tetrahedron tet, Vector3 point)
     {
         throw new NotImplementedException();
     }
 
     // this inserts a point and calculates new tetrahedrons
-    private void InsertPoint(IList<Tetrahedron> delaunay, Vector3 point)
+    private void InsertPoint(List<Tetrahedron> delaunay, Vector3 point)
     {
-        // tet <--walk
-        Tetrahedron tet = Walk(delaunay[0], point);
+        // tetra <--walk
+        Tetrahedron tetra = Walk(delaunay[0], point);
 
-        // insert point in tet with a flip14
-        ICollection<Tetrahedron> newTets = Flip(tet, point);
+        // insert point in tetra with a flip14
+        List<Tetrahedron> newTetras = Flip(tetra, point);
 
-        // push 4 new tets on stack
-        while (newTets.Count > 0)
+        // push 4 new tetras on stack
+        while (newTetras.Count > 0)
         {
-            // tet = {p, a, b, c} <--pop from stack
-            // tet[a] = {a, b, c, d} <--get adjacent tet of delaunay having abc as facet
+            // tetra = {p, a, b, c} <--pop from stack
+            // tetra[a] = {a, b, c, d} <--get adjacent tetra of delaunay having abc as facet
             // if d is inside circumsphere of delaunay then
             //     Flip(delaunay, delaunay[a])
             //     end if
@@ -242,23 +242,35 @@ public class Voronoi
     /// <returns>
     /// initialized voronoi diagram
     /// </returns>
-    private List<Simplex>? InitializeDiagram(List<Vector3> seeds)
+    private List<Tetrahedron> InitializeDiagram(List<Vector3> seeds)
     {
         // big tetrahedron that contains all points to start
-        var triangulation = new List<Simplex>();
-        triangulation.Add(new Simplex(bigTetra[0], bigTetra[2], bigTetra[1]));
-        triangulation.Add(new Simplex(bigTetra[0], bigTetra[3], bigTetra[1]));
-        triangulation.Add(new Simplex(bigTetra[0], bigTetra[2], bigTetra[3]));
-        triangulation.Add(new Simplex(bigTetra[1], bigTetra[2], bigTetra[3]));
+        var bigTetVerts = new Array<Vector3>()
+        {
+            new Vector3(bigTetra[0][0], bigTetra[0][1], bigTetra[0][2]),
+            new Vector3(bigTetra[1][0], bigTetra[1][1], bigTetra[1][2]),
+            new Vector3(bigTetra[2][0], bigTetra[2][1], bigTetra[2][2]),
+            new Vector3(bigTetra[3][0], bigTetra[3][1], bigTetra[3][2]),
+        };
+
+        var bigTet = new Tetrahedron(bigTetVerts);
+
+        var triangulation = new List<Tetrahedron> { bigTet };
 
         // insert seeds as query points, then rebuild diagram until we triangulate every point.
         // gives low poly initial triangulation that we make more detailed with Del-Iso
         for (int i = 0; i < seeds.Count; i++)
         {
             Vector3 query = seeds[i];
+            InsertPoint(triangulation, query);
         }
 
         return triangulation;
+    }
+
+    private List<Simplex> DelIso(List<Tetrahedron> delaunay)
+    {
+        throw new NotImplementedException();
     }
 
     private ICollection<Cell> RefineDiagram(ICollection<Cell> diagram)

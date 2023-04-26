@@ -26,7 +26,7 @@ public class VoxelGrid
         Vector3 fieldA = default(Vector3);
         Vector3 fieldB = default(Vector3);
 
-        Random rng = new Random();
+        Random rng = new();
         var activeVoxels = new List<Vector3>();
 
         for (int i = 0; i < fields.Count; i++)

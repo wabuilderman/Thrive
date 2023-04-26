@@ -52,13 +52,9 @@ public class ConvolutionSurface
     }
 
     /// <summary>
-    ///     <para>
-    ///         E.Hubert, M-P.Cani 'Convolution Surfaces based on Polygonal Curve Skeletons'
-    ///     </para>
+    ///     <para>E.Hubert, M-P.Cani 'Convolution Surfaces based on Polygonal Curve Skeletons'</para>
     /// HAL Open Science (https://hal.science) [Internet] 30 October 2009. id: inria-00429358
-    ///     <para>
-    ///         Available from: https://inria.hal.science/inria-00429358v1/document
-    ///     </para>
+    ///     <para>Available from: https://inria.hal.science/inria-00429358v1/document</para>
     /// </summary>
     /// <param name="point">a point in space to test against the surface; P</param>
     /// <param name="segA">Start of line segment associated with surface's skeleton; A</param>
@@ -70,12 +66,12 @@ public class ConvolutionSurface
     ///        \integral_0^1 (1 / (at^2-2bt+c)) ^ (1/2) dx<para/>
     ///
     ///    a= |AB|^2
-    ///    <para>b= Vector(AB) * Vector(AP)</para>
+    ///     <para>b= Vector(AB) * Vector(AP)</para>
     ///    c= |AP|^2
-    ///    <para>t= time</para>
+    ///     <para>t= time</para>
     ///
     ///    a-2b+c = |BP|^2
-    ///    <para>a-b= Vector(BA) * Vector(BP)</para>
+    ///     <para>a-b= Vector(BA) * Vector(BP)</para>
     ///    delta= |AB|^2 * |AP|^2 - (Vector(AB) * Vector(AP))^2
     /// </remarks>
     private static float Convolution(Vector3 point, Vector3 segA, Vector3 segB, int i, int k)
