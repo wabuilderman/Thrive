@@ -6,6 +6,7 @@ using System.Linq;
 using System.Numerics;
 using System.Threading;
 using System.Threading.Tasks;
+using Godot;
 using Godot.Collections;
 using Supercluster.KDTree;
 using Array = Godot.Collections.Array;
@@ -128,7 +129,7 @@ public class Voronoi
     private Tetrahedron Walk(Tetrahedron tet, Vector3 point)
     {
         // Remembering Stochastic Walk
-        // from q(uery) to p(oint). tet=abcd is a tetrahedron of simplexes (faces)
+        // from q to p(oint). tet=qrlt is a tetrahedron of simplexes (faces)
         // previous = tet; end = false;
         var previous = tet;
         bool end = false;
@@ -138,36 +139,71 @@ public class Voronoi
             // face = random facet of tet;
             int random = new Random().Next(3);
             Simplex face = tet.Faces[random];
-            bool neighbor = false;
-            bool otherSide = false;
+
+            // TODO: need to map neighbors to edges
+            Vector3 centroidPrevious = (previous.Vertices[0] + previous.Vertices[1] + previous.Vertices[2]
+                + previous.Vertices[3]) / 4;
+
+            // don't go backwards
+            bool neighborPrevious = Orient(face.Vertices[0], face.Vertices[1], face.Vertices[2],
+                centroidPrevious) > 0;
+
+            // point on other side of edge
+            bool otherSide = Orient(face.Vertices[0], face.Vertices[1], face.Vertices[2], point) > 0;
 
             // if( point not neighbor of previous through face ) && ( point on other side of face )
-            if (!neighbor && otherSide)
+            if (!neighborPrevious && otherSide)
             {
-                // previous = tet;
+                previous = tet;
+
                 // tet = neighbor( tet through face);
             }
             else
             {
                 // face = next facet of tet;
-                face = random < 4 ? tet.Faces[random++] : tet.Faces[0];
+                face = random < 3 ? tet.Faces[random++] : tet.Faces[0];
+
+                centroidPrevious = (previous.Vertices[0] + previous.Vertices[1] + previous.Vertices[2]
+                    + previous.Vertices[3]) / 4;
+                neighborPrevious = Orient(face.Vertices[0], face.Vertices[1], face.Vertices[2],
+                    centroidPrevious) > 0;
+                otherSide = Orient(face.Vertices[0], face.Vertices[1], face.Vertices[2], point) > 0;
 
                 // if( point not neighbor of previous through face ) && ( point on other side of face )
-                if (!neighbor && otherSide)
+                if (!neighborPrevious && otherSide)
                 {
-                    // previous = tet;
+                    previous = tet;
+
                     // tet = neighbor( tet through face);
                 }
                 else
                 {
-                    end = true;
+                    // face = next facet of tet;
+                    face = random < 3 ? tet.Faces[random++] : tet.Faces[0];
+
+                    centroidPrevious = (previous.Vertices[0] + previous.Vertices[1] + previous.Vertices[2]
+                        + previous.Vertices[3]) / 4;
+                    neighborPrevious = Orient(face.Vertices[0], face.Vertices[1], face.Vertices[2],
+                        centroidPrevious) > 0;
+                    otherSide = Orient(face.Vertices[0], face.Vertices[1], face.Vertices[2], point) > 0;
+
+                    // if( point not neighbor of previous through face ) && ( point on other side of face )
+                    if (!neighborPrevious && otherSide)
+                    {
+                        previous = tet;
+
+                        // tet = neighbor( tet through face);
+                    }
+                    else
+                    {
+                        end = true;
+                    }
                 }
             }
         }
 
-        // t contains p
-
-        throw new NotImplementedException();
+        // tet contains point
+        return tet;
     }
 
     private void Flip()
@@ -254,46 +290,54 @@ public class Voronoi
     // voronoi cell
     public struct Cell
     {
-        public List<Vector3> Corners;
+        public List<Vector3> Vertices;
         public Vector3 Site;
 
         public Cell(Vector3 seed, List<Vector3> verts)
         {
             Site = seed;
-            Corners = verts;
+            Vertices = verts;
         }
     }
 
     // delaunay triangle
     public struct Simplex
     {
-        public Array<Vector3> Corners;
-        public Vector3 Centroid;
+        public Array<Vector3> Vertices;
 
         public Simplex(float[] a, float[] b, float[] c)
         {
-            Corners = new Array<Vector3>
+            Vertices = new Array<Vector3>
             {
                 new(a[0], a[1], a[2]),
                 new(b[0], b[1], b[2]),
                 new(c[0], c[1], c[2]),
             };
-
-            float centroidX = (Corners[0].x + Corners[1].x + Corners[2].x) / 3;
-            float centroidY = (Corners[0].y + Corners[1].y + Corners[2].y) / 3;
-            float centroidZ = (Corners[0].z + Corners[1].z + Corners[2].z) / 3;
-            Centroid = new Vector3(centroidX, centroidY, centroidZ);
         }
     }
 
     // a tetrahedron that helps form a 3D delaunay diagram
     public struct Tetrahedron
     {
+        public Array<Vector3> Vertices;
         public Array<Simplex> Faces;
 
-        public Tetrahedron(Array<Simplex> facets)
+        public Tetrahedron(Array<Vector3> verts)
         {
-            Faces = facets;
+            Vertices = verts;
+
+            float[] q = new[] { verts[0].x, verts[0].y, verts[0].z };
+            float[] r = new[] { verts[1].x, verts[1].y, verts[1].z };
+            float[] l = new[] { verts[2].x, verts[2].y, verts[2].z };
+            float[] t = new[] { verts[3].x, verts[3].y, verts[3].z };
+
+            Faces = new Array<Simplex>()
+            {
+                new Simplex(q, r, l),
+                new Simplex(q, t, r),
+                new Simplex(q, l, t),
+                new Simplex(r, t, l),
+            };
         }
     }
 }
