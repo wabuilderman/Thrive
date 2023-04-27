@@ -16,7 +16,7 @@ public class Voronoi
 {
     public ICollection<Cell>? VoronoiDiagram;
     public List<Tetrahedron> DelaunayDiagram;
-    public Array<Simplex> Mesh;
+    public Array<Triangle> Mesh;
 
     // very big tetrahedron, will automate making this
     private readonly float[][] bigTetra =
@@ -41,7 +41,20 @@ public class Voronoi
 
     public Voronoi(List<Vector3> seeds)
     {
-        DelaunayDiagram = InitializeDiagram(seeds);
+        // big tetrahedron that contains all points to start
+        var bigTetVerts = new[]
+        {
+            new Vector3(bigTetra[0][0], bigTetra[0][1], bigTetra[0][2]),
+            new Vector3(bigTetra[1][0], bigTetra[1][1], bigTetra[1][2]),
+            new Vector3(bigTetra[2][0], bigTetra[2][1], bigTetra[2][2]),
+            new Vector3(bigTetra[3][0], bigTetra[3][1], bigTetra[3][2]),
+        };
+
+        var bigTet = new Tetrahedron(bigTetVerts);
+        DelaunayDiagram = new List<Tetrahedron> { bigTet };
+
+        InitializeDiagram(seeds);
+        DelIso(DelaunayDiagram);
     }
 
     /// <summary>
@@ -139,7 +152,7 @@ public class Voronoi
         {
             // face = random facet of tetra;
             int random = new Random().Next(3);
-            Simplex face = tetra.Faces[random];
+            Triangle face = tetra.Faces[random];
 
             // TODO: need to map neighbors to edges
             Tetrahedron neighbor = DelaunayDiagram[tetra.Neighbors[random]];
@@ -200,20 +213,42 @@ public class Voronoi
     // TODO: should map adjacencies here
     private void Flip(Tetrahedron tetraA, Tetrahedron tetraB)
     {
+        /*
+         // case #1: convex
+                flip23(A, B)
+                push tetra pabd, pbcd, and pacd on stack
+         // case #2: concave && diagram has tetra pdab
+                flip32(A, B, pdab)
+                push pacd and pdab on stack
+         // case #3: degenerate coplanar && A and B are in config44 w/ C and D
+                flip44(A, B, C, D)
+                push on stack the 4 tetra created
+         // case #4: degenerate flat tetra
+                flip23(A, B)
+                push tetra pabd, pbcd, and pacd on stack
+        */
+
         throw new NotImplementedException();
     }
 
     // this inserts a point and calculates new tetrahedra
     private void InsertPoint(List<Tetrahedron> delaunay, Vector3 point)
     {
-        // tetra <--walk
-        Tetrahedron tetra = Walk(delaunay[0], point);
+        var lastTetra = delaunay.Count - 1;
+        Tetrahedron tetra = Walk(delaunay[lastTetra], point);
+
+        DelaunayDiagram.Remove(delaunay[lastTetra]);
 
         // insert point in tetra with a flip14
         var a = new Tetrahedron(new[] { point, tetra.Vertices[0], tetra.Vertices[1], tetra.Vertices[2] });
         var b = new Tetrahedron(new[] { point, tetra.Vertices[0], tetra.Vertices[2], tetra.Vertices[3] });
         var c = new Tetrahedron(new[] { point, tetra.Vertices[0], tetra.Vertices[3], tetra.Vertices[1] });
         var d = new Tetrahedron(new[] { point, tetra.Vertices[1], tetra.Vertices[2], tetra.Vertices[3] });
+
+        DelaunayDiagram.Add(a);
+        DelaunayDiagram.Add(b);
+        DelaunayDiagram.Add(c);
+        DelaunayDiagram.Add(d);
 
         // push 4 new tetras on stack
         Queue<Tetrahedron> newTetras = new();
@@ -222,15 +257,13 @@ public class Voronoi
         newTetras.Enqueue(c);
         newTetras.Enqueue(d);
 
-        Tetrahedron test = default;
-        Tetrahedron neighbor = default;
         while (newTetras.Count > 0)
         {
             // tetra = {p, a, b, c} <--pop from stack
-            test = newTetras.Dequeue();
+            var test = newTetras.Dequeue();
 
             // tetra[a] = {a, b, c, d} <--get adjacent tetra of delaunay having abc as a face
-            neighbor = DelaunayDiagram[test.Neighbors[3]];
+            var neighbor = DelaunayDiagram[test.Neighbors[3]];
 
             // if d is inside circumsphere of tetra then flip
             if (InSphere(test.Vertices[0], test.Vertices[1], test.Vertices[2], test.Vertices[3],
@@ -252,36 +285,18 @@ public class Voronoi
     ///     Available from: http://www.gdmc.nl/publications/2007/Computing_3D_Voronoi_Diagram.pdf
     ///   </para>
     /// </summary>
-    /// <returns>
-    /// initialized voronoi diagram
-    /// </returns>
-    private List<Tetrahedron> InitializeDiagram(List<Vector3> seeds)
+    private void InitializeDiagram(List<Vector3> seeds)
     {
-        // big tetrahedron that contains all points to start
-        var bigTetVerts = new[]
-        {
-            new Vector3(bigTetra[0][0], bigTetra[0][1], bigTetra[0][2]),
-            new Vector3(bigTetra[1][0], bigTetra[1][1], bigTetra[1][2]),
-            new Vector3(bigTetra[2][0], bigTetra[2][1], bigTetra[2][2]),
-            new Vector3(bigTetra[3][0], bigTetra[3][1], bigTetra[3][2]),
-        };
-
-        var bigTet = new Tetrahedron(bigTetVerts);
-
-        var triangulation = new List<Tetrahedron> { bigTet };
-
         // insert seeds as query points, then rebuild diagram until we triangulate every point.
         // gives low poly initial triangulation that we make more detailed with Del-Iso
         for (int i = 0; i < seeds.Count; i++)
         {
             Vector3 query = seeds[i];
-            InsertPoint(triangulation, query);
+            InsertPoint(DelaunayDiagram, query);
         }
-
-        return triangulation;
     }
 
-    private List<Simplex> DelIso(List<Tetrahedron> delaunay)
+    private void DelIso(List<Tetrahedron> delaunay)
     {
         var voronoi = RecoverDiagram(delaunay);
         voronoi = RefineDiagram(voronoi);
@@ -333,11 +348,11 @@ public class Voronoi
     }
 
     // delaunay triangle
-    public struct Simplex
+    public struct Triangle
     {
         public Vector3[] Vertices;
 
-        public Simplex(float[] a, float[] b, float[] c)
+        public Triangle(float[] a, float[] b, float[] c)
         {
             Vertices = new[]
             {
@@ -352,7 +367,7 @@ public class Voronoi
     public struct Tetrahedron : IEquatable<Tetrahedron>
     {
         public Vector3[] Vertices;
-        public Simplex[] Faces;
+        public Triangle[] Faces;
         public int[] Neighbors;
 
         public Tetrahedron(Vector3[] verts)
@@ -366,10 +381,10 @@ public class Voronoi
 
             Faces = new[]
             {
-                new Simplex(q, r, l),
-                new Simplex(q, t, r),
-                new Simplex(q, l, t),
-                new Simplex(r, t, l),
+                new Triangle(q, r, l),
+                new Triangle(q, t, r),
+                new Triangle(q, l, t),
+                new Triangle(r, t, l),
             };
 
             // edge flags to ID neighbors; each int is the index of the neighbor
@@ -403,9 +418,9 @@ public class Voronoi
         {
             var hashCode = -1949845991;
 
-            hashCode = (hashCode * -1287342897) + Vertices.GetHashCode();
-            hashCode = (hashCode * -1287342897) + Faces.GetHashCode();
-            hashCode = (hashCode * -1287342897) + Neighbors.GetHashCode();
+            hashCode = hashCode * -1287342897 + Vertices.GetHashCode();
+            hashCode = hashCode * -1287342897 + Faces.GetHashCode();
+            hashCode = hashCode * -1287342897 + Neighbors.GetHashCode();
 
             return hashCode;
         }
