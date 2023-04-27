@@ -16,6 +16,7 @@ public class Voronoi
 {
     public ICollection<Cell>? VoronoiDiagram;
     public List<Tetrahedron> DelaunayDiagram;
+    public Array<Simplex> Mesh;
 
     // very big tetrahedron, will automate making this
     private readonly float[][] bigTetra =
@@ -130,18 +131,18 @@ public class Voronoi
     {
         // Remembering Stochastic Walk
         // from some starting vertex to point. tetra=qrlt is a tetrahedron of simplexes (faces)
-        // previous = tet; end = false;
+        // previous = tetra; end = false;
         var previous = tetra;
         bool end = false;
 
         while (!end)
         {
-            // face = random facet of tet;
+            // face = random facet of tetra;
             int random = new Random().Next(3);
             Simplex face = tetra.Faces[random];
 
             // TODO: need to map neighbors to edges
-            Tetrahedron neighbor = DelaunayDiagram[random];
+            Tetrahedron neighbor = DelaunayDiagram[tetra.Neighbors[random]];
 
             // don't go backwards
             bool neighborPrevious = neighbor == previous;
@@ -153,39 +154,35 @@ public class Voronoi
             if (!neighborPrevious && otherSide)
             {
                 previous = tetra;
-
-                // tet = neighbor( tet through face);
                 tetra = neighbor;
             }
             else
             {
-                // face = next facet of tet;
+                // face = next facet of tetra;
                 face = random < 3 ? tetra.Faces[random++] : tetra.Faces[0];
 
+                neighbor = DelaunayDiagram[tetra.Neighbors[random]];
                 neighborPrevious = neighbor == previous;
                 otherSide = Orient(face.Vertices[0], face.Vertices[1], face.Vertices[2], point) > 0;
 
-                // if( point not neighbor of previous through face ) && ( point on other side of face )
                 if (!neighborPrevious && otherSide)
                 {
                     previous = tetra;
-
-                    // tet = neighbor( tet through face);
+                    tetra = neighbor;
                 }
                 else
                 {
-                    // face = next facet of tet;
+                    // face = next facet of tetra;
                     face = random < 3 ? tetra.Faces[random++] : tetra.Faces[0];
 
+                    neighbor = DelaunayDiagram[tetra.Neighbors[random]];
                     neighborPrevious = neighbor == previous;
                     otherSide = Orient(face.Vertices[0], face.Vertices[1], face.Vertices[2], point) > 0;
 
-                    // if( point not neighbor of previous through face ) && ( point on other side of face )
                     if (!neighborPrevious && otherSide)
                     {
                         previous = tetra;
-
-                        // tet = neighbor( tet through face);
+                        tetra = neighbor;
                     }
                     else
                     {
@@ -195,33 +192,52 @@ public class Voronoi
             }
         }
 
-        // tet contains point
+        // tetra contains point
         return tetra;
     }
 
-    private List<Tetrahedron> Flip(Tetrahedron tet, Vector3 point)
+    // A technique where we split up a tetrahedron
+    // TODO: should map adjacencies here
+    private void Flip(Tetrahedron tetraA, Tetrahedron tetraB)
     {
         throw new NotImplementedException();
     }
 
-    // this inserts a point and calculates new tetrahedrons
+    // this inserts a point and calculates new tetrahedra
     private void InsertPoint(List<Tetrahedron> delaunay, Vector3 point)
     {
         // tetra <--walk
         Tetrahedron tetra = Walk(delaunay[0], point);
 
         // insert point in tetra with a flip14
-        List<Tetrahedron> newTetras = Flip(tetra, point);
+        var a = new Tetrahedron(new[] { point, tetra.Vertices[0], tetra.Vertices[1], tetra.Vertices[2] });
+        var b = new Tetrahedron(new[] { point, tetra.Vertices[0], tetra.Vertices[2], tetra.Vertices[3] });
+        var c = new Tetrahedron(new[] { point, tetra.Vertices[0], tetra.Vertices[3], tetra.Vertices[1] });
+        var d = new Tetrahedron(new[] { point, tetra.Vertices[1], tetra.Vertices[2], tetra.Vertices[3] });
 
         // push 4 new tetras on stack
+        Queue<Tetrahedron> newTetras = new();
+        newTetras.Enqueue(a);
+        newTetras.Enqueue(b);
+        newTetras.Enqueue(c);
+        newTetras.Enqueue(d);
+
+        Tetrahedron test = default;
+        Tetrahedron neighbor = default;
         while (newTetras.Count > 0)
         {
             // tetra = {p, a, b, c} <--pop from stack
-            // tetra[a] = {a, b, c, d} <--get adjacent tetra of delaunay having abc as facet
-            // if d is inside circumsphere of delaunay then
-            //     Flip(delaunay, delaunay[a])
-            //     end if
-            // end while
+            test = newTetras.Dequeue();
+
+            // tetra[a] = {a, b, c, d} <--get adjacent tetra of delaunay having abc as a face
+            neighbor = DelaunayDiagram[test.Neighbors[3]];
+
+            // if d is inside circumsphere of tetra then flip
+            if (InSphere(test.Vertices[0], test.Vertices[1], test.Vertices[2], test.Vertices[3],
+                    neighbor.Vertices[0]) > 0)
+            {
+                Flip(test, neighbor);
+            }
         }
 
         throw new NotImplementedException();
@@ -360,19 +376,38 @@ public class Voronoi
             Neighbors = new int[4];
         }
 
-        public static bool operator ==(Tetrahedron self, Tetrahedron other)
+        public static bool operator ==(Tetrahedron tetra, Tetrahedron other)
         {
-            return self.Equals(other);
+            return tetra.Equals(other);
         }
 
-        public static bool operator !=(Tetrahedron self, Tetrahedron other)
+        public static bool operator !=(Tetrahedron tetra, Tetrahedron other)
         {
-            return !self.Equals(other);
+            return !tetra.Equals(other);
         }
 
         public bool Equals(Tetrahedron other)
         {
             return Vertices == other.Vertices;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (!(obj is Tetrahedron tetra))
+                return false;
+
+            return Equals(tetra);
+        }
+
+        public override int GetHashCode()
+        {
+            var hashCode = -1949845991;
+
+            hashCode = (hashCode * -1287342897) + Vertices.GetHashCode();
+            hashCode = (hashCode * -1287342897) + Faces.GetHashCode();
+            hashCode = (hashCode * -1287342897) + Neighbors.GetHashCode();
+
+            return hashCode;
         }
     }
 }
