@@ -44,11 +44,11 @@ public class Voronoi
     }
 
     /// <summary>
-    /// determines if a point p is over, under or lies on a plane defined by three points a, b and c
+    ///   determines if a point p is over, under or lies on a plane defined by three points a, b and c
     /// </summary>
     /// <returns>
-    /// a positive value when the point p is above the plane defined by a, b and c; a negative value
-    /// if p is under the plane; and exactly 0 if p is directly on the plane.
+    ///   a positive value when the point p is above the plane defined by a, b and c; a negative value
+    ///   if p is under the plane; and exactly 0 if p is directly on the plane.
     /// </returns>
     private float Orient(Vector3 a, Vector3 b, Vector3 c, Vector3 p)
     {
@@ -116,37 +116,35 @@ public class Voronoi
     }
 
     /// <summary>
-    ///     <para>
-    ///         O.Devillers, S.Pion, and M.Teillaud 'Walking in a Triangulation'
-    ///     </para>
-    /// International Journal of Foundations of Computer Science, 13(2):181-199, 2002
-    ///     <para>
-    ///         Available from: https://inria.hal.science/inria-00102194/document
-    ///     </para>
+    ///   <para>
+    ///     O.Devillers, S.Pion, and M.Teillaud 'Walking in a Triangulation'
+    ///   </para>
+    ///   International Journal of Foundations of Computer Science, 13(2):181-199, 2002
+    ///   <para>
+    ///     Available from: https://inria.hal.science/inria-00102194/document
+    ///   </para>
     /// </summary>
-    /// <param name="tet">tetrahedron to walk from</param>
+    /// <param name="tetra">tetrahedron to walk from</param>
     /// <param name="point">query point</param>
-    private Tetrahedron Walk(Tetrahedron tet, Vector3 point)
+    private Tetrahedron Walk(Tetrahedron tetra, Vector3 point)
     {
         // Remembering Stochastic Walk
-        // from q to p(oint). tet=qrlt is a tetrahedron of simplexes (faces)
+        // from some starting vertex to point. tetra=qrlt is a tetrahedron of simplexes (faces)
         // previous = tet; end = false;
-        var previous = tet;
+        var previous = tetra;
         bool end = false;
 
         while (!end)
         {
             // face = random facet of tet;
             int random = new Random().Next(3);
-            Simplex face = tet.Faces[random];
+            Simplex face = tetra.Faces[random];
 
             // TODO: need to map neighbors to edges
-            Vector3 centroidPrevious = (previous.Vertices[0] + previous.Vertices[1] + previous.Vertices[2]
-                + previous.Vertices[3]) / 4;
+            Tetrahedron neighbor = DelaunayDiagram[random];
 
             // don't go backwards
-            bool neighborPrevious = Orient(face.Vertices[0], face.Vertices[1], face.Vertices[2],
-                centroidPrevious) > 0;
+            bool neighborPrevious = neighbor == previous;
 
             // point on other side of edge
             bool otherSide = Orient(face.Vertices[0], face.Vertices[1], face.Vertices[2], point) > 0;
@@ -154,43 +152,38 @@ public class Voronoi
             // if( point not neighbor of previous through face ) && ( point on other side of face )
             if (!neighborPrevious && otherSide)
             {
-                previous = tet;
+                previous = tetra;
 
                 // tet = neighbor( tet through face);
+                tetra = neighbor;
             }
             else
             {
                 // face = next facet of tet;
-                face = random < 3 ? tet.Faces[random++] : tet.Faces[0];
+                face = random < 3 ? tetra.Faces[random++] : tetra.Faces[0];
 
-                centroidPrevious = (previous.Vertices[0] + previous.Vertices[1] + previous.Vertices[2]
-                    + previous.Vertices[3]) / 4;
-                neighborPrevious = Orient(face.Vertices[0], face.Vertices[1], face.Vertices[2],
-                    centroidPrevious) > 0;
+                neighborPrevious = neighbor == previous;
                 otherSide = Orient(face.Vertices[0], face.Vertices[1], face.Vertices[2], point) > 0;
 
                 // if( point not neighbor of previous through face ) && ( point on other side of face )
                 if (!neighborPrevious && otherSide)
                 {
-                    previous = tet;
+                    previous = tetra;
 
                     // tet = neighbor( tet through face);
                 }
                 else
                 {
                     // face = next facet of tet;
-                    face = random < 3 ? tet.Faces[random++] : tet.Faces[0];
+                    face = random < 3 ? tetra.Faces[random++] : tetra.Faces[0];
 
-                    centroidPrevious = (previous.Vertices[0] + previous.Vertices[1] + previous.Vertices[2]
-                        + previous.Vertices[3]) / 4;
-                    neighborPrevious = Orient(face.Vertices[0], face.Vertices[1], face.Vertices[2],
-                        centroidPrevious) > 0;
+                    neighborPrevious = neighbor == previous;
                     otherSide = Orient(face.Vertices[0], face.Vertices[1], face.Vertices[2], point) > 0;
 
                     // if( point not neighbor of previous through face ) && ( point on other side of face )
                     if (!neighborPrevious && otherSide)
                     {
-                        previous = tet;
+                        previous = tetra;
 
                         // tet = neighbor( tet through face);
                     }
@@ -203,7 +196,7 @@ public class Voronoi
         }
 
         // tet contains point
-        return tet;
+        return tetra;
     }
 
     private List<Tetrahedron> Flip(Tetrahedron tet, Vector3 point)
@@ -235,9 +228,13 @@ public class Voronoi
     }
 
     /// <summary>
-    /// <para>Hugo Ledoux 'Computing the 3D Voronoi Diagram Robustly: An Easy Explanation'</para>
-    /// Delft University of Technology (OTB-section GIS Technology) [Internet] 2007
-    /// <para>Available from: http://www.gdmc.nl/publications/2007/Computing_3D_Voronoi_Diagram.pdf</para>
+    ///   <para>
+    ///     Hugo Ledoux 'Computing the 3D Voronoi Diagram Robustly: An Easy Explanation'
+    ///   </para>
+    ///   Delft University of Technology (OTB-section GIS Technology) [Internet] 2007
+    ///   <para>
+    ///     Available from: http://www.gdmc.nl/publications/2007/Computing_3D_Voronoi_Diagram.pdf
+    ///   </para>
     /// </summary>
     /// <returns>
     /// initialized voronoi diagram
@@ -245,7 +242,7 @@ public class Voronoi
     private List<Tetrahedron> InitializeDiagram(List<Vector3> seeds)
     {
         // big tetrahedron that contains all points to start
-        var bigTetVerts = new Array<Vector3>()
+        var bigTetVerts = new[]
         {
             new Vector3(bigTetra[0][0], bigTetra[0][1], bigTetra[0][2]),
             new Vector3(bigTetra[1][0], bigTetra[1][1], bigTetra[1][2]),
@@ -270,6 +267,9 @@ public class Voronoi
 
     private List<Simplex> DelIso(List<Tetrahedron> delaunay)
     {
+        var voronoi = RecoverDiagram(delaunay);
+        voronoi = RefineDiagram(voronoi);
+
         throw new NotImplementedException();
     }
 
@@ -278,7 +278,7 @@ public class Voronoi
         throw new NotImplementedException();
     }
 
-    private ICollection<Cell> RecoverDiagram(ICollection<Cell> diagram)
+    private ICollection<Cell> RecoverDiagram(List<Tetrahedron> delaunay)
     {
         throw new NotImplementedException();
     }
@@ -319,41 +319,60 @@ public class Voronoi
     // delaunay triangle
     public struct Simplex
     {
-        public Array<Vector3> Vertices;
+        public Vector3[] Vertices;
 
         public Simplex(float[] a, float[] b, float[] c)
         {
-            Vertices = new Array<Vector3>
+            Vertices = new[]
             {
-                new(a[0], a[1], a[2]),
-                new(b[0], b[1], b[2]),
-                new(c[0], c[1], c[2]),
+                new Vector3(a[0], a[1], a[2]),
+                new Vector3(b[0], b[1], b[2]),
+                new Vector3(c[0], c[1], c[2]),
             };
         }
     }
 
     // a tetrahedron that helps form a 3D delaunay diagram
-    public struct Tetrahedron
+    public struct Tetrahedron : IEquatable<Tetrahedron>
     {
-        public Array<Vector3> Vertices;
-        public Array<Simplex> Faces;
+        public Vector3[] Vertices;
+        public Simplex[] Faces;
+        public int[] Neighbors;
 
-        public Tetrahedron(Array<Vector3> verts)
+        public Tetrahedron(Vector3[] verts)
         {
             Vertices = verts;
 
-            float[] q = new[] { verts[0].x, verts[0].y, verts[0].z };
-            float[] r = new[] { verts[1].x, verts[1].y, verts[1].z };
-            float[] l = new[] { verts[2].x, verts[2].y, verts[2].z };
-            float[] t = new[] { verts[3].x, verts[3].y, verts[3].z };
+            float[] q = { verts[0].x, verts[0].y, verts[0].z };
+            float[] r = { verts[1].x, verts[1].y, verts[1].z };
+            float[] l = { verts[2].x, verts[2].y, verts[2].z };
+            float[] t = { verts[3].x, verts[3].y, verts[3].z };
 
-            Faces = new Array<Simplex>()
+            Faces = new[]
             {
                 new Simplex(q, r, l),
                 new Simplex(q, t, r),
                 new Simplex(q, l, t),
                 new Simplex(r, t, l),
             };
+
+            // edge flags to ID neighbors; each int is the index of the neighbor
+            Neighbors = new int[4];
+        }
+
+        public static bool operator ==(Tetrahedron self, Tetrahedron other)
+        {
+            return self.Equals(other);
+        }
+
+        public static bool operator !=(Tetrahedron self, Tetrahedron other)
+        {
+            return !self.Equals(other);
+        }
+
+        public bool Equals(Tetrahedron other)
+        {
+            return Vertices == other.Vertices;
         }
     }
 }
