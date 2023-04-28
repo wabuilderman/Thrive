@@ -4,6 +4,7 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
+using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
 using Godot;
@@ -209,26 +210,114 @@ public class Voronoi
         return tetra;
     }
 
+    public static bool Intersect(Vector3 p1, Vector3 p2, Vector3 p3, Ray ray)
+    {
+        float epsilon = MathUtils.EPSILON;
+
+        // Vectors from p1 to p2/p3 (edges)
+        Vector3 edgeA, edgeB;
+
+        Vector3 p, q, t;
+        float determinant, invDeterminant, u, v;
+
+        edgeA = p2 - p1;
+        edgeB = p3 - p1;
+
+        p = ray.Direction.Cross(edgeB);
+
+        determinant = edgeA.Dot(p);
+
+        // if determinant is near zero, ray lies in plane of triangle otherwise not
+        if (determinant > -epsilon && determinant < epsilon)
+            return false;
+
+        invDeterminant = 1.0f / determinant;
+
+        // calculate distance from p1 to ray origin
+        t = ray.Origin - p1;
+
+        // Calculate u parameter
+        u = t.Dot(p) * invDeterminant;
+
+        // Check for ray hit
+        if (u is < 0 or > 1)
+            return false;
+
+        // Prepare to test v parameter
+        q = t.Cross(edgeA);
+
+        // Calculate v parameter
+        v = ray.Direction.Dot(q) * invDeterminant;
+
+        // Check for ray hit
+        if (v < 0 || u + v > 1)
+            return false;
+
+        // ray does intersect
+        if (edgeB.Dot(q) * invDeterminant > epsilon)
+            return true;
+
+        // No hit at all
+        return false;
+    }
+
     // A technique where we split up a tetrahedron
     // TODO: should map adjacencies here
-    private void Flip(Tetrahedron tetraA, Tetrahedron tetraB)
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void Flip(Tetrahedron tetraA, Tetrahedron tetraB, ref Queue<Tetrahedron> newTetras)
     {
-        /*
-         // case #1: convex
-                flip23(A, B)
-                push tetra pabd, pbcd, and pacd on stack
-         // case #2: concave && diagram has tetra pdab
-                flip32(A, B, pdab)
-                push pacd and pdab on stack
-         // case #3: degenerate coplanar && A and B are in config44 w/ C and D
-                flip44(A, B, C, D)
-                push on stack the 4 tetra created
-         // case #4: degenerate flat tetra
-                flip23(A, B)
-                push tetra pabd, pbcd, and pacd on stack
-        */
+        Ray intersectCheck = new(tetraA.Vertices[0], tetraB.Vertices[0] - tetraA.Vertices[0]);
+        Tetrahedron pdab = new(new[]
 
-        throw new NotImplementedException();
+        {
+            tetraA.Vertices[0], tetraB.Vertices[0], tetraA.Vertices[1], tetraA.Vertices[2],
+        });
+        // case #1: convex
+        if (Intersect(tetraA.Vertices[1], tetraA.Vertices[2], tetraA.Vertices[3], intersectCheck))
+        {
+            // flip23(A, B)
+            Tetrahedron pabd = new(new[]
+            {
+                tetraA.Vertices[0], tetraA.Vertices[1], tetraA.Vertices[2], tetraB.Vertices[0],
+            });
+            Tetrahedron pbcd = new(new[]
+            {
+                tetraA.Vertices[0], tetraA.Vertices[2], tetraA.Vertices[3], tetraB.Vertices[0],
+            });
+            Tetrahedron pacd = new(new[]
+            {
+                tetraA.Vertices[0], tetraA.Vertices[1], tetraA.Vertices[3], tetraB.Vertices[0],
+            });
+
+            // push tetra pabd, pbcd, and pacd on stack
+            newTetras.Enqueue(pabd);
+            newTetras.Enqueue(pbcd);
+            newTetras.Enqueue(pacd);
+        }
+
+        // case #2: concave && diagram(?) has tetra pdab
+        else if (Intersect(tetraA.Vertices[1], tetraA.Vertices[2], tetraA.Vertices[3], intersectCheck)
+                 && DelaunayDiagram.Contains(pdab))
+        {
+            // flip32(A, B, pdab)
+            Tetrahedron pacd = new(new[]
+            {
+                tetraA.Vertices[0], tetraA.Vertices[1], tetraA.Vertices[3], tetraB.Vertices[0],
+            });
+
+            // push pacd and pdab on stack
+            newTetras.Enqueue(pacd);
+            newTetras.Enqueue(pdab);
+        }
+
+        /*
+        // case #3: degenerate coplanar && A and B are in config44 w/ C and D
+               flip44(A, B, C, D)
+               push on stack the 4 tetra created
+        // case #4: degenerate flat tetra
+               flip23(A, B)
+               push tetra pabd, pbcd, and pacd on stack
+       */
     }
 
     // this inserts a point and calculates new tetrahedra
@@ -240,17 +329,11 @@ public class Voronoi
         DelaunayDiagram.Remove(delaunay[lastTetra]);
 
         // insert point in tetra with a flip14
-        var a = new Tetrahedron(new[] { point, tetra.Vertices[0], tetra.Vertices[1], tetra.Vertices[2] });
-        var b = new Tetrahedron(new[] { point, tetra.Vertices[0], tetra.Vertices[2], tetra.Vertices[3] });
-        var c = new Tetrahedron(new[] { point, tetra.Vertices[0], tetra.Vertices[3], tetra.Vertices[1] });
-        var d = new Tetrahedron(new[] { point, tetra.Vertices[1], tetra.Vertices[2], tetra.Vertices[3] });
+        Tetrahedron a = new(new[] { point, tetra.Vertices[0], tetra.Vertices[1], tetra.Vertices[2] });
+        Tetrahedron b = new(new[] { point, tetra.Vertices[0], tetra.Vertices[2], tetra.Vertices[3] });
+        Tetrahedron c = new(new[] { point, tetra.Vertices[0], tetra.Vertices[3], tetra.Vertices[1] });
+        Tetrahedron d = new(new[] { point, tetra.Vertices[1], tetra.Vertices[2], tetra.Vertices[3] });
 
-        DelaunayDiagram.Add(a);
-        DelaunayDiagram.Add(b);
-        DelaunayDiagram.Add(c);
-        DelaunayDiagram.Add(d);
-
-        // push 4 new tetras on stack
         Queue<Tetrahedron> newTetras = new();
         newTetras.Enqueue(a);
         newTetras.Enqueue(b);
@@ -269,11 +352,14 @@ public class Voronoi
             if (InSphere(test.Vertices[0], test.Vertices[1], test.Vertices[2], test.Vertices[3],
                     neighbor.Vertices[0]) > 0)
             {
-                Flip(test, neighbor);
+                Flip(test, neighbor, ref newTetras);
             }
         }
 
-        throw new NotImplementedException();
+        DelaunayDiagram.Add(a);
+        DelaunayDiagram.Add(b);
+        DelaunayDiagram.Add(c);
+        DelaunayDiagram.Add(d);
     }
 
     /// <summary>
@@ -332,6 +418,18 @@ public class Voronoi
 
         // gotta work on this one a lot
         throw new NotImplementedException();
+    }
+
+    public struct Ray
+    {
+        public Vector3 Origin;
+        public Vector3 Direction;
+
+        public Ray(Vector3 origin, Vector3 dir)
+        {
+            Origin = origin;
+            Direction = dir;
+        }
     }
 
     // voronoi cell
