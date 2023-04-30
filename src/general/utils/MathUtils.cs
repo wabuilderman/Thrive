@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Godot;
+using Supercluster.KDTree;
 using Array = Godot.Collections.Array;
 
 /// <summary>
@@ -12,6 +14,18 @@ public static class MathUtils
     public const float DEGREES_TO_RADIANS = Mathf.Pi / 180;
     public const double FULL_CIRCLE = Math.PI * 2;
     public const float RIGHT_ANGLE = Mathf.Pi / 2;
+
+    // standard euclidean distance
+    private static readonly Func<float[], float[], double> l2Norm = (p, q) =>
+    {
+        double dist = 0;
+        for (int i = 0; i < p.Length; i++)
+        {
+            dist += (p[i] - q[i]) * (p[i] - q[i]);
+        }
+
+        return dist;
+    };
 
     public static T Clamp<T>(this T val, T min, T max)
         where T : IComparable<T>
@@ -192,5 +206,87 @@ public static class MathUtils
         }
 
         return distance;
+    }
+
+    // find nearest neighbours using a kd tree
+    private static IEnumerable<Vector3> GetNearestNeighbours(List<Vector3> sites)
+    {
+        int siteCount = sites.Count;
+
+        var data = new List<float[]>();
+
+        for (int i = 0; i < siteCount; i++)
+        {
+            data.Add(new float[] { sites[i].x, sites[i].y, sites[i].z });
+        }
+
+        float[][] treeData = data.ToArray();
+        var treeNodes = sites.Select(p => p.ToString()).ToArray();
+        var tree = new KDTree<float, string>(3, treeData, treeNodes, l2Norm);
+
+        // gotta work on this one a lot
+        throw new NotImplementedException();
+    }
+
+    // checks whether ray intersects triangle
+    public static bool Intersect(Vector3 p1, Vector3 p2, Vector3 p3, Ray ray)
+    {
+        // Vectors from p1 to p2/p3 (edges)
+        Vector3 edgeA, edgeB;
+
+        Vector3 p, q, t;
+        float determinant, invDeterminant, u, v;
+
+        edgeA = p2 - p1;
+        edgeB = p3 - p1;
+
+        p = ray.Direction.Cross(edgeB);
+
+        determinant = edgeA.Dot(p);
+
+        // if determinant is near zero, ray lies in plane of triangle otherwise not
+        if (determinant > -EPSILON && determinant < EPSILON)
+            return false;
+
+        invDeterminant = 1.0f / determinant;
+
+        // calculate distance from p1 to ray origin
+        t = ray.Origin - p1;
+
+        // Calculate u parameter
+        u = t.Dot(p) * invDeterminant;
+
+        // Check for ray hit
+        if (u is < 0 or > 1)
+            return false;
+
+        // Prepare to test v parameter
+        q = t.Cross(edgeA);
+
+        // Calculate v parameter
+        v = ray.Direction.Dot(q) * invDeterminant;
+
+        // Check for ray hit
+        if (v < 0 || u + v > 1)
+            return false;
+
+        // ray does intersect
+        if (edgeB.Dot(q) * invDeterminant > EPSILON)
+            return true;
+
+        // No hit at all
+        return false;
+    }
+
+    public struct Ray
+    {
+        public Vector3 Origin;
+        public Vector3 Direction;
+
+        public Ray(Vector3 origin, Vector3 dir)
+        {
+            Origin = origin;
+            Direction = dir;
+        }
     }
 }

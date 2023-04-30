@@ -2,22 +2,21 @@
 using System.Collections;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.Linq;
 using System.Numerics;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
 using Godot;
 using Godot.Collections;
-using Supercluster.KDTree;
 using Array = Godot.Collections.Array;
+using Ray = MathUtils.Ray;
 using Vector3 = Godot.Vector3;
 
 public class Voronoi
 {
     public ICollection<Cell>? VoronoiDiagram;
     public List<Tetrahedron> DelaunayDiagram;
-    public Array<Triangle> Mesh;
+    public Array<Triangle>? Mesh;
 
     // very big tetrahedron, will automate making this
     private readonly float[][] bigTetra =
@@ -26,18 +25,6 @@ public class Voronoi
         new[] { 0, 74999.25f, 0 },
         new[] { 53032.61968f, -24999.75f, -53032.61968f },
         new[] { -53032.61968f, -24999.75f, -53032.61968f },
-    };
-
-    // standard euclidean distance
-    private readonly Func<float[], float[], double> l2Norm = (p, q) =>
-    {
-        double dist = 0;
-        for (int i = 0; i < p.Length; i++)
-        {
-            dist += (p[i] - q[i]) * (p[i] - q[i]);
-        }
-
-        return dist;
     };
 
     public Voronoi(List<Vector3> seeds)
@@ -59,75 +46,65 @@ public class Voronoi
     }
 
     /// <summary>
-    ///   determines if a point p is over, under or lies on a plane defined by three points a, b and c
+    ///   <para>
+    ///     Hugo Ledoux 'Computing the 3D Voronoi Diagram Robustly: An Easy Explanation'
+    ///   </para>
+    ///   Delft University of Technology (OTB-section GIS Technology) [Internet] 2007
+    ///   <para>
+    ///     Available from: http://www.gdmc.nl/publications/2007/Computing_3D_Voronoi_Diagram.pdf
+    ///   </para>
     /// </summary>
-    /// <returns>
-    ///   a positive value when the point p is above the plane defined by a, b and c; a negative value
-    ///   if p is under the plane; and exactly 0 if p is directly on the plane.
-    /// </returns>
-    private float Orient(Vector3 a, Vector3 b, Vector3 c, Vector3 p)
+    private void InitializeDiagram(List<Vector3> seeds)
     {
-        float[,] orientMatrix =
+        // insert seeds as query points, then rebuild diagram until we triangulate every point.
+        // gives low poly initial triangulation that we make more detailed with Del-Iso
+        for (int i = 0; i < seeds.Count; i++)
         {
-            { a.x, a.y, a.z, 1.0f },
-            { b.x, b.y, b.z, 1.0f },
-            { c.x, c.y, c.z, 1.0f },
-            { p.x, p.y, p.z, 1.0f },
-        };
-
-        float determinant =
-            orientMatrix[0, 0] * (orientMatrix[1, 1] * orientMatrix[2, 2] - orientMatrix[1, 2] * orientMatrix[2, 1]) -
-            orientMatrix[0, 1] * (orientMatrix[1, 0] * orientMatrix[2, 2] - orientMatrix[1, 2] * orientMatrix[2, 0]) +
-            orientMatrix[0, 2] * (orientMatrix[1, 0] * orientMatrix[2, 1] - orientMatrix[1, 1] * orientMatrix[2, 0]);
-
-        return determinant;
+            Vector3 query = seeds[i];
+            InsertPoint(DelaunayDiagram, query);
+        }
     }
 
-    /// <summary>
-    /// determines if a point p is inside, outside or lies on a sphere defined by four points a, b, c and d.
-    /// </summary>
-    /// <returns>
-    /// a positive value is returned if p is inside the sphere; a negative if p is outside; and exactly 0 if p
-    /// is directly on the sphere.
-    /// </returns>
-    private float InSphere(Vector3 a, Vector3 b, Vector3 c, Vector3 d, Vector3 p)
+    // this inserts a point and calculates new tetrahedra
+    private void InsertPoint(List<Tetrahedron> delaunay, Vector3 point)
     {
-        float[,] inSphereMatrix =
+        var lastTetra = delaunay.Count - 1;
+        Tetrahedron tetra = Walk(delaunay[lastTetra], point);
+
+        DelaunayDiagram.Remove(delaunay[lastTetra]);
+
+        // insert point in tetra with a flip14
+        Tetrahedron a = new(new[] { point, tetra.Vertices[0], tetra.Vertices[1], tetra.Vertices[2] });
+        Tetrahedron b = new(new[] { point, tetra.Vertices[0], tetra.Vertices[2], tetra.Vertices[3] });
+        Tetrahedron c = new(new[] { point, tetra.Vertices[0], tetra.Vertices[3], tetra.Vertices[1] });
+        Tetrahedron d = new(new[] { point, tetra.Vertices[1], tetra.Vertices[2], tetra.Vertices[3] });
+
+        Queue<Tetrahedron> newTetras = new();
+        newTetras.Enqueue(a);
+        newTetras.Enqueue(b);
+        newTetras.Enqueue(c);
+        newTetras.Enqueue(d);
+
+        while (newTetras.Count > 0)
         {
-            { a.x, a.y, a.z, (a.x * a.x) + (a.y * a.y) + (a.z * a.z), 1.0f },
-            { b.x, b.y, b.z, (b.x * b.x) + (b.y * b.y) * (b.z * b.z), 1.0f },
-            { c.x, c.y, c.z, (c.x * c.x) + (c.y * c.y) * (c.z * c.z), 1.0f },
-            { d.x, d.y, d.z, (d.x * d.x) + (d.y * d.y) * (d.z * d.z), 1.0f },
-            { p.x, p.y, p.z, (p.x * p.x) + (p.y * p.y) * (p.z * p.z), 1.0f },
-        };
+            // tetra = {p, a, b, c} <--pop from stack
+            var test = newTetras.Dequeue();
 
-        float determinant =
-            inSphereMatrix[0, 3] * inSphereMatrix[1, 2] * inSphereMatrix[2, 1] * inSphereMatrix[3, 0] -
-            inSphereMatrix[0, 2] * inSphereMatrix[1, 3] * inSphereMatrix[2, 1] * inSphereMatrix[3, 0] -
-            inSphereMatrix[0, 3] * inSphereMatrix[1, 1] * inSphereMatrix[2, 2] * inSphereMatrix[3, 0] +
-            inSphereMatrix[0, 1] * inSphereMatrix[1, 3] * inSphereMatrix[2, 2] * inSphereMatrix[3, 0] +
-            inSphereMatrix[0, 2] * inSphereMatrix[1, 1] * inSphereMatrix[2, 3] * inSphereMatrix[3, 0] -
-            inSphereMatrix[0, 1] * inSphereMatrix[1, 2] * inSphereMatrix[2, 3] * inSphereMatrix[3, 0] -
-            inSphereMatrix[0, 3] * inSphereMatrix[1, 2] * inSphereMatrix[2, 0] * inSphereMatrix[3, 1] +
-            inSphereMatrix[0, 2] * inSphereMatrix[1, 3] * inSphereMatrix[2, 0] * inSphereMatrix[3, 1] +
-            inSphereMatrix[0, 3] * inSphereMatrix[1, 0] * inSphereMatrix[2, 2] * inSphereMatrix[3, 1] -
-            inSphereMatrix[0, 0] * inSphereMatrix[1, 3] * inSphereMatrix[2, 2] * inSphereMatrix[3, 1] -
-            inSphereMatrix[0, 2] * inSphereMatrix[1, 0] * inSphereMatrix[2, 3] * inSphereMatrix[3, 1] +
-            inSphereMatrix[0, 0] * inSphereMatrix[1, 2] * inSphereMatrix[2, 3] * inSphereMatrix[3, 1] +
-            inSphereMatrix[0, 3] * inSphereMatrix[1, 1] * inSphereMatrix[2, 0] * inSphereMatrix[3, 2] -
-            inSphereMatrix[0, 1] * inSphereMatrix[1, 3] * inSphereMatrix[2, 0] * inSphereMatrix[3, 2] -
-            inSphereMatrix[0, 3] * inSphereMatrix[1, 0] * inSphereMatrix[2, 1] * inSphereMatrix[3, 2] +
-            inSphereMatrix[0, 0] * inSphereMatrix[1, 3] * inSphereMatrix[2, 1] * inSphereMatrix[3, 2] +
-            inSphereMatrix[0, 1] * inSphereMatrix[1, 0] * inSphereMatrix[2, 3] * inSphereMatrix[3, 2] -
-            inSphereMatrix[0, 0] * inSphereMatrix[1, 1] * inSphereMatrix[2, 3] * inSphereMatrix[3, 2] -
-            inSphereMatrix[0, 2] * inSphereMatrix[1, 1] * inSphereMatrix[2, 0] * inSphereMatrix[3, 3] +
-            inSphereMatrix[0, 1] * inSphereMatrix[1, 2] * inSphereMatrix[2, 0] * inSphereMatrix[3, 3] +
-            inSphereMatrix[0, 2] * inSphereMatrix[1, 0] * inSphereMatrix[2, 1] * inSphereMatrix[3, 3] -
-            inSphereMatrix[0, 0] * inSphereMatrix[1, 2] * inSphereMatrix[2, 1] * inSphereMatrix[3, 3] -
-            inSphereMatrix[0, 1] * inSphereMatrix[1, 0] * inSphereMatrix[2, 2] * inSphereMatrix[3, 3] +
-            inSphereMatrix[0, 0] * inSphereMatrix[1, 1] * inSphereMatrix[2, 2] * inSphereMatrix[3, 3];
+            // tetra[a] = {a, b, c, d} <--get adjacent tetra of delaunay having abc as a face
+            var neighbor = DelaunayDiagram[test.Neighbors[3]];
 
-        return determinant;
+            // if d is inside circumsphere of tetra then flip
+            if (InSphere(test.Vertices[0], test.Vertices[1], test.Vertices[2], test.Vertices[3],
+                    neighbor.Vertices[0]) > 0)
+            {
+                Flip(test, neighbor, ref newTetras);
+            }
+        }
+
+        DelaunayDiagram.Add(a);
+        DelaunayDiagram.Add(b);
+        DelaunayDiagram.Add(c);
+        DelaunayDiagram.Add(d);
     }
 
     /// <summary>
@@ -210,59 +187,9 @@ public class Voronoi
         return tetra;
     }
 
-    public static bool Intersect(Vector3 p1, Vector3 p2, Vector3 p3, Ray ray)
-    {
-        float epsilon = MathUtils.EPSILON;
-
-        // Vectors from p1 to p2/p3 (edges)
-        Vector3 edgeA, edgeB;
-
-        Vector3 p, q, t;
-        float determinant, invDeterminant, u, v;
-
-        edgeA = p2 - p1;
-        edgeB = p3 - p1;
-
-        p = ray.Direction.Cross(edgeB);
-
-        determinant = edgeA.Dot(p);
-
-        // if determinant is near zero, ray lies in plane of triangle otherwise not
-        if (determinant > -epsilon && determinant < epsilon)
-            return false;
-
-        invDeterminant = 1.0f / determinant;
-
-        // calculate distance from p1 to ray origin
-        t = ray.Origin - p1;
-
-        // Calculate u parameter
-        u = t.Dot(p) * invDeterminant;
-
-        // Check for ray hit
-        if (u is < 0 or > 1)
-            return false;
-
-        // Prepare to test v parameter
-        q = t.Cross(edgeA);
-
-        // Calculate v parameter
-        v = ray.Direction.Dot(q) * invDeterminant;
-
-        // Check for ray hit
-        if (v < 0 || u + v > 1)
-            return false;
-
-        // ray does intersect
-        if (edgeB.Dot(q) * invDeterminant > epsilon)
-            return true;
-
-        // No hit at all
-        return false;
-    }
-
     // A technique where we split up a tetrahedron
     // TODO: should map adjacencies here
+    // TODO: try testing all edges for relation to edge pd
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void Flip(Tetrahedron tetraA, Tetrahedron tetraB, ref Queue<Tetrahedron> newTetras)
     {
@@ -272,8 +199,9 @@ public class Voronoi
         {
             tetraA.Vertices[0], tetraB.Vertices[0], tetraA.Vertices[1], tetraA.Vertices[2],
         });
+
         // case #1: convex
-        if (Intersect(tetraA.Vertices[1], tetraA.Vertices[2], tetraA.Vertices[3], intersectCheck))
+        if (MathUtils.Intersect(tetraA.Vertices[1], tetraA.Vertices[2], tetraA.Vertices[3], intersectCheck))
         {
             // flip23(A, B)
             Tetrahedron pabd = new(new[]
@@ -296,7 +224,7 @@ public class Voronoi
         }
 
         // case #2: concave && diagram(?) has tetra pdab
-        else if (Intersect(tetraA.Vertices[1], tetraA.Vertices[2], tetraA.Vertices[3], intersectCheck)
+        else if (MathUtils.Intersect(tetraA.Vertices[1], tetraA.Vertices[2], tetraA.Vertices[3], intersectCheck)
                  && DelaunayDiagram.Contains(pdab))
         {
             // flip32(A, B, pdab)
@@ -310,76 +238,23 @@ public class Voronoi
             newTetras.Enqueue(pdab);
         }
 
-        /*
+        float epsilon = MathUtils.EPSILON;
+        bool coplanar = Orient(tetraB.Vertices[1], tetraB.Vertices[2], tetraB.Vertices[3], tetraA.Vertices[0])
+            <= epsilon && Orient(tetraB.Vertices[1], tetraB.Vertices[2], tetraB.Vertices[3], tetraA.Vertices[0])
+            >= -epsilon;
+
         // case #3: degenerate coplanar && A and B are in config44 w/ C and D
-               flip44(A, B, C, D)
-               push on stack the 4 tetra created
+        if (coplanar)
+        {
+            // flip44(A, B, C, D)
+            // push on stack the 4 tetra created
+        }
+
+        /*
         // case #4: degenerate flat tetra
                flip23(A, B)
                push tetra pabd, pbcd, and pacd on stack
-       */
-    }
-
-    // this inserts a point and calculates new tetrahedra
-    private void InsertPoint(List<Tetrahedron> delaunay, Vector3 point)
-    {
-        var lastTetra = delaunay.Count - 1;
-        Tetrahedron tetra = Walk(delaunay[lastTetra], point);
-
-        DelaunayDiagram.Remove(delaunay[lastTetra]);
-
-        // insert point in tetra with a flip14
-        Tetrahedron a = new(new[] { point, tetra.Vertices[0], tetra.Vertices[1], tetra.Vertices[2] });
-        Tetrahedron b = new(new[] { point, tetra.Vertices[0], tetra.Vertices[2], tetra.Vertices[3] });
-        Tetrahedron c = new(new[] { point, tetra.Vertices[0], tetra.Vertices[3], tetra.Vertices[1] });
-        Tetrahedron d = new(new[] { point, tetra.Vertices[1], tetra.Vertices[2], tetra.Vertices[3] });
-
-        Queue<Tetrahedron> newTetras = new();
-        newTetras.Enqueue(a);
-        newTetras.Enqueue(b);
-        newTetras.Enqueue(c);
-        newTetras.Enqueue(d);
-
-        while (newTetras.Count > 0)
-        {
-            // tetra = {p, a, b, c} <--pop from stack
-            var test = newTetras.Dequeue();
-
-            // tetra[a] = {a, b, c, d} <--get adjacent tetra of delaunay having abc as a face
-            var neighbor = DelaunayDiagram[test.Neighbors[3]];
-
-            // if d is inside circumsphere of tetra then flip
-            if (InSphere(test.Vertices[0], test.Vertices[1], test.Vertices[2], test.Vertices[3],
-                    neighbor.Vertices[0]) > 0)
-            {
-                Flip(test, neighbor, ref newTetras);
-            }
-        }
-
-        DelaunayDiagram.Add(a);
-        DelaunayDiagram.Add(b);
-        DelaunayDiagram.Add(c);
-        DelaunayDiagram.Add(d);
-    }
-
-    /// <summary>
-    ///   <para>
-    ///     Hugo Ledoux 'Computing the 3D Voronoi Diagram Robustly: An Easy Explanation'
-    ///   </para>
-    ///   Delft University of Technology (OTB-section GIS Technology) [Internet] 2007
-    ///   <para>
-    ///     Available from: http://www.gdmc.nl/publications/2007/Computing_3D_Voronoi_Diagram.pdf
-    ///   </para>
-    /// </summary>
-    private void InitializeDiagram(List<Vector3> seeds)
-    {
-        // insert seeds as query points, then rebuild diagram until we triangulate every point.
-        // gives low poly initial triangulation that we make more detailed with Del-Iso
-        for (int i = 0; i < seeds.Count; i++)
-        {
-            Vector3 query = seeds[i];
-            InsertPoint(DelaunayDiagram, query);
-        }
+        */
     }
 
     private void DelIso(List<Tetrahedron> delaunay)
@@ -400,36 +275,76 @@ public class Voronoi
         throw new NotImplementedException();
     }
 
-    // find nearest neighbours using a kd tree
-    private IEnumerable<Vector3> GetNearestNeighbours(List<Vector3> sites)
+    /// <summary>
+    ///   determines if a point p is over, under or lies on a plane defined by three points a, b and c
+    /// </summary>
+    /// <returns>
+    ///   a positive value when the point p is above the plane defined by a, b and c; a negative value
+    ///   if p is under the plane; and exactly 0 if p is directly on the plane.
+    /// </returns>
+    private float Orient(Vector3 a, Vector3 b, Vector3 c, Vector3 p)
     {
-        int siteCount = sites.Count;
-
-        var data = new List<float[]>();
-
-        for (int i = 0; i < siteCount; i++)
+        float[,] orientMatrix =
         {
-            data.Add(new float[] { sites[i].x, sites[i].y, sites[i].z });
-        }
+            { a.x, a.y, a.z, 1.0f },
+            { b.x, b.y, b.z, 1.0f },
+            { c.x, c.y, c.z, 1.0f },
+            { p.x, p.y, p.z, 1.0f },
+        };
 
-        float[][] treeData = data.ToArray();
-        var treeNodes = sites.Select(p => p.ToString()).ToArray();
-        var tree = new KDTree<float, string>(3, treeData, treeNodes, l2Norm);
+        float determinant =
+            orientMatrix[0, 0] * (orientMatrix[1, 1] * orientMatrix[2, 2] - orientMatrix[1, 2] * orientMatrix[2, 1]) -
+            orientMatrix[0, 1] * (orientMatrix[1, 0] * orientMatrix[2, 2] - orientMatrix[1, 2] * orientMatrix[2, 0]) +
+            orientMatrix[0, 2] * (orientMatrix[1, 0] * orientMatrix[2, 1] - orientMatrix[1, 1] * orientMatrix[2, 0]);
 
-        // gotta work on this one a lot
-        throw new NotImplementedException();
+        return determinant;
     }
 
-    public struct Ray
+    /// <summary>
+    ///   determines if a point p is inside, outside or lies on a sphere defined by four points a, b, c and d.
+    /// </summary>
+    /// <returns>
+    ///   a positive value is returned if p is inside the sphere; a negative if p is outside; and exactly 0 if p
+    ///   is directly on the sphere.
+    /// </returns>
+    private float InSphere(Vector3 a, Vector3 b, Vector3 c, Vector3 d, Vector3 p)
     {
-        public Vector3 Origin;
-        public Vector3 Direction;
-
-        public Ray(Vector3 origin, Vector3 dir)
+        float[,] inSphereMatrix =
         {
-            Origin = origin;
-            Direction = dir;
-        }
+            { a.x, a.y, a.z, (a.x * a.x) + (a.y * a.y) + (a.z * a.z), 1.0f },
+            { b.x, b.y, b.z, (b.x * b.x) + (b.y * b.y) * (b.z * b.z), 1.0f },
+            { c.x, c.y, c.z, (c.x * c.x) + (c.y * c.y) * (c.z * c.z), 1.0f },
+            { d.x, d.y, d.z, (d.x * d.x) + (d.y * d.y) * (d.z * d.z), 1.0f },
+            { p.x, p.y, p.z, (p.x * p.x) + (p.y * p.y) * (p.z * p.z), 1.0f },
+        };
+
+        float determinant =
+            inSphereMatrix[0, 3] * inSphereMatrix[1, 2] * inSphereMatrix[2, 1] * inSphereMatrix[3, 0] -
+            inSphereMatrix[0, 2] * inSphereMatrix[1, 3] * inSphereMatrix[2, 1] * inSphereMatrix[3, 0] -
+            inSphereMatrix[0, 3] * inSphereMatrix[1, 1] * inSphereMatrix[2, 2] * inSphereMatrix[3, 0] +
+            inSphereMatrix[0, 1] * inSphereMatrix[1, 3] * inSphereMatrix[2, 2] * inSphereMatrix[3, 0] +
+            inSphereMatrix[0, 2] * inSphereMatrix[1, 1] * inSphereMatrix[2, 3] * inSphereMatrix[3, 0] -
+            inSphereMatrix[0, 1] * inSphereMatrix[1, 2] * inSphereMatrix[2, 3] * inSphereMatrix[3, 0] -
+            inSphereMatrix[0, 3] * inSphereMatrix[1, 2] * inSphereMatrix[2, 0] * inSphereMatrix[3, 1] +
+            inSphereMatrix[0, 2] * inSphereMatrix[1, 3] * inSphereMatrix[2, 0] * inSphereMatrix[3, 1] +
+            inSphereMatrix[0, 3] * inSphereMatrix[1, 0] * inSphereMatrix[2, 2] * inSphereMatrix[3, 1] -
+            inSphereMatrix[0, 0] * inSphereMatrix[1, 3] * inSphereMatrix[2, 2] * inSphereMatrix[3, 1] -
+            inSphereMatrix[0, 2] * inSphereMatrix[1, 0] * inSphereMatrix[2, 3] * inSphereMatrix[3, 1] +
+            inSphereMatrix[0, 0] * inSphereMatrix[1, 2] * inSphereMatrix[2, 3] * inSphereMatrix[3, 1] +
+            inSphereMatrix[0, 3] * inSphereMatrix[1, 1] * inSphereMatrix[2, 0] * inSphereMatrix[3, 2] -
+            inSphereMatrix[0, 1] * inSphereMatrix[1, 3] * inSphereMatrix[2, 0] * inSphereMatrix[3, 2] -
+            inSphereMatrix[0, 3] * inSphereMatrix[1, 0] * inSphereMatrix[2, 1] * inSphereMatrix[3, 2] +
+            inSphereMatrix[0, 0] * inSphereMatrix[1, 3] * inSphereMatrix[2, 1] * inSphereMatrix[3, 2] +
+            inSphereMatrix[0, 1] * inSphereMatrix[1, 0] * inSphereMatrix[2, 3] * inSphereMatrix[3, 2] -
+            inSphereMatrix[0, 0] * inSphereMatrix[1, 1] * inSphereMatrix[2, 3] * inSphereMatrix[3, 2] -
+            inSphereMatrix[0, 2] * inSphereMatrix[1, 1] * inSphereMatrix[2, 0] * inSphereMatrix[3, 3] +
+            inSphereMatrix[0, 1] * inSphereMatrix[1, 2] * inSphereMatrix[2, 0] * inSphereMatrix[3, 3] +
+            inSphereMatrix[0, 2] * inSphereMatrix[1, 0] * inSphereMatrix[2, 1] * inSphereMatrix[3, 3] -
+            inSphereMatrix[0, 0] * inSphereMatrix[1, 2] * inSphereMatrix[2, 1] * inSphereMatrix[3, 3] -
+            inSphereMatrix[0, 1] * inSphereMatrix[1, 0] * inSphereMatrix[2, 2] * inSphereMatrix[3, 3] +
+            inSphereMatrix[0, 0] * inSphereMatrix[1, 1] * inSphereMatrix[2, 2] * inSphereMatrix[3, 3];
+
+        return determinant;
     }
 
     // voronoi cell
