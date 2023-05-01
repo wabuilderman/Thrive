@@ -15,6 +15,7 @@
     <Deterministic>false</Deterministic>
     <LangVersion>9.0</LangVersion>
     <Nullable>enable</Nullable>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />

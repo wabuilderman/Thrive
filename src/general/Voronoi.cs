@@ -1,18 +1,11 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.Numerics;
 using System.Runtime.CompilerServices;
-using System.Threading;
-using System.Threading.Tasks;
-using Godot;
 using Godot.Collections;
-using Array = Godot.Collections.Array;
 using Ray = MathUtils.Ray;
 using Vector3 = Godot.Vector3;
 
-public class Voronoi
+public unsafe class Voronoi
 {
     public ICollection<Cell>? VoronoiDiagram;
     public List<Tetrahedron> DelaunayDiagram;
@@ -91,7 +84,7 @@ public class Voronoi
             var test = newTetras.Dequeue();
 
             // tetra[a] = {a, b, c, d} <--get adjacent tetra of delaunay having abc as a face
-            var neighbor = DelaunayDiagram[test.Neighbors[3]];
+            var neighbor = *test.Neighbors[3];
 
             // if d is inside circumsphere of tetra then flip
             if (InSphere(test.Vertices[0], test.Vertices[1], test.Vertices[2], test.Vertices[3],
@@ -133,7 +126,7 @@ public class Voronoi
             Triangle face = tetra.Faces[random];
 
             // TODO: need to map neighbors to edges
-            Tetrahedron neighbor = DelaunayDiagram[tetra.Neighbors[random]];
+            Tetrahedron neighbor = *tetra.Neighbors[random];
 
             // don't go backwards
             bool neighborPrevious = neighbor == previous;
@@ -152,7 +145,7 @@ public class Voronoi
                 // face = next facet of tetra;
                 face = random < 3 ? tetra.Faces[random++] : tetra.Faces[0];
 
-                neighbor = DelaunayDiagram[tetra.Neighbors[random]];
+                neighbor = *tetra.Neighbors[random];
                 neighborPrevious = neighbor == previous;
                 otherSide = Orient(face.Vertices[0], face.Vertices[1], face.Vertices[2], point) > 0;
 
@@ -166,7 +159,7 @@ public class Voronoi
                     // face = next facet of tetra;
                     face = random < 3 ? tetra.Faces[random++] : tetra.Faces[0];
 
-                    neighbor = DelaunayDiagram[tetra.Neighbors[random]];
+                    neighbor = *tetra.Neighbors[random];
                     neighborPrevious = neighbor == previous;
                     otherSide = Orient(face.Vertices[0], face.Vertices[1], face.Vertices[2], point) > 0;
 
@@ -239,15 +232,21 @@ public class Voronoi
         }
 
         float epsilon = MathUtils.EPSILON;
-        bool coplanar = Orient(tetraB.Vertices[1], tetraB.Vertices[2], tetraB.Vertices[3], tetraA.Vertices[0])
-            <= epsilon && Orient(tetraB.Vertices[1], tetraB.Vertices[2], tetraB.Vertices[3], tetraA.Vertices[0])
-            >= -epsilon;
-
-        // case #3: degenerate coplanar && A and B are in config44 w/ C and D
-        if (coplanar)
+        for (int i = 0; i < 4; i++)
         {
-            // flip44(A, B, C, D)
-            // push on stack the 4 tetra created
+            Triangle testTri = tetraB.Faces[i];
+            bool coplanar = Orient(testTri.Vertices[0], testTri.Vertices[1], testTri.Vertices[2],
+                    tetraA.Vertices[0])
+                <= epsilon && Orient(testTri.Vertices[0], testTri.Vertices[1], testTri.Vertices[2],
+                    tetraA.Vertices[0]) >= -epsilon;
+            bool config44 = tetraA.Neighbors[i] == null;
+
+            // case #3: degenerate coplanar && A and B are in config44 w/ C and D
+            if (coplanar && config44)
+            {
+                // flip44(A, B, C, D)
+                // push on stack the 4 tetra created
+            }
         }
 
         /*
@@ -381,7 +380,7 @@ public class Voronoi
     {
         public Vector3[] Vertices;
         public Triangle[] Faces;
-        public int[] Neighbors;
+        public Tetrahedron*[] Neighbors;
 
         public Tetrahedron(Vector3[] verts)
         {
@@ -401,7 +400,7 @@ public class Voronoi
             };
 
             // edge flags to ID neighbors; each int is the index of the neighbor
-            Neighbors = new int[4];
+            Neighbors = new Tetrahedron*[4];
         }
 
         public static bool operator ==(Tetrahedron tetra, Tetrahedron other)
