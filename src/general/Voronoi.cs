@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using Godot;
 using Godot.Collections;
 using Ray = MathUtils.Ray;
 using Vector3 = Godot.Vector3;
@@ -72,16 +73,16 @@ public unsafe class Voronoi
         Tetrahedron c = new(new[] { point, tetra.Vertices[0], tetra.Vertices[3], tetra.Vertices[1] });
         Tetrahedron d = new(new[] { point, tetra.Vertices[1], tetra.Vertices[2], tetra.Vertices[3] });
 
-        Queue<Tetrahedron> newTetras = new();
-        newTetras.Enqueue(a);
-        newTetras.Enqueue(b);
-        newTetras.Enqueue(c);
-        newTetras.Enqueue(d);
+        Stack<Tetrahedron> newTetras = new();
+        newTetras.Push(a);
+        newTetras.Push(b);
+        newTetras.Push(c);
+        newTetras.Push(d);
 
         while (newTetras.Count > 0)
         {
             // tetra = {p, a, b, c} <--pop from stack
-            var test = newTetras.Dequeue();
+            var test = newTetras.Pop();
 
             // tetra[a] = {a, b, c, d} <--get adjacent tetra of delaunay having abc as a face
             var neighbor = *test.Neighbors[3];
@@ -182,16 +183,10 @@ public unsafe class Voronoi
 
     // A technique where we split up a tetrahedron
     // TODO: should map adjacencies here
-    // TODO: try testing all edges for relation to edge pd
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private void Flip(Tetrahedron tetraA, Tetrahedron tetraB, ref Queue<Tetrahedron> newTetras)
+    private void Flip(Tetrahedron tetraA, Tetrahedron tetraB, ref Stack<Tetrahedron> newTetras)
     {
         Ray intersectCheck = new(tetraA.Vertices[0], tetraB.Vertices[0] - tetraA.Vertices[0]);
-        Tetrahedron pdab = new(new[]
-
-        {
-            tetraA.Vertices[0], tetraB.Vertices[0], tetraA.Vertices[1], tetraA.Vertices[2],
-        });
 
         // case #1: convex
         if (MathUtils.Intersect(tetraA.Vertices[1], tetraA.Vertices[2], tetraA.Vertices[3], intersectCheck))
@@ -211,49 +206,104 @@ public unsafe class Voronoi
             });
 
             // push tetra pabd, pbcd, and pacd on stack
-            newTetras.Enqueue(pabd);
-            newTetras.Enqueue(pbcd);
-            newTetras.Enqueue(pacd);
-        }
-
-        // case #2: concave && diagram(?) has tetra pdab
-        else if (MathUtils.Intersect(tetraA.Vertices[1], tetraA.Vertices[2], tetraA.Vertices[3], intersectCheck)
-                 && DelaunayDiagram.Contains(pdab))
-        {
-            // flip32(A, B, pdab)
-            Tetrahedron pacd = new(new[]
-            {
-                tetraA.Vertices[0], tetraA.Vertices[1], tetraA.Vertices[3], tetraB.Vertices[0],
-            });
-
-            // push pacd and pdab on stack
-            newTetras.Enqueue(pacd);
-            newTetras.Enqueue(pdab);
+            newTetras.Push(pabd);
+            newTetras.Push(pbcd);
+            newTetras.Push(pacd);
+            return;
         }
 
         float epsilon = MathUtils.EPSILON;
-        for (int i = 0; i < 4; i++)
+
+        // case #2: concave && diagram(?) has tetra pdab
+        for (int i = 0; i < 3; i++)
         {
-            Triangle testTri = tetraB.Faces[i];
-            bool coplanar = Orient(testTri.Vertices[0], testTri.Vertices[1], testTri.Vertices[2],
-                    tetraA.Vertices[0])
-                <= epsilon && Orient(testTri.Vertices[0], testTri.Vertices[1], testTri.Vertices[2],
-                    tetraA.Vertices[0]) >= -epsilon;
-            bool config44 = tetraA.Neighbors[i] == null;
+            Triangle testTri = tetraA.Faces[i];
+            Tetrahedron pdab = new(new[]
+            {
+                tetraA.Vertices[0], tetraB.Vertices[0], testTri.Vertices[2], testTri.Vertices[1],
+            });
+
+            if (*tetraA.Neighbors[i] == pdab)
+            {
+                // flip32(A, B, pdab)
+                Tetrahedron pacd = new(new[]
+                {
+                    tetraA.Vertices[0], tetraA.Vertices[1], tetraA.Vertices[3], tetraB.Vertices[0],
+                });
+
+                // push pacd and pdab on stack
+                newTetras.Push(pacd);
+                newTetras.Push(pdab);
+                return;
+            }
+
+            float planarTest = Orient(testTri.Vertices[0], testTri.Vertices[1], testTri.Vertices[2],
+                tetraB.Vertices[0]);
+
+            bool coplanar = planarTest <= epsilon && planarTest >= -epsilon;
+            bool config44 = tetraA.Neighbors[i] != null && tetraB.Neighbors[i] != null
+                && tetraA.Neighbors[i] != tetraB.Neighbors[i];
 
             // case #3: degenerate coplanar && A and B are in config44 w/ C and D
             if (coplanar && config44)
             {
+                Tetrahedron neighborA = *tetraA.Neighbors[i];
+                Tetrahedron neighborB = *tetraB.Neighbors[i];
                 // flip44(A, B, C, D)
+                Tetrahedron flipA = new(new[]
+                {
+                    tetraA.Vertices[0], neighborA.Vertices[3], tetraA.Vertices[Mathf.Abs(i - 3)], testTri.Vertices[1],
+                });
+                Tetrahedron flipB = new(new[]
+                {
+                    tetraB.Vertices[0], tetraA.Vertices[Mathf.Abs(i - 3)], neighborB.Vertices[2], testTri.Vertices[1],
+                });
+                Tetrahedron flipC = new(new[]
+                {
+                    tetraA.Vertices[0], tetraA.Vertices[Mathf.Abs(i - 3)], neighborA.Vertices[3], testTri.Vertices[2],
+                });
+                Tetrahedron flipD = new(new[]
+                {
+                    tetraB.Vertices[0], neighborB.Vertices[2], tetraA.Vertices[Mathf.Abs(i - 3)], testTri.Vertices[2],
+                });
+
                 // push on stack the 4 tetra created
+                newTetras.Push(flipA);
+                newTetras.Push(flipB);
+                newTetras.Push(flipC);
+                newTetras.Push(flipD);
+
+                return;
             }
         }
 
-        /*
         // case #4: degenerate flat tetra
-               flip23(A, B)
-               push tetra pabd, pbcd, and pacd on stack
-        */
+        for (int i = 0; i < 4; i++)
+        {
+            float planarTest = Orient(tetraA.Vertices[1], tetraA.Vertices[2], tetraA.Vertices[3],
+                tetraA.Vertices[0]);
+            if (planarTest <= epsilon && planarTest >= -epsilon)
+            {
+                // flip23(A, B)
+                Tetrahedron pabd = new(new[]
+                {
+                    tetraA.Vertices[0], tetraA.Vertices[1], tetraA.Vertices[2], tetraB.Vertices[0],
+                });
+                Tetrahedron pbcd = new(new[]
+                {
+                    tetraA.Vertices[0], tetraA.Vertices[2], tetraA.Vertices[3], tetraB.Vertices[0],
+                });
+                Tetrahedron pacd = new(new[]
+                {
+                    tetraA.Vertices[0], tetraA.Vertices[3], tetraA.Vertices[2], tetraB.Vertices[0],
+                });
+
+                // push tetra pabd, pbcd, and pacd on stack
+                newTetras.Push(pabd);
+                newTetras.Push(pbcd);
+                newTetras.Push(pacd);
+            }
+        }
     }
 
     private void DelIso(List<Tetrahedron> delaunay)

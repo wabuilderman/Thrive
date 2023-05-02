@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Godot;
 using Supercluster.KDTree;
-using Array = Godot.Collections.Array;
 
 /// <summary>
 ///   Math related utility functions for Thrive
