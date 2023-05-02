@@ -52,26 +52,34 @@ public unsafe class Voronoi
     {
         // insert seeds as query points, then rebuild diagram until we triangulate every point.
         // gives low poly initial triangulation that we make more detailed with Del-Iso
+        int listPos = 0;
         for (int i = 0; i < seeds.Count; i++)
         {
             Vector3 query = seeds[i];
-            InsertPoint(DelaunayDiagram, query);
+            InsertPoint(DelaunayDiagram, query, ref listPos);
         }
     }
 
     // this inserts a point and calculates new tetrahedra
-    private void InsertPoint(List<Tetrahedron> delaunay, Vector3 point)
+    private void InsertPoint(List<Tetrahedron> delaunay, Vector3 point, ref int listPos)
     {
-        var lastTetra = delaunay.Count - 1;
-        Tetrahedron tetra = Walk(delaunay[lastTetra], point);
+        Tetrahedron tetra = Walk(delaunay[listPos], point);
 
-        DelaunayDiagram.Remove(delaunay[lastTetra]);
+        listPos = DelaunayDiagram.IndexOf(tetra);
+        DelaunayDiagram.Remove(tetra);
 
         // insert point in tetra with a flip14
         Tetrahedron a = new(new[] { point, tetra.Vertices[0], tetra.Vertices[1], tetra.Vertices[2] });
         Tetrahedron b = new(new[] { point, tetra.Vertices[0], tetra.Vertices[2], tetra.Vertices[3] });
         Tetrahedron c = new(new[] { point, tetra.Vertices[0], tetra.Vertices[3], tetra.Vertices[1] });
         Tetrahedron d = new(new[] { point, tetra.Vertices[1], tetra.Vertices[2], tetra.Vertices[3] });
+
+        DelaunayDiagram.Add(a);
+        DelaunayDiagram.Add(b);
+        DelaunayDiagram.Add(c);
+        DelaunayDiagram.Add(d);
+
+        listPos = DelaunayDiagram.IndexOf(d);
 
         Stack<Tetrahedron> newTetras = new();
         newTetras.Push(a);
@@ -83,6 +91,7 @@ public unsafe class Voronoi
         {
             // tetra = {p, a, b, c} <--pop from stack
             var test = newTetras.Pop();
+            listPos = test.ListPos;
 
             // tetra[a] = {a, b, c, d} <--get adjacent tetra of delaunay having abc as a face
             var neighbor = *test.Neighbors[3];
@@ -91,14 +100,9 @@ public unsafe class Voronoi
             if (InSphere(test.Vertices[0], test.Vertices[1], test.Vertices[2], test.Vertices[3],
                     neighbor.Vertices[0]) > 0)
             {
-                Flip(test, neighbor, ref newTetras);
+                Flip(test, neighbor, ref newTetras, ref listPos);
             }
         }
-
-        DelaunayDiagram.Add(a);
-        DelaunayDiagram.Add(b);
-        DelaunayDiagram.Add(c);
-        DelaunayDiagram.Add(d);
     }
 
     /// <summary>
@@ -184,7 +188,7 @@ public unsafe class Voronoi
     // A technique where we split up a tetrahedron
     // TODO: should map adjacencies here
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private void Flip(Tetrahedron tetraA, Tetrahedron tetraB, ref Stack<Tetrahedron> newTetras)
+    private void Flip(Tetrahedron tetraA, Tetrahedron tetraB, ref Stack<Tetrahedron> newTetras, ref int listPos)
     {
         Ray intersectCheck = new(tetraA.Vertices[0], tetraB.Vertices[0] - tetraA.Vertices[0]);
 
@@ -192,18 +196,29 @@ public unsafe class Voronoi
         if (MathUtils.Intersect(tetraA.Vertices[1], tetraA.Vertices[2], tetraA.Vertices[3], intersectCheck))
         {
             // flip23(A, B)
+            DelaunayDiagram.Remove(tetraA);
+            DelaunayDiagram.Remove(tetraB);
+
             Tetrahedron pabd = new(new[]
             {
                 tetraA.Vertices[0], tetraA.Vertices[1], tetraA.Vertices[2], tetraB.Vertices[0],
             });
+
             Tetrahedron pbcd = new(new[]
             {
                 tetraA.Vertices[0], tetraA.Vertices[2], tetraA.Vertices[3], tetraB.Vertices[0],
             });
+
             Tetrahedron pacd = new(new[]
             {
                 tetraA.Vertices[0], tetraA.Vertices[1], tetraA.Vertices[3], tetraB.Vertices[0],
             });
+
+            DelaunayDiagram.Add(pabd);
+            DelaunayDiagram.Add(pbcd);
+            DelaunayDiagram.Add(pacd);
+
+            listPos = DelaunayDiagram.IndexOf(pacd);
 
             // push tetra pabd, pbcd, and pacd on stack
             newTetras.Push(pabd);
@@ -214,7 +229,6 @@ public unsafe class Voronoi
 
         float epsilon = MathUtils.EPSILON;
 
-        // case #2: concave && diagram(?) has tetra pdab
         for (int i = 0; i < 3; i++)
         {
             Triangle testTri = tetraA.Faces[i];
@@ -223,13 +237,20 @@ public unsafe class Voronoi
                 tetraA.Vertices[0], tetraB.Vertices[0], testTri.Vertices[2], testTri.Vertices[1],
             });
 
+            // case #2: concave && diagram(?) has tetra pdab
             if (*tetraA.Neighbors[i] == pdab)
             {
                 // flip32(A, B, pdab)
+                DelaunayDiagram.Remove(tetraA);
+                DelaunayDiagram.Remove(tetraB);
+
                 Tetrahedron pacd = new(new[]
                 {
                     tetraA.Vertices[0], tetraA.Vertices[1], tetraA.Vertices[3], tetraB.Vertices[0],
                 });
+
+                DelaunayDiagram.Add(pacd);
+                listPos = DelaunayDiagram.IndexOf(pdab);
 
                 // push pacd and pdab on stack
                 newTetras.Push(pacd);
@@ -249,6 +270,12 @@ public unsafe class Voronoi
             {
                 Tetrahedron neighborA = *tetraA.Neighbors[i];
                 Tetrahedron neighborB = *tetraB.Neighbors[i];
+
+                DelaunayDiagram.Remove(tetraA);
+                DelaunayDiagram.Remove(tetraB);
+                DelaunayDiagram.Remove(neighborA);
+                DelaunayDiagram.Remove(neighborB);
+
                 // flip44(A, B, C, D)
                 Tetrahedron flipA = new(new[]
                 {
@@ -266,6 +293,13 @@ public unsafe class Voronoi
                 {
                     tetraB.Vertices[0], neighborB.Vertices[2], tetraA.Vertices[Mathf.Abs(i - 3)], testTri.Vertices[2],
                 });
+
+                DelaunayDiagram.Add(flipA);
+                DelaunayDiagram.Add(flipB);
+                DelaunayDiagram.Add(flipC);
+                DelaunayDiagram.Add(flipD);
+
+                listPos = DelaunayDiagram.IndexOf(flipD);
 
                 // push on stack the 4 tetra created
                 newTetras.Push(flipA);
@@ -285,6 +319,9 @@ public unsafe class Voronoi
             if (planarTest <= epsilon && planarTest >= -epsilon)
             {
                 // flip23(A, B)
+                DelaunayDiagram.Remove(tetraA);
+                DelaunayDiagram.Remove(tetraB);
+
                 Tetrahedron pabd = new(new[]
                 {
                     tetraA.Vertices[0], tetraA.Vertices[1], tetraA.Vertices[2], tetraB.Vertices[0],
@@ -297,6 +334,12 @@ public unsafe class Voronoi
                 {
                     tetraA.Vertices[0], tetraA.Vertices[3], tetraA.Vertices[2], tetraB.Vertices[0],
                 });
+
+                DelaunayDiagram.Add(pabd);
+                DelaunayDiagram.Add(pbcd);
+                DelaunayDiagram.Add(pacd);
+
+                listPos = DelaunayDiagram.IndexOf(pacd);
 
                 // push tetra pabd, pbcd, and pacd on stack
                 newTetras.Push(pabd);
@@ -428,12 +471,15 @@ public unsafe class Voronoi
     // a tetrahedron that helps form a 3D delaunay diagram
     public struct Tetrahedron : IEquatable<Tetrahedron>
     {
+        public int ListPos;
         public Vector3[] Vertices;
         public Triangle[] Faces;
         public Tetrahedron*[] Neighbors;
 
-        public Tetrahedron(Vector3[] verts)
+        public Tetrahedron(Vector3[] verts, int listPos = 0)
         {
+            ListPos = listPos;
+
             Vertices = verts;
 
             float[] q = { verts[0].x, verts[0].y, verts[0].z };
