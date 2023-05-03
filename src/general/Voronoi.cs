@@ -8,8 +8,8 @@ using Vector3 = Godot.Vector3;
 
 public unsafe class Voronoi
 {
+    private readonly List<Tetrahedron> delaunayDiagram;
     public ICollection<Cell>? VoronoiDiagram;
-    public List<Tetrahedron> DelaunayDiagram;
     public Array<Triangle>? Mesh;
 
     // very big tetrahedron, will automate making this
@@ -33,10 +33,10 @@ public unsafe class Voronoi
         };
 
         var bigTet = new Tetrahedron(bigTetVerts);
-        DelaunayDiagram = new List<Tetrahedron> { bigTet };
+        delaunayDiagram = new List<Tetrahedron> { bigTet };
 
         InitializeDiagram(seeds);
-        DelIso(DelaunayDiagram);
+        DelIso(delaunayDiagram);
     }
 
     /// <summary>
@@ -56,17 +56,18 @@ public unsafe class Voronoi
         for (int i = 0; i < seeds.Count; i++)
         {
             Vector3 query = seeds[i];
-            InsertPoint(DelaunayDiagram, query, ref listPos);
+            InsertPoint(delaunayDiagram, query, ref listPos);
         }
     }
 
     // this inserts a point and calculates new tetrahedra
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void InsertPoint(List<Tetrahedron> delaunay, Vector3 point, ref int listPos)
     {
         Tetrahedron tetra = Walk(delaunay[listPos], point);
 
-        listPos = DelaunayDiagram.IndexOf(tetra);
-        DelaunayDiagram.Remove(tetra);
+        listPos = delaunayDiagram.IndexOf(tetra);
+        delaunayDiagram.Remove(tetra);
 
         // insert point in tetra with a flip14
         Tetrahedron a = new(new[] { point, tetra.Vertices[0], tetra.Vertices[1], tetra.Vertices[2] });
@@ -74,12 +75,12 @@ public unsafe class Voronoi
         Tetrahedron c = new(new[] { point, tetra.Vertices[0], tetra.Vertices[3], tetra.Vertices[1] });
         Tetrahedron d = new(new[] { point, tetra.Vertices[1], tetra.Vertices[2], tetra.Vertices[3] });
 
-        DelaunayDiagram.Add(a);
-        DelaunayDiagram.Add(b);
-        DelaunayDiagram.Add(c);
-        DelaunayDiagram.Add(d);
+        delaunayDiagram.Add(a);
+        delaunayDiagram.Add(b);
+        delaunayDiagram.Add(c);
+        delaunayDiagram.Add(d);
 
-        listPos = DelaunayDiagram.IndexOf(d);
+        listPos = delaunayDiagram.IndexOf(d);
 
         Stack<Tetrahedron> newTetras = new();
         newTetras.Push(a);
@@ -116,6 +117,7 @@ public unsafe class Voronoi
     /// </summary>
     /// <param name="tetra">tetrahedron to walk from</param>
     /// <param name="point">query point</param>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private Tetrahedron Walk(Tetrahedron tetra, Vector3 point)
     {
         // Remembering Stochastic Walk
@@ -196,8 +198,8 @@ public unsafe class Voronoi
         if (MathUtils.Intersect(tetraA.Vertices[1], tetraA.Vertices[2], tetraA.Vertices[3], intersectCheck))
         {
             // flip23(A, B)
-            DelaunayDiagram.Remove(tetraA);
-            DelaunayDiagram.Remove(tetraB);
+            delaunayDiagram.Remove(tetraA);
+            delaunayDiagram.Remove(tetraB);
 
             Tetrahedron pabd = new(new[]
             {
@@ -214,11 +216,11 @@ public unsafe class Voronoi
                 tetraA.Vertices[0], tetraA.Vertices[1], tetraA.Vertices[3], tetraB.Vertices[0],
             });
 
-            DelaunayDiagram.Add(pabd);
-            DelaunayDiagram.Add(pbcd);
-            DelaunayDiagram.Add(pacd);
+            delaunayDiagram.Add(pabd);
+            delaunayDiagram.Add(pbcd);
+            delaunayDiagram.Add(pacd);
 
-            listPos = DelaunayDiagram.IndexOf(pacd);
+            listPos = delaunayDiagram.IndexOf(pacd);
 
             // push tetra pabd, pbcd, and pacd on stack
             newTetras.Push(pabd);
@@ -241,16 +243,16 @@ public unsafe class Voronoi
             if (*tetraA.Neighbors[i] == pdab)
             {
                 // flip32(A, B, pdab)
-                DelaunayDiagram.Remove(tetraA);
-                DelaunayDiagram.Remove(tetraB);
+                delaunayDiagram.Remove(tetraA);
+                delaunayDiagram.Remove(tetraB);
 
                 Tetrahedron pacd = new(new[]
                 {
                     tetraA.Vertices[0], tetraA.Vertices[1], tetraA.Vertices[3], tetraB.Vertices[0],
                 });
 
-                DelaunayDiagram.Add(pacd);
-                listPos = DelaunayDiagram.IndexOf(pdab);
+                delaunayDiagram.Add(pacd);
+                listPos = delaunayDiagram.IndexOf(pdab);
 
                 // push pacd and pdab on stack
                 newTetras.Push(pacd);
@@ -271,10 +273,10 @@ public unsafe class Voronoi
                 Tetrahedron neighborA = *tetraA.Neighbors[i];
                 Tetrahedron neighborB = *tetraB.Neighbors[i];
 
-                DelaunayDiagram.Remove(tetraA);
-                DelaunayDiagram.Remove(tetraB);
-                DelaunayDiagram.Remove(neighborA);
-                DelaunayDiagram.Remove(neighborB);
+                delaunayDiagram.Remove(tetraA);
+                delaunayDiagram.Remove(tetraB);
+                delaunayDiagram.Remove(neighborA);
+                delaunayDiagram.Remove(neighborB);
 
                 // flip44(A, B, C, D)
                 Tetrahedron flipA = new(new[]
@@ -294,12 +296,12 @@ public unsafe class Voronoi
                     tetraB.Vertices[0], neighborB.Vertices[2], tetraA.Vertices[Mathf.Abs(i - 3)], testTri.Vertices[2],
                 });
 
-                DelaunayDiagram.Add(flipA);
-                DelaunayDiagram.Add(flipB);
-                DelaunayDiagram.Add(flipC);
-                DelaunayDiagram.Add(flipD);
+                delaunayDiagram.Add(flipA);
+                delaunayDiagram.Add(flipB);
+                delaunayDiagram.Add(flipC);
+                delaunayDiagram.Add(flipD);
 
-                listPos = DelaunayDiagram.IndexOf(flipD);
+                listPos = delaunayDiagram.IndexOf(flipD);
 
                 // push on stack the 4 tetra created
                 newTetras.Push(flipA);
@@ -319,8 +321,8 @@ public unsafe class Voronoi
             if (planarTest <= epsilon && planarTest >= -epsilon)
             {
                 // flip23(A, B)
-                DelaunayDiagram.Remove(tetraA);
-                DelaunayDiagram.Remove(tetraB);
+                delaunayDiagram.Remove(tetraA);
+                delaunayDiagram.Remove(tetraB);
 
                 Tetrahedron pabd = new(new[]
                 {
@@ -335,11 +337,11 @@ public unsafe class Voronoi
                     tetraA.Vertices[0], tetraA.Vertices[3], tetraA.Vertices[2], tetraB.Vertices[0],
                 });
 
-                DelaunayDiagram.Add(pabd);
-                DelaunayDiagram.Add(pbcd);
-                DelaunayDiagram.Add(pacd);
+                delaunayDiagram.Add(pabd);
+                delaunayDiagram.Add(pbcd);
+                delaunayDiagram.Add(pacd);
 
-                listPos = DelaunayDiagram.IndexOf(pacd);
+                listPos = delaunayDiagram.IndexOf(pacd);
 
                 // push tetra pabd, pbcd, and pacd on stack
                 newTetras.Push(pabd);
@@ -349,20 +351,30 @@ public unsafe class Voronoi
         }
     }
 
+    /// <summary>
+    ///   <para>
+    ///     T.K.Dey, J.A.Levine 'Delaunay Meshing of Isosurfaces'
+    ///   </para>
+    ///   Proc.Shape Modeling International, 2007
+    ///   <para>
+    ///     Available from: http://web.cse.ohio-state.edu/~dey.8/deliso.html
+    ///   </para>
+    /// </summary>
     private void DelIso(List<Tetrahedron> delaunay)
     {
-        var voronoi = RecoverDiagram(delaunay);
-        voronoi = RefineDiagram(voronoi);
+        RecoverDiagram(delaunay);
 
-        throw new NotImplementedException();
-    }
+        // RefineDiagram(voronoi);
 
-    private ICollection<Cell> RefineDiagram(ICollection<Cell> diagram)
-    {
         throw new NotImplementedException();
     }
 
     private ICollection<Cell> RecoverDiagram(List<Tetrahedron> delaunay)
+    {
+        throw new NotImplementedException();
+    }
+
+    private ICollection<Cell> RefineDiagram(ICollection<Cell> diagram)
     {
         throw new NotImplementedException();
     }
@@ -390,6 +402,54 @@ public unsafe class Voronoi
             orientMatrix[0, 2] * (orientMatrix[1, 0] * orientMatrix[2, 1] - orientMatrix[1, 1] * orientMatrix[2, 0]);
 
         return determinant;
+    }
+
+    /// <summary>
+    ///   finds the center of the sphere that passes through all 4 vertices of a tetrahedron
+    /// </summary>
+    /// <returns>
+    ///   circumcenter of a tetrahedron
+    /// </returns>
+    private Vector3 Circumcenter(Vector3 a, Vector3 b, Vector3 c, Vector3 d)
+    {
+        Vector3 diff1 = b - a;
+        float sqLen1 = Mathf.Pow(diff1.Length(), 2);
+
+        Vector3 diff2 = c - b;
+        float sqLen2 = Mathf.Pow(diff2.Length(), 2);
+
+        Vector3 diff3 = d - c;
+        float sqLen3 = Mathf.Pow(diff3.Length(), 2);
+
+        float[,] circMatrix =
+        {
+            { diff1.x, diff1.y, diff1.z },
+            { diff2.x, diff2.y, diff2.z },
+            { diff3.x, diff3.y, diff3.z },
+        };
+
+        float determinant =
+            circMatrix[0, 0] * (circMatrix[1, 1] * circMatrix[2, 2] - circMatrix[1, 2] * circMatrix[2, 1]) -
+            circMatrix[0, 1] * (circMatrix[1, 0] * circMatrix[2, 2] - circMatrix[1, 2] * circMatrix[2, 0]) +
+            circMatrix[0, 2] * (circMatrix[1, 0] * circMatrix[2, 1] - circMatrix[1, 1] * circMatrix[2, 0]);
+
+        float volume = determinant / 6.0f;
+        float i12Volume = 1.0f / (volume * 12.0f);
+
+        Vector3 center = new(
+            a.x + i12Volume * (
+                (circMatrix[1, 1] * circMatrix[2, 2] - circMatrix[2, 1] * circMatrix[1, 2]) * sqLen1
+                - (circMatrix[0, 1] * circMatrix[2, 2] - circMatrix[2, 1] * circMatrix[0, 2]) * sqLen2
+                + (circMatrix[0, 1] * circMatrix[1, 2] - circMatrix[1, 1] * circMatrix[0, 2]) * sqLen3),
+            a.y + i12Volume * (
+                -(circMatrix[1, 0] * circMatrix[2, 2] - circMatrix[2, 0] * circMatrix[1, 2]) * sqLen1
+                + (circMatrix[0, 0] * circMatrix[2, 2] - circMatrix[2, 0] * circMatrix[0, 2]) * sqLen2
+                - (circMatrix[0, 0] * circMatrix[1, 2] - circMatrix[1, 0] * circMatrix[0, 2]) * sqLen3),
+            a.z + i12Volume * (
+                (circMatrix[1, 0] * circMatrix[2, 1] - circMatrix[2, 0] * circMatrix[1, 1]) * sqLen1
+                - (circMatrix[0, 0] * circMatrix[1, 1] - circMatrix[2, 0] * circMatrix[0, 1]) * sqLen2
+                + (circMatrix[0, 0] * circMatrix[1, 1] - circMatrix[1, 0] * circMatrix[0, 1]) * sqLen3));
+        return center;
     }
 
     /// <summary>

@@ -9,7 +9,7 @@ using Supercluster.KDTree;
 /// </summary>
 public static class MathUtils
 {
-    public const float EPSILON = 0.00000001f;
+    public const float EPSILON = 0.0000001f;
     public const float DEGREES_TO_RADIANS = Mathf.Pi / 180;
     public const double FULL_CIRCLE = Math.PI * 2;
     public const float RIGHT_ANGLE = Mathf.Pi / 2;
