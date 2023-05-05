@@ -6,7 +6,7 @@ using Godot.Collections;
 using Ray = MathUtils.Ray;
 using Vector3 = Godot.Vector3;
 
-public unsafe class Voronoi
+public class Voronoi
 {
     public Array<Triangle>? Mesh;
     private readonly List<Tetrahedron> delaunayDiagram;
@@ -31,7 +31,7 @@ public unsafe class Voronoi
             new Vector3(bigTetra[3][0], bigTetra[3][1], bigTetra[3][2]),
         };
 
-        Tetrahedron bigTet = new(bigTetVerts);
+        Tetrahedron bigTet = new(bigTetVerts, 0);
         delaunayDiagram = new List<Tetrahedron> { bigTet };
 
         // Stage 1, make a basic diagram
@@ -214,30 +214,34 @@ public unsafe class Voronoi
         delaunayDiagram.Remove(tetra);
 
         // insert point in tetra with a flip14
-        Tetrahedron a = new(new[] { point, tetra.Vertices[0], tetra.Vertices[1], tetra.Vertices[2] });
-        Tetrahedron b = new(new[] { point, tetra.Vertices[0], tetra.Vertices[2], tetra.Vertices[3] });
-        Tetrahedron c = new(new[] { point, tetra.Vertices[0], tetra.Vertices[3], tetra.Vertices[1] });
-        Tetrahedron d = new(new[] { point, tetra.Vertices[1], tetra.Vertices[2], tetra.Vertices[3] });
+        Tetrahedron a = new(new[] { point, tetra.Vertices[0], tetra.Vertices[1], tetra.Vertices[2] },
+            listPos);
+        Tetrahedron b = new(new[] { point, tetra.Vertices[0], tetra.Vertices[2], tetra.Vertices[3] },
+            listPos++);
+        Tetrahedron c = new(new[] { point, tetra.Vertices[0], tetra.Vertices[3], tetra.Vertices[1] },
+            listPos + 2);
+        Tetrahedron d = new(new[] { point, tetra.Vertices[1], tetra.Vertices[2], tetra.Vertices[3] },
+            listPos + 3);
 
         // TODO: gotta figure out way to map adjacency to bigger tetras outside this one
-        a.Neighbors[0] = &b;
-        a.Neighbors[1] = &c;
-        a.Neighbors[2] = &d;
+        a.Neighbors[0] = b.ListPos;
+        a.Neighbors[1] = c.ListPos;
+        a.Neighbors[2] = d.ListPos;
 
-        b.Neighbors[0] = &c;
-        b.Neighbors[1] = &d;
-        b.Neighbors[2] = &b;
+        b.Neighbors[0] = c.ListPos;
+        b.Neighbors[1] = d.ListPos;
+        b.Neighbors[2] = b.ListPos;
 
-        c.Neighbors[0] = &d;
-        c.Neighbors[1] = &b;
-        c.Neighbors[2] = &c;
+        c.Neighbors[0] = d.ListPos;
+        c.Neighbors[1] = b.ListPos;
+        c.Neighbors[2] = c.ListPos;
 
         delaunayDiagram.Add(a);
         delaunayDiagram.Add(b);
         delaunayDiagram.Add(c);
         delaunayDiagram.Add(d);
 
-        listPos = delaunayDiagram.IndexOf(d);
+        listPos += 3;
 
         Stack<Tetrahedron> newTetras = new();
         newTetras.Push(a);
@@ -251,10 +255,10 @@ public unsafe class Voronoi
             var test = newTetras.Pop();
             listPos = test.ListPos;
 
-            if (test.Neighbors[3] != null)
+            if (test.Neighbors[3] != -1)
             {
                 // tetra[a] = {a, b, c, d} <--get adjacent tetra of delaunay having abc as a face
-                var neighbor = *test.Neighbors[3];
+                var neighbor = delaunayDiagram[test.Neighbors[3]];
 
                 // if d is inside circumsphere of tetra then flip
                 if (InSphere(test.Vertices[0], test.Vertices[1], test.Vertices[2], test.Vertices[3],
@@ -293,7 +297,7 @@ public unsafe class Voronoi
             Triangle face = tetra.Faces[random];
 
             // TODO: need to map neighbors to edges
-            Tetrahedron neighbor = *tetra.Neighbors[random];
+            Tetrahedron neighbor = delaunayDiagram[tetra.Neighbors[random]];
 
             // don't go backwards
             bool neighborPrevious = neighbor == previous;
@@ -312,7 +316,7 @@ public unsafe class Voronoi
                 // face = next facet of tetra;
                 face = random < 3 ? tetra.Faces[random++] : tetra.Faces[0];
 
-                neighbor = *tetra.Neighbors[random];
+                neighbor = delaunayDiagram[tetra.Neighbors[random]];
                 neighborPrevious = neighbor == previous;
                 otherSide = Orient(face.Vertices[0], face.Vertices[1], face.Vertices[2], point) > 0;
 
@@ -326,7 +330,7 @@ public unsafe class Voronoi
                     // face = next facet of tetra;
                     face = random < 3 ? tetra.Faces[random++] : tetra.Faces[0];
 
-                    neighbor = *tetra.Neighbors[random];
+                    neighbor = delaunayDiagram[tetra.Neighbors[random]];
                     neighborPrevious = neighbor == previous;
                     otherSide = Orient(face.Vertices[0], face.Vertices[1], face.Vertices[2], point) > 0;
 
@@ -363,32 +367,32 @@ public unsafe class Voronoi
             Tetrahedron pabd = new(new[]
             {
                 tetraA.Vertices[0], tetraA.Vertices[1], tetraA.Vertices[2], tetraB.Vertices[0],
-            });
+            }, listPos--);
 
             Tetrahedron pbcd = new(new[]
             {
                 tetraA.Vertices[0], tetraA.Vertices[2], tetraA.Vertices[3], tetraB.Vertices[0],
-            });
+            }, listPos);
 
             Tetrahedron pcad = new(new[]
             {
                 tetraA.Vertices[0], tetraA.Vertices[3], tetraA.Vertices[1], tetraB.Vertices[0],
-            });
+            }, listPos++);
 
             delaunayDiagram.Add(pabd);
             delaunayDiagram.Add(pbcd);
             delaunayDiagram.Add(pcad);
 
-            pabd.Neighbors[0] = &pbcd;
-            pabd.Neighbors[1] = &pcad;
+            pabd.Neighbors[0] = pbcd.ListPos;
+            pabd.Neighbors[1] = pcad.ListPos;
 
-            pbcd.Neighbors[0] = &pcad;
-            pbcd.Neighbors[1] = &pabd;
+            pbcd.Neighbors[0] = pcad.ListPos;
+            pbcd.Neighbors[1] = pabd.ListPos;
 
-            pcad.Neighbors[0] = &pabd;
-            pcad.Neighbors[1] = &pbcd;
+            pcad.Neighbors[0] = pabd.ListPos;
+            pcad.Neighbors[1] = pbcd.ListPos;
 
-            listPos = delaunayDiagram.IndexOf(pcad);
+            listPos++;
 
             // push tetra pabd, pbcd, and pacd on stack
             newTetras.Push(pabd);
@@ -405,10 +409,11 @@ public unsafe class Voronoi
             Tetrahedron pdab = new(new[]
             {
                 tetraA.Vertices[0], tetraB.Vertices[0], testTri.Vertices[2], testTri.Vertices[1],
-            });
+            }, tetraA.Neighbors[i]);
+            Tetrahedron neighborAtFace = delaunayDiagram[tetraA.Neighbors[i]];
 
             // case #2: concave && diagram(?) has tetra pdab
-            if (*tetraA.Neighbors[i] == pdab)
+            if (neighborAtFace.Vertices == pdab.Vertices)
             {
                 // flip32(A, B, pdab)
                 delaunayDiagram.Remove(tetraA);
@@ -417,12 +422,11 @@ public unsafe class Voronoi
                 Tetrahedron pacd = new(new[]
                 {
                     tetraA.Vertices[0], tetraA.Vertices[1], tetraA.Vertices[3], tetraB.Vertices[0],
-                });
+                }, listPos++);
 
                 delaunayDiagram.Add(pacd);
-                pacd.Neighbors[0] = &pdab;
-
-                listPos = delaunayDiagram.IndexOf(pdab);
+                pacd.Neighbors[0] = pdab.ListPos;
+                listPos -= 1;
 
                 // push pacd and pdab on stack
                 newTetras.Push(pacd);
@@ -434,14 +438,14 @@ public unsafe class Voronoi
                 tetraB.Vertices[0]);
 
             bool coplanar = planarTest <= epsilon && planarTest >= -epsilon;
-            bool config44 = tetraA.Neighbors[i] != null && tetraB.Neighbors[i] != null
+            bool config44 = tetraA.Neighbors[i] != -1 && tetraB.Neighbors[i] != -1
                 && tetraA.Neighbors[i] != tetraB.Neighbors[i];
 
             // case #3: degenerate coplanar && A and B are in config44 w/ C and D
             if (coplanar && config44)
             {
-                Tetrahedron neighborA = *tetraA.Neighbors[i];
-                Tetrahedron neighborB = *tetraB.Neighbors[i];
+                Tetrahedron neighborA = delaunayDiagram[tetraA.Neighbors[i]];
+                Tetrahedron neighborB = delaunayDiagram[tetraB.Neighbors[i]];
 
                 delaunayDiagram.Remove(tetraA);
                 delaunayDiagram.Remove(tetraB);
@@ -452,26 +456,26 @@ public unsafe class Voronoi
                 Tetrahedron flipA = new(new[]
                 {
                     tetraA.Vertices[0], neighborA.Vertices[3], tetraA.Vertices[Mathf.Abs(i - 3)], testTri.Vertices[1],
-                });
+                }, listPos++);
+
                 Tetrahedron flipB = new(new[]
                 {
                     tetraB.Vertices[0], tetraA.Vertices[Mathf.Abs(i - 3)], neighborB.Vertices[2], testTri.Vertices[1],
-                });
+                }, listPos++);
                 Tetrahedron flipC = new(new[]
                 {
                     tetraA.Vertices[0], tetraA.Vertices[Mathf.Abs(i - 3)], neighborA.Vertices[3], testTri.Vertices[2],
-                });
+                }, listPos++);
+
                 Tetrahedron flipD = new(new[]
                 {
                     tetraB.Vertices[0], neighborB.Vertices[2], tetraA.Vertices[Mathf.Abs(i - 3)], testTri.Vertices[2],
-                });
+                }, listPos++);
 
                 delaunayDiagram.Add(flipA);
                 delaunayDiagram.Add(flipB);
                 delaunayDiagram.Add(flipC);
                 delaunayDiagram.Add(flipD);
-
-                listPos = delaunayDiagram.IndexOf(flipD);
 
                 // push on stack the 4 tetra created
                 newTetras.Push(flipA);
@@ -497,21 +501,26 @@ public unsafe class Voronoi
                 Tetrahedron pabd = new(new[]
                 {
                     tetraA.Vertices[0], tetraA.Vertices[1], tetraA.Vertices[2], tetraB.Vertices[0],
-                });
+                }, listPos++);
+                listPos++;
+
                 Tetrahedron pbcd = new(new[]
                 {
                     tetraA.Vertices[0], tetraA.Vertices[2], tetraA.Vertices[3], tetraB.Vertices[0],
-                });
+                }, listPos++);
+                listPos++;
+
                 Tetrahedron pacd = new(new[]
                 {
                     tetraA.Vertices[0], tetraA.Vertices[3], tetraA.Vertices[2], tetraB.Vertices[0],
-                });
+                }, listPos++);
+                listPos++;
 
                 delaunayDiagram.Add(pabd);
                 delaunayDiagram.Add(pbcd);
                 delaunayDiagram.Add(pacd);
 
-                listPos = delaunayDiagram.IndexOf(pacd);
+                listPos = pacd.ListPos;
 
                 // push tetra pabd, pbcd, and pacd on stack
                 newTetras.Push(pabd);
@@ -584,11 +593,11 @@ public unsafe class Voronoi
         public int ListPos;
         public Vector3[] Vertices;
         public Triangle[] Faces;
-        public Tetrahedron*[] Neighbors;
+        public int[] Neighbors;
         public bool HasNeighbors;
         public Vector3 Circumcenter;
 
-        public Tetrahedron(Vector3[] verts, int listPos = 0)
+        public Tetrahedron(Vector3[] verts, int listPos)
         {
             ListPos = listPos;
 
@@ -610,9 +619,9 @@ public unsafe class Voronoi
             HasNeighbors = false;
 
             // edge flags to ID neighbors; each int is the index of the neighbor
-            Neighbors = new Tetrahedron*[4]
+            Neighbors = new[]
             {
-                null, null, null, null,
+                -1, -1, -1, -1,
             };
 
             Circumcenter = FindCircumcenter(Vertices[0], Vertices[1], Vertices[2], Vertices[3]);
