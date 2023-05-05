@@ -484,9 +484,19 @@ public class Voronoi
                 flipA.Neighbors[3] = flipB.ListPos;
 
                 flipB.Neighbors[0] = flipD.ListPos;
-                flipB.Neighbors[1] = tetraB.Neighbors[Mathf.Abs(i - 1)];
-                flipB.Neighbors[2] = neighborB.Neighbors[2];
+                flipB.Neighbors[1] = tetraB.Neighbors[1];
+                flipB.Neighbors[2] = neighborB.Neighbors[Mathf.Abs(i - 2)];
                 flipB.Neighbors[3] = flipA.ListPos;
+
+                flipC.Neighbors[0] = neighborA.Neighbors[i];
+                flipC.Neighbors[1] = tetraA.Neighbors[1];
+                flipC.Neighbors[2] = flipA.ListPos;
+                flipC.Neighbors[3] = flipD.ListPos;
+
+                flipD.Neighbors[0] = flipB.ListPos;
+                flipD.Neighbors[1] = neighborB.Neighbors[i - 2];
+                flipD.Neighbors[2] = tetraB.Neighbors[i - 2];
+                flipD.Neighbors[3] = flipC.ListPos;
 
                 // push on stack the 4 tetra created
                 newTetras.Push(flipA);
