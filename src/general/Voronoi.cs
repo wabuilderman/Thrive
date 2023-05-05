@@ -422,11 +422,11 @@ public class Voronoi
                 Tetrahedron pacd = new(new[]
                 {
                     tetraA.Vertices[0], tetraA.Vertices[1], tetraA.Vertices[3], tetraB.Vertices[0],
-                }, listPos++);
+                }, listPos--);
 
                 delaunayDiagram.Add(pacd);
                 pacd.Neighbors[0] = pdab.ListPos;
-                listPos -= 1;
+                listPos--;
 
                 // push pacd and pdab on stack
                 newTetras.Push(pacd);
@@ -455,27 +455,38 @@ public class Voronoi
                 // flip44(A, B, C, D)
                 Tetrahedron flipA = new(new[]
                 {
-                    tetraA.Vertices[0], neighborA.Vertices[3], tetraA.Vertices[Mathf.Abs(i - 3)], testTri.Vertices[1],
-                }, listPos++);
+                    testTri.Vertices[0], neighborA.Vertices[3], tetraA.Vertices[Mathf.Abs(i - 3)], testTri.Vertices[1],
+                }, listPos - 3);
 
                 Tetrahedron flipB = new(new[]
                 {
                     tetraB.Vertices[0], tetraA.Vertices[Mathf.Abs(i - 3)], neighborB.Vertices[2], testTri.Vertices[1],
-                }, listPos++);
+                }, listPos - 2);
+
                 Tetrahedron flipC = new(new[]
                 {
                     tetraA.Vertices[0], tetraA.Vertices[Mathf.Abs(i - 3)], neighborA.Vertices[3], testTri.Vertices[2],
-                }, listPos++);
+                }, listPos--);
 
                 Tetrahedron flipD = new(new[]
                 {
                     tetraB.Vertices[0], neighborB.Vertices[2], tetraA.Vertices[Mathf.Abs(i - 3)], testTri.Vertices[2],
-                }, listPos++);
+                }, listPos);
 
                 delaunayDiagram.Add(flipA);
                 delaunayDiagram.Add(flipB);
                 delaunayDiagram.Add(flipC);
                 delaunayDiagram.Add(flipD);
+
+                flipA.Neighbors[0] = flipC.ListPos;
+                flipA.Neighbors[1] = tetraA.Neighbors[Mathf.Abs(i - 2)];
+                flipA.Neighbors[2] = neighborA.Neighbors[1];
+                flipA.Neighbors[3] = flipB.ListPos;
+
+                flipB.Neighbors[0] = flipD.ListPos;
+                flipB.Neighbors[1] = tetraB.Neighbors[Mathf.Abs(i - 1)];
+                flipB.Neighbors[2] = neighborB.Neighbors[2];
+                flipB.Neighbors[3] = flipA.ListPos;
 
                 // push on stack the 4 tetra created
                 newTetras.Push(flipA);
