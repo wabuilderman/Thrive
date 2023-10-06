@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using Godot;
 using Newtonsoft.Json;
@@ -57,6 +58,30 @@ public partial class CellBodyPlanEditorComponent :
     [Export]
     public NodePath CellPopupMenuPath = null!;
 
+    [Export]
+    public NodePath SizeLabelPath = null!;
+
+    [Export]
+    public NodePath SpeedLabelPath = null!;
+
+    [Export]
+    public NodePath RotationSpeedLabelPath = null!;
+
+    [Export]
+    public NodePath HpLabelPath = null!;
+
+    [Export]
+    public NodePath StorageLabelPath = null!;
+
+    [Export]
+    public NodePath DigestionSpeedLabelPath = null!;
+
+    [Export]
+    public NodePath DigestionEfficiencyLabelPath = null!;
+
+    [Export]
+    public NodePath GenerationLabelPath = null!;
+
     private static Vector3 microbeModelOffset = new(0, -0.1f, 0);
 
     private readonly Dictionary<string, CellTypeSelection> cellTypeSelectionButtons = new();
@@ -74,6 +99,36 @@ public partial class CellBodyPlanEditorComponent :
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
     private BehaviourEditorSubComponent behaviourEditor = null!;
+
+    [JsonProperty]
+    [AssignOnlyChildItemsOnDeserialize]
+    private CellStatsIndicator sizeLabel = null!;
+
+    [JsonProperty]
+    [AssignOnlyChildItemsOnDeserialize]
+    private CellStatsIndicator speedLabel = null!;
+
+    [JsonProperty]
+    [AssignOnlyChildItemsOnDeserialize]
+    private CellStatsIndicator rotationSpeedLabel = null!;
+
+    [JsonProperty]
+    [AssignOnlyChildItemsOnDeserialize]
+    private CellStatsIndicator hpLabel = null!;
+
+    [JsonProperty]
+    [AssignOnlyChildItemsOnDeserialize]
+    private CellStatsIndicator storageLabel = null!;
+
+    [JsonProperty]
+    [AssignOnlyChildItemsOnDeserialize]
+    private CellStatsIndicator digestionSpeedLabel = null!;
+
+    [JsonProperty]
+    [AssignOnlyChildItemsOnDeserialize]
+    private CellStatsIndicator digestionEfficiencyLabel = null!;
+
+    private Label generationLabel = null!;
 
     private CollapsibleList cellTypeSelectionList = null!;
 
@@ -116,6 +171,25 @@ public partial class CellBodyPlanEditorComponent :
 
     [JsonProperty]
     private SelectionMenuTab selectedSelectionMenuTab = SelectionMenuTab.Structure;
+
+    /// <summary>
+    ///   Number of hexes in the microbe
+    /// </summary>
+    [JsonIgnore]
+    public int OrganismHexSize
+    {
+        get
+        {
+            int result = 0;
+
+            foreach (var cell in editedMicrobeCells)
+            {
+                result++;
+            }
+
+            return result;
+        }
+    }
 
     private bool forceUpdateCellGraphics;
 
@@ -190,6 +264,15 @@ public partial class CellBodyPlanEditorComponent :
         duplicateCellTypeName = GetNode<LineEdit>(DuplicateCellTypeNamePath);
 
         cellPopupMenu = GetNode<CellPopupMenu>(CellPopupMenuPath);
+
+        sizeLabel = GetNode<CellStatsIndicator>(SizeLabelPath);
+        speedLabel = GetNode<CellStatsIndicator>(SpeedLabelPath);
+        rotationSpeedLabel = GetNode<CellStatsIndicator>(RotationSpeedLabelPath);
+        hpLabel = GetNode<CellStatsIndicator>(HpLabelPath);
+        storageLabel = GetNode<CellStatsIndicator>(StorageLabelPath);
+        digestionSpeedLabel = GetNode<CellStatsIndicator>(DigestionSpeedLabelPath);
+        digestionEfficiencyLabel = GetNode<CellStatsIndicator>(DigestionEfficiencyLabelPath);
+        generationLabel = GetNode<Label>(GenerationLabelPath);
     }
 
     public override void Init(EarlyMulticellularEditor owningEditor, bool fresh)
@@ -456,6 +539,14 @@ public partial class CellBodyPlanEditorComponent :
         return true;
     }
 
+    protected override void RegisterTooltips()
+    {
+        base.RegisterTooltips();
+
+        digestionEfficiencyLabel.RegisterToolTipForControl("digestionEfficiencyDetails", "editor");
+        storageLabel.RegisterToolTipForControl("storageDetails", "editor");
+    }
+
     protected CellType CellTypeFromName(string name)
     {
         return Editor.EditedSpecies.CellTypes.First(c => c.TypeName == name);
@@ -597,6 +688,14 @@ public partial class CellBodyPlanEditorComponent :
                 DuplicateCellTypeDialogPath.Dispose();
                 DuplicateCellTypeNamePath.Dispose();
                 CellPopupMenuPath.Dispose();
+                SizeLabelPath.Dispose();
+                SpeedLabelPath.Dispose();
+                RotationSpeedLabelPath.Dispose();
+                HpLabelPath.Dispose();
+                StorageLabelPath.Dispose();
+                DigestionSpeedLabelPath.Dispose();
+                DigestionEfficiencyLabelPath.Dispose();
+                GenerationLabelPath.Dispose();
             }
         }
 
@@ -953,7 +1052,134 @@ public partial class CellBodyPlanEditorComponent :
     {
         UpdateAlreadyPlacedVisuals();
 
+        UpdateSize(OrganismHexSize);
+
         UpdateArrow();
+    }
+
+    private void UpdateStats()
+    {
+        UpdateSpeed(CalculateSpeed());
+        UpdateRotationSpeed(CalculateRotationSpeed());
+        UpdateHitpoints(CalculateHitpoints());
+        UpdateStorage(GetNominalCapacity(), GetAdditionalCapacities());
+        UpdateTotalDigestionSpeed(CalculateTotalDigestionSpeed());
+        UpdateDigestionEfficiencies(CalculateDigestionEfficiencies());
+    }
+
+    private void UpdateSize(int size)
+    {
+        sizeLabel.Value = size;
+    }
+
+    private void UpdateGeneration(int generation)
+    {
+        generationLabel.Text = generation.ToString(CultureInfo.CurrentCulture);
+    }
+
+    private void UpdateSpeed(float speed)
+    {
+        speedLabel.Value = (float)Math.Round(speed, 1);
+    }
+
+    private void UpdateRotationSpeed(float speed)
+    {
+        rotationSpeedLabel.Value = (float)Math.Round(
+            MicrobeInternalCalculations.RotationSpeedToUserReadableNumber(speed), 1);
+    }
+
+    private void UpdateHitpoints(float hp)
+    {
+        hpLabel.Value = hp;
+    }
+
+    private void UpdateStorage(float nominalStorage, Dictionary<Compound, float> storage)
+    {
+        storageLabel.Value = (float)Math.Round(nominalStorage, 1);
+
+        if (storage.Count == 0)
+        {
+            storageLabel.UnRegisterFirstToolTipForControl();
+            return;
+        }
+
+        var tooltip = ToolTipManager.Instance.GetToolTip("storageDetails", "editor");
+        if (tooltip == null)
+        {
+            GD.PrintErr("Can't update storage tooltip");
+            return;
+        }
+
+        if (!storageLabel.IsToolTipRegistered(tooltip))
+            storageLabel.RegisterToolTipForControl(tooltip, true);
+
+        var description = new LocalizedStringBuilder(100);
+
+        bool first = true;
+
+        foreach (var entry in storage)
+        {
+            if (!first)
+                description.Append("\n");
+
+            first = false;
+
+            description.Append(entry.Key.Name);
+            description.Append(": ");
+            description.Append(entry.Value);
+        }
+
+        tooltip.Description = description.ToString();
+    }
+
+    private void UpdateTotalDigestionSpeed(float speed)
+    {
+        digestionSpeedLabel.Format = TranslationServer.Translate("DIGESTION_SPEED_VALUE");
+        digestionSpeedLabel.Value = (float)Math.Round(speed, 2);
+    }
+
+    private void UpdateDigestionEfficiencies(Dictionary<Enzyme, float> efficiencies)
+    {
+        if (efficiencies.Count == 1)
+        {
+            digestionEfficiencyLabel.Format = TranslationServer.Translate("PERCENTAGE_VALUE");
+            digestionEfficiencyLabel.Value = (float)Math.Round(efficiencies.First().Value * 100, 2);
+        }
+        else
+        {
+            digestionEfficiencyLabel.Format = TranslationServer.Translate("MIXED_DOT_DOT_DOT");
+
+            // Set this to a value hero to fix the up/down arrow
+            // Using sum makes the arrow almost always go up, using average makes the arrow almost always point down...
+            // digestionEfficiencyLabel.Value = efficiencies.Select(e => e.Value).Average() * 100;
+            digestionEfficiencyLabel.Value = efficiencies.Select(e => e.Value).Sum() * 100;
+        }
+
+        var description = new LocalizedStringBuilder(100);
+
+        bool first = true;
+
+        foreach (var enzyme in efficiencies)
+        {
+            if (!first)
+                description.Append("\n");
+
+            first = false;
+
+            description.Append(enzyme.Key.Name);
+            description.Append(": ");
+            description.Append(new LocalizedString("PERCENTAGE_VALUE", (float)Math.Round(enzyme.Value * 100, 2)));
+        }
+
+        var tooltip = ToolTipManager.Instance.GetToolTip("digestionEfficiencyDetails", "editor");
+        if (tooltip != null)
+        {
+            tooltip.Description = description.ToString();
+        }
+        else
+        {
+            GD.PrintErr("Can't update digestion efficiency tooltip");
+        }
     }
 
     /// <summary>
