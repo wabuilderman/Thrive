@@ -272,7 +272,7 @@ public partial class CellBodyPlanEditorComponent :
         storageLabel = GetNode<CellStatsIndicator>(StorageLabelPath);
         digestionSpeedLabel = GetNode<CellStatsIndicator>(DigestionSpeedLabelPath);
         digestionEfficiencyLabel = GetNode<CellStatsIndicator>(DigestionEfficiencyLabelPath);
-        generationLabel = GetNode<Label>(GenerationLabelPath);
+        //generationLabel = GetNode<Label>(GenerationLabelPath);
     }
 
     public override void Init(EarlyMulticellularEditor owningEditor, bool fresh)
@@ -1054,17 +1054,19 @@ public partial class CellBodyPlanEditorComponent :
 
         UpdateSize(OrganismHexSize);
 
+        UpdateStats();
+
         UpdateArrow();
     }
 
     private void UpdateStats()
     {
-        UpdateSpeed(CalculateSpeed());
-        UpdateRotationSpeed(CalculateRotationSpeed());
+        UpdateSpeed(CalculateAverageSpeed());
+        UpdateRotationSpeed(CalculateAverageRotationSpeed());
         UpdateHitpoints(CalculateHitpoints());
         UpdateStorage(GetNominalCapacity(), GetAdditionalCapacities());
         UpdateTotalDigestionSpeed(CalculateTotalDigestionSpeed());
-        UpdateDigestionEfficiencies(CalculateDigestionEfficiencies());
+        UpdateDigestionEfficiencies(CalculateTotalDigestionEfficiencies());
     }
 
     private void UpdateSize(int size)
@@ -1180,6 +1182,65 @@ public partial class CellBodyPlanEditorComponent :
         {
             GD.PrintErr("Can't update digestion efficiency tooltip");
         }
+    }
+
+    private float CalculateAverageSpeed()
+    {
+        return editedMicrobeCells.Average(c =>
+            MicrobeInternalCalculations.CalculateSpeed(c.Data!.Organelles, c.Data.MembraneType, c.Data.MembraneRigidity));
+    }
+
+    private float CalculateHitpoints()
+    {
+        return editedMicrobeCells.Sum(c =>
+            c.Data!.MembraneType.Hitpoints + (c.Data.MembraneRigidity * Constants.MEMBRANE_RIGIDITY_HITPOINTS_MODIFIER));
+    }
+
+    private float CalculateAverageRotationSpeed()
+    {
+        return editedMicrobeCells.Average(c =>
+            MicrobeInternalCalculations.CalculateRotationSpeed(c.Data!.Organelles));
+    }
+
+    private float GetNominalCapacity()
+    {
+        return editedMicrobeCells.Sum(c =>
+            MicrobeInternalCalculations.GetTotalNominalCapacity(c.Data!.Organelles));
+    }
+
+    private Dictionary<Compound, float> GetAdditionalCapacities()
+    {
+        var totalCapacity = new Dictionary<Compound, float>();
+
+        foreach (var cell in editedMicrobeCells)
+        {
+            var capacity = MicrobeInternalCalculations.GetTotalSpecificCapacity(cell.Data!.Organelles);
+
+            foreach (var entry in capacity)
+            {
+                if (totalCapacity.ContainsKey(entry.Key))
+                {
+                    totalCapacity[entry.Key] += entry.Value;
+                }
+                else
+                {
+                    totalCapacity.Add(entry.Key, entry.Value);
+                }
+            }
+        }
+
+        return totalCapacity;
+    }
+
+    private float CalculateTotalDigestionSpeed()
+    {
+        return editedMicrobeCells.Average(c =>
+            MicrobeInternalCalculations.CalculateTotalDigestionSpeed(c.Data!.Organelles));
+    }
+
+    private Dictionary<Enzyme, float> CalculateTotalDigestionEfficiencies()
+    {
+        return new();
     }
 
     /// <summary>
